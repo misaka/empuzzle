@@ -1,5 +1,5 @@
-class PuzzlesController < ApplicationController
-  def maths_grid
+class Puzzles::MathsGridController < ApplicationController
+  def show
     seed = params.fetch(:seed, Random.new_seed)
     random = Random.new(seed)
     rows = params.fetch(:rows, 10)

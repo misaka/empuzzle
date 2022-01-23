@@ -5,5 +5,8 @@ Rails.application.routes.draw do
   # root "articles#index"
 
 
-  get "puzzles/maths-grid"
+
+  namespace :puzzles do
+    get "maths-grid", controller: :maths_grid, action: :show
+  end
 end
