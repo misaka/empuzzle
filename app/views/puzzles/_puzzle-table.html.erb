@@ -1,0 +1,12 @@
+<table class="kizzle-puzzle kizzle-maths-grid">
+<% @table_rows.each do |row| %>
+    <tr class="kizzle-maths-grid-row">
+    <% row.each do |cell| %>
+        <% @cell = cell %>
+        <td class="kizzle-maths-grid-cell">
+            <%= render "puzzles/maths_grid/#{cell.type}_cell" %>
+        </td>
+    <% end %>
+    </tr>
+<% end %>
+</table>
