@@ -50,7 +50,8 @@ class Puzzles::MathsGridController < ApplicationController
 
     OpenStruct.new(
       type: 'multiplication',
-      factors: factors
+      factors: factors,
+      results_length: factors.inject(:*).to_s.length
     )
   end
 
