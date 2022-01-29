@@ -3,6 +3,6 @@ class Puzzles::MathsGridController < ApplicationController
     rows = params.fetch(:rows, 10).to_i
     cols = params.fetch(:columns, 10).to_i
 
-    @table_rows = MathsGridKizzle.new(cols: cols, rows: rows).cells
+    @cells = MathsGridKizzle.new(cols: cols, rows: rows).cells
   end
 end
