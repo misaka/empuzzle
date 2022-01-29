@@ -5,7 +5,4 @@ class Puzzles::MathsGridController < ApplicationController
 
     @table_rows = MathsGridKizzle.new(cols: cols, rows: rows).cells
   end
-
-  private
-
 end
