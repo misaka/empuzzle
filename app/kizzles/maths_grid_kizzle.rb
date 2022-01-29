@@ -23,21 +23,14 @@ class MathsGridKizzle
   end
 
   def cells
-    @cells ||=
-      begin
-        cells = Array.new(@rows) { Array.new(@cols) }
-
-        @rows.times do |row|
-          @cols.times do |col|
-            cells[row][col] = case random_cell_type
-                              when :division then generate_division_cell
-                              when :multiplication then generate_multiplication_cell
-                              end
-          end
+    @cells ||= @rows.times.map do |row|
+      @cols.times.map do |col|
+        case random_cell_type
+        when :division then generate_division_cell
+        when :multiplication then generate_multiplication_cell
         end
-
-        cells
       end
+    end
   end
 
   private
