@@ -2,8 +2,8 @@ class Puzzles::MathsGridController < ApplicationController
   def show
     seed = params.fetch(:seed, Random.new_seed)
     random = Random.new(seed)
-    rows = params.fetch(:rows, 10)
-    cols = params.fetch(:cols, 10)
+    rows = params.fetch(:rows, 10).to_i
+    cols = params.fetch(:columns, 10).to_i
     config = maths_grid_config(random, params)
 
     @table_rows = Array.new(rows) { Array.new(cols) }

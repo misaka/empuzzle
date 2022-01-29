@@ -1,0 +1,12 @@
+<%= form_with url: puzzles_maths_grid_path, method: :get do |form| %>
+    <div class="puzzle_field">
+        <%= label_tag "rows" %>
+        <%= form.text_field(:rows) %>
+    </div>
+    <div class="puzzle_field">
+        <%= label_tag "columns" %>
+        <%= form.text_field(:columns) %>
+    </div>
+    <div class="puzzle_field">
+        <%= submit_tag "Generate new puzzle" %>
+<% end %>
