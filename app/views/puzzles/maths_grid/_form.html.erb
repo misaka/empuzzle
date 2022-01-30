@@ -1,12 +1,14 @@
-<%= form_with url: puzzles_maths_grid_path, method: :get do |form| %>
+<%= form_tag url: puzzles_maths_grid_path, method: :get do |form| %>
+    <dl class="kizzle_puzzle_params">
     <div class="puzzle_field">
         <%= label_tag "rows" %>
-        <%= form.text_field(:rows) %>
+        <%= text_field_tag :rows, @rows %>
     </div>
     <div class="puzzle_field">
         <%= label_tag "columns" %>
-        <%= form.text_field(:columns) %>
+        <%= text_field_tag :columns, @columns %>
     </div>
     <div class="puzzle_field">
         <%= submit_tag "Generate new puzzle" %>
+    </div>
 <% end %>

@@ -1,7 +1,7 @@
 class MathsGridKizzle
   DEFAULT_CONFIG = {
     rows: 8,
-    cols: 8,
+    columns: 8,
 
     dividend_min: 1,
     dividend_max: 1000,
@@ -24,7 +24,7 @@ class MathsGridKizzle
 
   def cells
     @cells ||= @rows.times.map do |row|
-      @cols.times.map do |col|
+      @columns.times.map do |col|
         case random_cell_type
         when :division then generate_division_cell
         when :multiplication then generate_multiplication_cell
