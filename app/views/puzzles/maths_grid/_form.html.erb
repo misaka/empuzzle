@@ -1,14 +1,27 @@
-<%= form_tag url: puzzles_maths_grid_path, method: :get do |form| %>
-    <dl class="kizzle_puzzle_params">
-    <div class="puzzle_field">
-        <%= label_tag "rows" %>
-        <%= text_field_tag :rows, @rows %>
-    </div>
-    <div class="puzzle_field">
-        <%= label_tag "columns" %>
-        <%= text_field_tag :columns, @columns %>
-    </div>
-    <div class="puzzle_field">
-        <%= submit_tag "Generate new puzzle" %>
-    </div>
+<%= form_tag puzzles_maths_grid_path, method: :get do |form| %>
+    <h2>Grid Setup</h2>
+
+    <dl class="kizzle-setup">
+        <div class="kizzle-setup-field">
+            <dt><%= label_tag "rows" %></dt>
+            <dd><%= number_field_tag :rows, @kizzle.rows %></dd>
+        </div>
+        <div class="kizzle-setup-field">
+            <dt><%= label_tag "columns" %></dt>
+            <dd><%= number_field_tag :columns, @kizzle.columns %></dd>
+        </div>
+    </dl>
+
+    <h2>Multiplication Setup</h2>
+
+    <dl class="kizzle-setup">
+        <div class="kizzle-setup-field">
+            <dt><%= label_tag "Factors from" %></dt>
+            <dd><%= number_field_tag :factors_from, @kizzle.factors_from %></dd>
+            <dt><%= label_tag "Factors to" %></dt>
+            <dd><%= number_field_tag :factors_to, @kizzle.factors_to %></dd>
+        </div>
+    </dl>
+
+    <%= submit_tag "Generate new puzzle" %>
 <% end %>

@@ -22,3 +22,20 @@
 .kizzle-maths-grid-cell {
     padding: 1em;
 }
+
+.kizzle-setup dl {
+    display: table;
+}
+
+div.kizzle-setup-field  {
+    display: table-row;
+}
+
+.kizzle-setup-field dt, .kizzle-setup-field dd {
+    display: table-cell;
+    padding: 0.5em;
+}
+
+.kizzle-setup-field input {
+    width: 8ex;
+}

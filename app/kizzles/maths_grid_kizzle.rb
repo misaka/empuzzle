@@ -9,11 +9,11 @@ class MathsGridKizzle
     divisor_min: 1,
     divisor_max: 20,
 
-    factor_min: 1,
-    factor_max: 12,
+    factors_from: 1,
+    factors_to: 12,
 
-    factors_chain_min: 2,
-    factors_chain_max: 3,
+    factors_count_min: 2,
+    factors_count_max: 3,
   }
 
   def initialize(config_params = {})
@@ -36,10 +36,11 @@ class MathsGridKizzle
   private
 
   def instantiate_config_variables(config_params)
-    config = DEFAULT_CONFIG.merge(config_params)
+    config = DEFAULT_CONFIG.with_indifferent_access.merge(config_params)
 
     DEFAULT_CONFIG.keys.each do |var|
       instance_variable_set("@#{var}", config[var])
+      self.class.attr_reader var
     end
   end
 
@@ -54,9 +55,9 @@ class MathsGridKizzle
   end
 
   def generate_multiplication_cell
-    factors_count = 2 + @random.rand(@factors_chain_max - 1).round
+    factors_count = 2 + @random.rand(@factors_count_max - 1).round
     factors = factors_count.times.map do |n|
-      2 + @random.rand(@factor_max - 1)
+      2 + @random.rand(@factors_to - 1)
     end
 
     OpenStruct.new(

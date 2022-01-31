@@ -1,8 +1,20 @@
 class Puzzles::MathsGridController < ApplicationController
   def show
-    @rows = params.fetch(:rows, 10).to_i
-    @columns = params.fetch(:columns, 10).to_i
+    @kizzle = MathsGridKizzle.new(create_params)
+  end
 
-    @cells = MathsGridKizzle.new(rows: @rows, columns: @columns).cells
+  private
+
+  def create_params
+
+    transform_values_for_keys(
+      params.permit(:rows, :columns, :factors_from, :factors_to, :factors_count_min, :factors_count_max),
+      :rows, :columns, :factors_from, :factors_to, :factors_count_min, :factors_count_max,
+      &:to_i
+    )
+  end
+
+  def transform_values_for_keys(p, *keys, &block)
+    p.merge(p.slice(*keys).transform_values(&block))
   end
 end
