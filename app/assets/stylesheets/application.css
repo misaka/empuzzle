@@ -39,3 +39,14 @@ div.kizzle-setup-field  {
 .kizzle-setup-field input {
     width: 8ex;
 }
+
+@media print {
+    form, form + hr {
+        display: none;
+    }
+
+    .kizzle-puzzle {
+        margin-left: auto;
+        margin-right: auto;
+    }
+}
