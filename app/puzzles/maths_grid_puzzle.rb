@@ -1,7 +1,7 @@
 class MathsGridPuzzle
   DEFAULT_CONFIG = {
-    rows: 8,
-    columns: 8,
+    rows: 4,
+    columns: 6,
 
     dividend_min: 1,
     dividend_max: 1000,
