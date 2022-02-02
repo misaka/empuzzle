@@ -2,13 +2,13 @@
 
 <hr>
 
-<div class="kizzle-content">
-<table class="kizzle-puzzle kizzle-maths-grid">
-<% @kizzle.cells.each do |row| %>
-    <tr class="kizzle-maths-grid-row">
+<div class="kids-puzzles-content">
+<table class="kids-puzzles-puzzle kids-puzzles-maths-grid">
+<% @puzzle.cells.each do |row| %>
+    <tr class="kids-puzzles-maths-grid-row">
     <% row.each do |cell| %>
         <% @cell = cell %>
-        <td class="kizzle-maths-grid-cell">
+        <td class="kids-puzzles-maths-grid-cell">
             <%= render "puzzles/maths_grid/#{cell.type}_cell" %>
         </td>
     <% end %>

@@ -1,4 +1,4 @@
-class MathsGridKizzle
+class MathsGridPuzzle
   DEFAULT_CONFIG = {
     rows: 8,
     columns: 8,

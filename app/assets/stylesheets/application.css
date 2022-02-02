@@ -14,29 +14,29 @@
  *= require_self
  */
 
-.kizzle-maths-grid, .kizzle-maths-grid-cell {
+.kids-puzzles-maths-grid, .kids-puzzles-maths-grid-cell {
     border: 2px solid black;
     border-collapse: collapse;
 }
 
-.kizzle-maths-grid-cell {
+.kids-puzzles-maths-grid-cell {
     padding: 1em;
 }
 
-.kizzle-setup dl {
+.kids-puzzles-setup dl {
     display: table;
 }
 
-div.kizzle-setup-field  {
+div.kids-puzzles-setup-field  {
     display: table-row;
 }
 
-.kizzle-setup-field dt, .kizzle-setup-field dd {
+.kids-puzzles-setup-field dt, .kids-puzzles-setup-field dd {
     display: table-cell;
     padding: 0.5em;
 }
 
-.kizzle-setup-field input {
+.kids-puzzles-setup-field input {
     width: 8ex;
 }
 
@@ -45,7 +45,7 @@ div.kizzle-setup-field  {
         display: none;
     }
 
-    .kizzle-puzzle {
+    .kids-puzzles-puzzle {
         margin-left: auto;
         margin-right: auto;
     }

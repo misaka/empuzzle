@@ -1,6 +1,6 @@
 class Puzzles::MathsGridController < ApplicationController
   def show
-    @kizzle = MathsGridKizzle.new(create_params)
+    @puzzle = MathsGridPuzzle.new(create_params)
   end
 
   private
