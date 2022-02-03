@@ -9,8 +9,14 @@ class PuzzlesController < ApplicationController
 
   def maths_grid_create_params
     transform_values_for_keys(
-      params.permit(:rows, :columns, :factors_from, :factors_to, :factors_count_min, :factors_count_max),
-      :rows, :columns, :factors_from, :factors_to, :factors_count_min, :factors_count_max,
+      params.permit(
+        :rows, :columns,
+        :factors_from, :factors_to, :factors_count_min, :factors_count_max,
+        :dividends_from, :dividends_to, :divisors_from, :divisors_to,
+      ),
+      :rows, :columns,
+      :factors_from, :factors_to, :factors_count_min, :factors_count_max,
+      :dividends_from, :dividends_to, :divisors_from, :divisors_to,
       &:to_i
     )
   end

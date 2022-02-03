@@ -3,11 +3,11 @@ class MathsGridPuzzle
     rows: 4,
     columns: 6,
 
-    dividend_min: 1,
-    dividend_max: 1000,
+    dividends_from: 1,
+    dividends_to: 1000,
 
-    divisor_min: 1,
-    divisor_max: 20,
+    divisors_from: 1,
+    divisors_to: 20,
 
     factors_from: 1,
     factors_to: 12,
@@ -45,8 +45,8 @@ class MathsGridPuzzle
   end
 
   def generate_division_cell
-    dividend = @random.rand(@dividend_max).round
-    divisor = @random.rand(@divisor_max - 2).round + 2
+    dividend = @random.rand(@dividends_to).round
+    divisor = @random.rand(@divisors_to - 2).round + 2
     OpenStruct.new(
       type: 'division',
       dividend: dividend,

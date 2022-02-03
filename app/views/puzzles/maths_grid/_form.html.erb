@@ -18,8 +18,38 @@
         <div class="kids-puzzles-setup-field">
             <dt><%= label_tag "Factors from" %></dt>
             <dd><%= number_field_tag :factors_from, @puzzle.factors_from %></dd>
-            <dt><%= label_tag "Factors to" %></dt>
+            <dt><%= label_tag 'factors_to', "To" %></dt>
             <dd><%= number_field_tag :factors_to, @puzzle.factors_to %></dd>
+        </div>
+    </dl>
+
+    <dl class="kids-puzzles-setup">
+        <div class="kids-puzzles-setup-field">
+            <dt><%= label_tag 'factors_count_min', "Minimum Number of Factors" %></dt>
+            <dd><%= number_field_tag :factors_count_min, @puzzle.factors_count_min %></dd>
+
+            <dt><%= label_tag 'factors_count_max', "Maximum" %></dt>
+            <dd><%= number_field_tag :factors_count_max, @puzzle.factors_count_max %></dd>
+        </div>
+    </dl>
+
+    <h2>Division Setup</h2>
+
+    <dl class="kids-puzzles-setup">
+        <div class="kids-puzzles-setup-field">
+            <dt><%= label_tag 'dividends_from' %></dt>
+            <dd><%= number_field_tag :dividends_from, @puzzle.dividends_from %></dd>
+
+            <dt><%= label_tag 'dividends_to', "To" %></dt>
+            <dd><%= number_field_tag :dividends_to, @puzzle.dividends_to %></dd>
+        </div>
+
+        <div class="kids-puzzles-setup-field">
+            <dt><%= label_tag 'divisors_from' %></dt>
+            <dd><%= number_field_tag :divisor_min, @puzzle.divisors_from %></dd>
+
+            <dt><%= label_tag 'divisors_to', "To" %></dt>
+            <dd><%= number_field_tag :divisors_to, @puzzle.divisors_to %></dd>
         </div>
     </dl>
 
