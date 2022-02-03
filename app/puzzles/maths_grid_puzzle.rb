@@ -38,15 +38,13 @@ class MathsGridPuzzle
   def instantiate_config_variables(config_params)
     config = DEFAULT_CONFIG.with_indifferent_access.merge(config_params)
 
-    DEFAULT_CONFIG.keys.each do |var|
+    DEFAULT_CONFIG.each_key do |var|
       instance_variable_set("@#{var}", config[var])
       self.class.attr_reader var
     end
   end
 
   def generate_division_cell
-    dividend = @random.rand(@dividends_to).round
-    divisor = @random.rand(@divisors_to - 2).round + 2
     OpenStruct.new(
       type: 'division',
       dividend: dividend,
@@ -55,10 +53,7 @@ class MathsGridPuzzle
   end
 
   def generate_multiplication_cell
-    factors_count = 2 + @random.rand(@factors_count_max - 1).round
-    factors = factors_count.times.map do |n|
-      2 + @random.rand(@factors_to - 1)
-    end
+    factors = factors_count.times.map { factor }
 
     OpenStruct.new(
       type: 'multiplication',
@@ -68,9 +63,34 @@ class MathsGridPuzzle
   end
 
   def random_cell_type
-    types = [:division, :multiplication]
+    types = %i[division multiplication]
 
     types[@random.rand(types.length).round]
   end
 
+  def random_in_range(from, to)
+    range = to - from
+
+    if range.zero?
+      to
+    else
+      from + @random.rand(range).round
+    end
+  end
+
+  def factors_count
+    random_in_range(@factors_count_min, @factors_count_max)
+  end
+
+  def factor
+    random_in_range(@factors_from, @factors_to)
+  end
+
+  def dividend
+    random_in_range(@dividends_from, @dividends_to)
+  end
+
+  def divisor
+    random_in_range(@divisors_from, @divisors_to)
+  end
 end
