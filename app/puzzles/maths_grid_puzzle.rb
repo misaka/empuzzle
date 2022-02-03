@@ -1,25 +1,40 @@
 class MathsGridPuzzle
-  DEFAULT_CONFIG = {
-    rows: 4,
-    columns: 6,
+  include ActiveModel::API
 
-    dividends_from: 1,
-    dividends_to: 1000,
+  PREDEFINED_CONFIGS = {
+    default: {
+      rows: 4,
+      columns: 6,
 
-    divisors_from: 1,
-    divisors_to: 20,
+      dividends_from: 1,
+      dividends_to: 1000,
 
-    factors_from: 1,
-    factors_to: 12,
+      divisors_from: 1,
+      divisors_to: 20,
 
-    factors_count_min: 2,
-    factors_count_max: 3,
+      factors_from: 1,
+      factors_to: 12,
+
+      factors_count_min: 2,
+      factors_count_max: 3,
+    }
   }
 
-  def initialize(config_params = {})
-    @random = Random.new
+  attr_accessor :rows, :columns,
+                :dividends_from, :dividends_to,
+                :divisors_from, :divisors_to,
+                :factors_from, :factors_to,
+                :factors_count_min, :factors_count_max
 
-    instantiate_config_variables(config_params)
+  def initialize(config_params = {})
+    super
+
+    config = PREDEFINED_CONFIGS[:default]
+    config.each do |attr, value|
+      send("#{attr}=", value) unless instance_variable_defined? "@#{attr}"
+    end
+
+    @random = Random.new
   end
 
   def cells
@@ -34,15 +49,6 @@ class MathsGridPuzzle
   end
 
   private
-
-  def instantiate_config_variables(config_params)
-    config = DEFAULT_CONFIG.with_indifferent_access.merge(config_params)
-
-    DEFAULT_CONFIG.each_key do |var|
-      instance_variable_set("@#{var}", config[var])
-      self.class.attr_reader var
-    end
-  end
 
   def generate_division_cell
     OpenStruct.new(
