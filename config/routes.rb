@@ -6,6 +6,6 @@ Rails.application.routes.draw do
 
   get 'puzzles', controller: :puzzles, action: :index
   namespace :puzzles do
-    get 'maths-grid', controller: :maths_grid, action: :show
+    get 'maths-grid'
   end
 end
