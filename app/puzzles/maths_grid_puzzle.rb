@@ -1,6 +1,7 @@
 class MathsGridPuzzle
   include ActiveModel::API
   include ActiveModel::Attributes
+  include RandomInRange
 
   attribute :rows,              :integer, default: 4
   attribute :columns,           :integer, default: 6
@@ -77,19 +78,10 @@ class MathsGridPuzzle
   end
 
   def random_cell_type
-    types = %i[division multiplication]
-
-    types[@random.rand(types.length).round]
-  end
-
-  def random_in_range(from, to)
-    range = to - from
-
-    if range.zero?
-      to
-    else
-      from + @random.rand(range).round
-    end
+    %i[
+      division
+      multiplication
+    ].sample(random: @random)
   end
 
   def factors_count
