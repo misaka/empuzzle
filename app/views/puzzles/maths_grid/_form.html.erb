@@ -1,14 +1,14 @@
-<%= form_tag puzzles_maths_grid_path, method: :get do |form| %>
+<%= form_for @puzzle, url: puzzles_maths_grid_path, method: :get do |form| %>
     <h2>Grid Setup</h2>
 
     <dl class="kids-puzzles-setup">
         <div class="kids-puzzles-setup-field">
-            <dt><%= label_tag "rows" %></dt>
-            <dd><%= number_field_tag :rows, @puzzle.rows %></dd>
+            <dt><%= form.label :rows %></dt>
+            <dd><%= form.number_field :rows %></dd>
         </div>
         <div class="kids-puzzles-setup-field">
-            <dt><%= label_tag "columns" %></dt>
-            <dd><%= number_field_tag :columns, @puzzle.columns %></dd>
+            <dt><%= form.label :columns %></dt>
+            <dd><%= form.number_field :columns %></dd>
         </div>
     </dl>
 
@@ -19,20 +19,21 @@
 
     <dl class="kids-puzzles-setup">
         <div class="kids-puzzles-setup-field">
-            <dt><%= label_tag "Factors from" %></dt>
-            <dd><%= number_field_tag :factors_from, @puzzle.factors_from %></dd>
-            <dt><%= label_tag 'factors_to', "To" %></dt>
-            <dd><%= number_field_tag :factors_to, @puzzle.factors_to %></dd>
+            <dt><%= form.label :factors_from %></dt>
+            <dd><%= form.number_field :factors_from %></dd>
+
+            <dt><%= form.label :factors_to, "To" %></dt>
+            <dd><%= form.number_field :factors_to %></dd>
         </div>
     </dl>
 
     <dl class="kids-puzzles-setup">
         <div class="kids-puzzles-setup-field">
-            <dt><%= label_tag 'factors_count_min', "Minimum Number of Factors" %></dt>
-            <dd><%= number_field_tag :factors_count_min, @puzzle.factors_count_min %></dd>
+            <dt><%= form.label :factors_count_min, "Minimum Number of Factors" %></dt>
+            <dd><%= form.number_field :factors_count_min %></dd>
 
-            <dt><%= label_tag 'factors_count_max', "Maximum" %></dt>
-            <dd><%= number_field_tag :factors_count_max, @puzzle.factors_count_max %></dd>
+            <dt><%= form.label :factors_count_max, "Maximum" %></dt>
+            <dd><%= form.number_field :factors_count_max %></dd>
         </div>
     </dl>
 
@@ -40,19 +41,19 @@
 
     <dl class="kids-puzzles-setup">
         <div class="kids-puzzles-setup-field">
-            <dt><%= label_tag 'dividends_from' %></dt>
-            <dd><%= number_field_tag :dividends_from, @puzzle.dividends_from %></dd>
+            <dt><%= form.label :dividends_from %></dt>
+            <dd><%= form.number_field :dividends_from %></dd>
 
-            <dt><%= label_tag 'dividends_to', "To" %></dt>
-            <dd><%= number_field_tag :dividends_to, @puzzle.dividends_to %></dd>
+            <dt><%= form.label :dividends_to, "To" %></dt>
+            <dd><%= form.number_field :dividends_to %></dd>
         </div>
 
         <div class="kids-puzzles-setup-field">
-            <dt><%= label_tag 'divisors_from' %></dt>
-            <dd><%= number_field_tag :divisor_from, @puzzle.divisors_from %></dd>
+            <dt><%= form.label :divisors_from %></dt>
+            <dd><%= form.number_field :divisors_from %></dd>
 
-            <dt><%= label_tag 'divisors_to', "To" %></dt>
-            <dd><%= number_field_tag :divisors_to, @puzzle.divisors_to %></dd>
+            <dt><%= form.label :divisors_to, "To" %></dt>
+            <dd><%= form.number_field :divisors_to %></dd>
         </div>
     </dl>
 
