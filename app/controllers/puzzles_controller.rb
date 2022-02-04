@@ -4,6 +4,7 @@ class PuzzlesController < ApplicationController
   def maths_grid
     @puzzle = MathsGridPuzzle.new(maths_grid_create_params)
     @puzzle.validate!
+    @reward = params[:reward] || ""
   end
 
   private
