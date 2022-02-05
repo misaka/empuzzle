@@ -1,0 +1,18 @@
+<div class="kids-puzzles-content">
+<div class="kids-puzzles-puzzle kids-puzzles-number-line-maths">
+        <% @puzzle.lines.each do |line| %>
+    <div class="kids-puzzler-number-line-maths-line">
+        <%= render "puzzles/number_line_maths/#{line.type}_line", line: line %>
+    </div>
+<% end %>
+</div>
+
+<% if @reward.present? %>
+    Reward: <%= @reward %>
+<% end %>
+
+</div>
+
+<hr>
+
+<%#= render "puzzles/maths_grid/form" %>

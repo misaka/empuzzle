@@ -7,5 +7,6 @@ Rails.application.routes.draw do
   get 'puzzles', controller: :puzzles, action: :index
   namespace :puzzles do
     get 'maths-grid'
+    get 'number-line-maths'
   end
 end

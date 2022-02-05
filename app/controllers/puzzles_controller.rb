@@ -7,6 +7,12 @@ class PuzzlesController < ApplicationController
     @reward = params[:reward] || ''
   end
 
+  def number_line_maths
+    @puzzle = NumberLineMathsPuzzle.new(number_line_maths_create_params)
+    @puzzle.validate!
+    @reward = params[:reward] || ''
+  end
+
   private
 
   def maths_grid_create_params
@@ -16,6 +22,18 @@ class PuzzlesController < ApplicationController
         :rows, :columns,
         :factors_from, :factors_to, :factors_count_min, :factors_count_max,
         :dividends_from, :dividends_to, :divisors_from, :divisors_to,
+      )
+  end
+
+  def number_line_maths_create_params
+    params
+      .permit(:number_line_maths_puzzle)
+      .permit(
+        :rows,
+        :reward,
+        :line_range_from, :line_range_to,
+        :addition_numbers_count_min, :addition_numbers_count_max,
+        :addition_numbers_from, :addition_numbers_to
       )
   end
 
