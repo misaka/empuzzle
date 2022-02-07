@@ -1,8 +1,21 @@
 <div class="kids-puzzles-content">
 <div class="kids-puzzles-puzzle kids-puzzles-number-line-maths">
-        <% @puzzle.lines.each do |line| %>
-    <div class="kids-puzzler-number-line-maths-line">
-        <%= render "puzzles/number_line_maths/#{line.type}_line", line: line %>
+        <% @puzzle.exercises.each do |exercise| %>
+    <div class="kids-puzzles-number-line-maths-line">
+        <span class="kids-puzzles-number-line-maths-exercise">
+            <%= render "puzzles/number_line_maths/#{exercise.type}_line", exercise: exercise %>
+        </span>
+        <span class="kids-puzzles-number-line-maths-actual-number-line">
+            <svg height="40" width="804" viewbox="-2 0 804 30">
+                <line x1="0" y1="30" x2="800" y2="30" style="stroke:rgb(0,0,0);stroke-width:2px;" />
+                <line x1="0" y1="24" x2="0" y2="36" style="stroke:black; stroke-width: 2px;" />
+                <% @puzzle.line_range.times do |n| %>
+                    <% x = 800 / @puzzle.line_range * (n+1) %>
+                    <line x1="<%= x %>" y1="24" x2="<%= x %>" y2="36" style="stroke:black; stroke-width: 2px;" />
+                <% end %>
+                Sorry, your browser does not support inline SVG.
+            </svg>
+        </span>
     </div>
 <% end %>
 </div>

@@ -40,6 +40,19 @@ div.kids-puzzles-setup-field  {
     width: 8ex;
 }
 
+.kids-puzzles-number-line-maths-line {
+    width: 100%;
+}
+
+.kids-puzzles-number-line-maths-exercise {
+    width: 14ex;
+    display: inline-block;
+}
+
+.kids-puzzles-number-line-maths-line {
+    display: inline-block;
+}
+
 @media print {
     form, form + hr {
         display: none;
