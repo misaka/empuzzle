@@ -1,6 +1,6 @@
 <div class="kids-puzzles-content">
 <div class="kids-puzzles-puzzle kids-puzzles-number-line-maths">
-        <% @puzzle.exercises.each do |exercise| %>
+    <% @puzzle.exercises.each do |exercise| %>
     <div class="kids-puzzles-number-line-maths-line">
         <span class="kids-puzzles-number-line-maths-exercise">
             <%= render "puzzles/number_line_maths/#{exercise.type}_line", exercise: exercise %>

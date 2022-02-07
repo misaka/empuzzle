@@ -40,17 +40,29 @@ div.kids-puzzles-setup-field  {
     width: 8ex;
 }
 
+.kids-puzzles-number-line-maths {
+    border: 2px solid black;
+    border-collapse: collapse;
+    display: table;
+}
 .kids-puzzles-number-line-maths-line {
     width: 100%;
+    border: 2px solid black;
+    display: table-row;
 }
 
 .kids-puzzles-number-line-maths-exercise {
     width: 14ex;
-    display: inline-block;
+    padding: 1em;
+    border: 2px solid black;
+    display: table-cell;
 }
 
-.kids-puzzles-number-line-maths-line {
-    display: inline-block;
+.kids-puzzles-number-line-maths-actual-number-line {
+    padding: 1em;
+    padding-top: 4em;
+    border: 2px solid black;
+    display: table-cell;
 }
 
 @media print {
