@@ -1,4 +1,4 @@
-module Exercises
+module Equations
   class Addition
     include ActiveModel::API
     include ActiveModel::Attributes

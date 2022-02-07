@@ -1,9 +1,9 @@
 <div class="kids-puzzles-content">
 <div class="kids-puzzles-puzzle kids-puzzles-number-line-maths">
-    <% @puzzle.exercises.each do |exercise| %>
+    <% @puzzle.equations.each do |equation| %>
     <div class="kids-puzzles-number-line-maths-line">
-        <span class="kids-puzzles-number-line-maths-exercise">
-            <%= render "puzzles/number_line_maths/#{exercise.type}_line", exercise: exercise %>
+        <span class="kids-puzzles-number-line-maths-equation">
+            <%= render "puzzles/number_line_maths/#{equation.type}_line", equation: equation %>
         </span>
         <span class="kids-puzzles-number-line-maths-actual-number-line">
             <%= render "number_line", puzzle: @puzzle %>

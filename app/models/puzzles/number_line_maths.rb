@@ -19,10 +19,10 @@ module Puzzles
       @random = Random.new
     end
 
-    def exercises
-      @exercises ||= rows.times.map do |_row|
-        case random_exercise_type
-        when :addition then Exercises::Addition.new(**addition_exercise_params)
+    def equations
+      @equations ||= rows.times.map do |_row|
+        case random_equation_type
+        when :addition then Equations::Addition.new(**addition_equation_params)
         end
       end
     end
@@ -33,13 +33,13 @@ module Puzzles
 
     private
 
-    def random_exercise_type
+    def random_equation_type
       %i[
       addition
     ].sample(random: @random)
     end
 
-    def addition_exercise_params
+    def addition_equation_params
       {
         count_min: addition_numbers_count_min,
         count_max: addition_numbers_count_max,
