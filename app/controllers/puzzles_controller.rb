@@ -2,13 +2,13 @@ class PuzzlesController < ApplicationController
   def index; end
 
   def maths_grid
-    @puzzle = MathsGridPuzzle.new(maths_grid_create_params)
+    @puzzle = Puzzles::MathsGrid.new(maths_grid_create_params)
     @puzzle.validate!
     @reward = params[:reward] || ''
   end
 
   def number_line_maths
-    @puzzle = NumberLineMathsPuzzle.new(number_line_maths_create_params)
+    @puzzle = Puzzles::NumberLineMaths.new(number_line_maths_create_params)
     @puzzle.validate!
     @reward = params[:reward] || ''
   end

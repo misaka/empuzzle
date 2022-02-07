@@ -1,4 +1,4 @@
-class MathsGridPuzzle
+class Puzzles::MathsGrid
   include ActiveModel::API
   include ActiveModel::Attributes
   include RandomInRange
@@ -13,6 +13,7 @@ class MathsGridPuzzle
   attribute :factors_to,        :integer, default: 12
   attribute :factors_count_min, :integer, default: 2
   attribute :factors_count_max, :integer, default: 3
+  attribute :random
 
   validates_presence_of :rows, :columns
   validates_presence_of :dividends_from, :dividends_to
@@ -24,10 +25,10 @@ class MathsGridPuzzle
   validate :factors_from_not_greater_than_to
   validate :factors_count_min_not_greater_than_max
 
-  def initialize(config_params = {})
+  def initialize(attributes = {})
     super
 
-    @random = Random.new
+    self.random = Random.new
   end
 
   def cells
@@ -81,22 +82,22 @@ class MathsGridPuzzle
     %i[
       division
       multiplication
-    ].sample(random: @random)
+    ].sample(random: random)
   end
 
   def factors_count
-    random_in_range(factors_count_min, factors_count_max)
+    random_in_range(factors_count_min, factors_count_max, random: random)
   end
 
   def factor
-    random_in_range(factors_from, factors_to)
+    random_in_range(factors_from, factors_to, random: random)
   end
 
   def dividend
-    random_in_range(dividends_from, dividends_to)
+    random_in_range(dividends_from, dividends_to, random: random)
   end
 
   def divisor
-    random_in_range(divisors_from, divisors_to)
+    random_in_range(divisors_from, divisors_to, random: random)
   end
 end
