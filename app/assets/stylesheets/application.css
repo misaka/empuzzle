@@ -46,13 +46,12 @@ div.kids-puzzles-setup-field  {
     display: table;
 }
 .kids-puzzles-number-line-maths-line {
-    width: 100%;
     border: 2px solid black;
     display: table-row;
 }
 
 .kids-puzzles-number-line-maths-exercise {
-    width: 14ex;
+    width: 10em;
     padding: 1em;
     border: 2px solid black;
     display: table-cell;
