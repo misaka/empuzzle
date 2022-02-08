@@ -57,5 +57,25 @@
         </div>
     </dl>
 
+    <h2>Addition Setup</h2>
+
+    <dl class="kids-puzzles-setup">
+        <div class="kids-puzzles-setup-field">
+            <dt><%= form.label :addition_count_min, "Minimum number of addition numbers" %></dt>
+            <dd><%= form.number_field :addition_count_min %></dd>
+
+            <dt><%= form.label :addition_count_max, "To" %></dt>
+            <dd><%= form.number_field :addition_count_max %></dd>
+        </div>
+
+        <div class="kids-puzzles-setup-field">
+            <dt><%= form.label :addition_from, "Addition numbers from" %></dt>
+            <dd><%= form.number_field :addition_from %></dd>
+
+            <dt><%= form.label :addition_to, "To" %></dt>
+            <dd><%= form.number_field :addition_to %></dd>
+        </div>
+    </dl>
+
     <%= submit_tag "Generate new puzzle" %>
 <% end %>

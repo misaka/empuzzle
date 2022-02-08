@@ -3,20 +3,20 @@ class Puzzles::MathsGrid
   include ActiveModel::Attributes
   include RandomInRange
 
-  attribute :rows,                       :integer, default: 4
-  attribute :columns,                    :integer, default: 6
-  attribute :dividends_from,             :integer, default: 1
-  attribute :dividends_to,               :integer, default: 1000
-  attribute :divisors_from,              :integer, default: 1
-  attribute :divisors_to,                :integer, default: 20
-  attribute :factors_from,               :integer, default: 1
-  attribute :factors_to,                 :integer, default: 12
-  attribute :factors_count_min,          :integer, default: 2
-  attribute :factors_count_max,          :integer, default: 3
-  attribute :addition_numbers_from,      :integer, default: 10
-  attribute :addition_numbers_to,        :integer, default: 1000
-  attribute :addition_numbers_count_min, :integer, default: 2
-  attribute :addition_numbers_count_max, :integer, default: 4
+  attribute :rows,               :integer, default: 4
+  attribute :columns,            :integer, default: 6
+  attribute :dividends_from,     :integer, default: 1
+  attribute :dividends_to,       :integer, default: 1000
+  attribute :divisors_from,      :integer, default: 1
+  attribute :divisors_to,        :integer, default: 20
+  attribute :factors_from,       :integer, default: 1
+  attribute :factors_to,         :integer, default: 12
+  attribute :factors_count_min,  :integer, default: 2
+  attribute :factors_count_max,  :integer, default: 3
+  attribute :addition_from,      :integer, default: 10
+  attribute :addition_to,        :integer, default: 1000
+  attribute :addition_count_min, :integer, default: 2
+  attribute :addition_count_max, :integer, default: 4
 
   validates_presence_of :rows, :columns
   validates_presence_of :dividends_from, :dividends_to
@@ -50,10 +50,10 @@ class Puzzles::MathsGrid
 
     def addition_equation_params
       {
-        count_min: addition_numbers_count_min,
-        count_max: addition_numbers_count_max,
-        from:      addition_numbers_from,
-        to:        addition_numbers_to,
+        count_min: addition_count_min,
+        count_max: addition_count_max,
+        from:      addition_from,
+        to:        addition_to,
         total_max: nil,
         random:    @random
       }

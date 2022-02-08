@@ -22,6 +22,8 @@ class PuzzlesController < ApplicationController
         :rows, :columns,
         :factors_from, :factors_to, :factors_count_min, :factors_count_max,
         :dividends_from, :dividends_to, :divisors_from, :divisors_to,
+        :addition_count_min, :addition_count_max,
+        :addition_from, :addition_to
       )
   end
 
