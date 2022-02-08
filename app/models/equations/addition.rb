@@ -23,6 +23,12 @@ module Equations
       :addition
     end
 
+    def result
+      numbers.reduce(&:+)
+    end
+
+    private
+
     def initialize_numbers
       loop do
         number_count = random_in_range(count_min, count_max, random: random)
@@ -32,7 +38,7 @@ module Equations
 
         self.result = numbers.inject(:+)
 
-        break if result <= total_max
+        break if total_max.nil? || result <= total_max
       end
     end
   end

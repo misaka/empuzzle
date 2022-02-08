@@ -5,7 +5,7 @@
     <% row.each do |cell| %>
         <% @cell = cell %>
         <td class="kids-puzzles-maths-grid-cell">
-            <%= render "puzzles/maths_grid/#{cell.type}_cell" %>
+            <%= render "puzzles/maths_grid/#{cell.type}_cell", puzzle: row, equation: cell %>
         </td>
     <% end %>
     </tr>

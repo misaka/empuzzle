@@ -3,17 +3,20 @@ class Puzzles::MathsGrid
   include ActiveModel::Attributes
   include RandomInRange
 
-  attribute :rows,              :integer, default: 4
-  attribute :columns,           :integer, default: 6
-  attribute :dividends_from,    :integer, default: 1
-  attribute :dividends_to,      :integer, default: 1000
-  attribute :divisors_from,     :integer, default: 1
-  attribute :divisors_to,       :integer, default: 20
-  attribute :factors_from,      :integer, default: 1
-  attribute :factors_to,        :integer, default: 12
-  attribute :factors_count_min, :integer, default: 2
-  attribute :factors_count_max, :integer, default: 3
-  attribute :random
+  attribute :rows,                       :integer, default: 4
+  attribute :columns,                    :integer, default: 6
+  attribute :dividends_from,             :integer, default: 1
+  attribute :dividends_to,               :integer, default: 1000
+  attribute :divisors_from,              :integer, default: 1
+  attribute :divisors_to,                :integer, default: 20
+  attribute :factors_from,               :integer, default: 1
+  attribute :factors_to,                 :integer, default: 12
+  attribute :factors_count_min,          :integer, default: 2
+  attribute :factors_count_max,          :integer, default: 3
+  attribute :addition_numbers_from,      :integer, default: 10
+  attribute :addition_numbers_to,        :integer, default: 1000
+  attribute :addition_numbers_count_min, :integer, default: 2
+  attribute :addition_numbers_count_max, :integer, default: 4
 
   validates_presence_of :rows, :columns
   validates_presence_of :dividends_from, :dividends_to
@@ -28,13 +31,14 @@ class Puzzles::MathsGrid
   def initialize(attributes = {})
     super
 
-    self.random = Random.new
+    @random = Random.new
   end
 
   def cells
     @cells ||= rows.times.map do |row|
       columns.times.map do |col|
         case random_cell_type
+        when :addition then Equations::Addition.new(**addition_equation_params)
         when :division then generate_division_cell
         when :multiplication then generate_multiplication_cell
         end
@@ -43,6 +47,17 @@ class Puzzles::MathsGrid
   end
 
   private
+
+    def addition_equation_params
+      {
+        count_min: addition_numbers_count_min,
+        count_max: addition_numbers_count_max,
+        from:      addition_numbers_from,
+        to:        addition_numbers_to,
+        total_max: nil,
+        random:    @random
+      }
+    end
 
   def dividends_from_not_greater_than_to
     errors.add(:dividends_from, "cannot be greater than dividends_to") if dividends_from > dividends_to
@@ -80,24 +95,25 @@ class Puzzles::MathsGrid
 
   def random_cell_type
     %i[
+      addition
       division
       multiplication
-    ].sample(random: random)
+    ].sample(random: @random)
   end
 
   def factors_count
-    random_in_range(factors_count_min, factors_count_max, random: random)
+    random_in_range(factors_count_min, factors_count_max, random: @random)
   end
 
   def factor
-    random_in_range(factors_from, factors_to, random: random)
+    random_in_range(factors_from, factors_to, random: @random)
   end
 
   def dividend
-    random_in_range(dividends_from, dividends_to, random: random)
+    random_in_range(dividends_from, dividends_to, random: @random)
   end
 
   def divisor
-    random_in_range(divisors_from, divisors_to, random: random)
+    random_in_range(divisors_from, divisors_to, random: @random)
   end
 end
