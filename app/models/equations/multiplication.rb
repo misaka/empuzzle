@@ -1,5 +1,5 @@
 module Equations
-  class Addition
+  class Multiplication
     include ActiveModel::API
     include ActiveModel::Attributes
     include RandomInRange
@@ -9,30 +9,30 @@ module Equations
     attribute :from
     attribute :to
     attribute :total_max
-    attribute :numbers
+    attribute :factors
     attribute :result
     attribute :random
 
     def initialize(attributes = {})
       super
 
-      initialize_numbers
+      initialize_factors
     end
 
     def type
-      :addition
+      :multiplication
     end
 
     private
 
-    def initialize_numbers
+    def initialize_factors
       loop do
-        number_count = random_in_range(count_min, count_max, random: random)
-        self.numbers = number_count.times.map do
+        factor_count = random_in_range(count_min, count_max, random: random)
+        self.factors = factor_count.times.map do
           random_in_range(from, to, random: random)
         end
 
-        self.result = numbers.inject(:+)
+        self.result = factors.inject(:*)
 
         break if total_max.nil? || result <= total_max
       end

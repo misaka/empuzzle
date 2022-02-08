@@ -40,7 +40,7 @@ class Puzzles::MathsGrid
         case random_cell_type
         when :addition then Equations::Addition.new(**addition_equation_params)
         when :division then generate_division_cell
-        when :multiplication then generate_multiplication_cell
+        when :multiplication then Equations::Multiplication.new(**multiplication_equation_params)
         end
       end
     end
@@ -54,6 +54,17 @@ class Puzzles::MathsGrid
         count_max: addition_count_max,
         from:      addition_from,
         to:        addition_to,
+        total_max: nil,
+        random:    @random
+      }
+    end
+
+    def multiplication_equation_params
+      {
+        count_min: factors_count_min,
+        count_max: factors_count_max,
+        from:      factors_from,
+        to:        factors_to,
         total_max: nil,
         random:    @random
       }
@@ -80,16 +91,6 @@ class Puzzles::MathsGrid
       type: 'division',
       dividend: dividend,
       divisor: divisor
-    )
-  end
-
-  def generate_multiplication_cell
-    factors = factors_count.times.map { factor }
-
-    OpenStruct.new(
-      type: 'multiplication',
-      factors: factors,
-      results_length: factors.inject(:*).to_s.length
     )
   end
 
