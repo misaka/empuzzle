@@ -3,20 +3,22 @@ class Puzzles::MathsGrid
   include ActiveModel::Attributes
   include RandomInRange
 
-  attribute :rows,               :integer, default: 4
-  attribute :columns,            :integer, default: 6
-  attribute :dividends_from,     :integer, default: 1
-  attribute :dividends_to,       :integer, default: 1000
-  attribute :divisors_from,      :integer, default: 1
-  attribute :divisors_to,        :integer, default: 20
-  attribute :factors_from,       :integer, default: 1
-  attribute :factors_to,         :integer, default: 12
-  attribute :factors_count_min,  :integer, default: 2
-  attribute :factors_count_max,  :integer, default: 3
-  attribute :addition_from,      :integer, default: 10
-  attribute :addition_to,        :integer, default: 1000
-  attribute :addition_count_min, :integer, default: 2
-  attribute :addition_count_max, :integer, default: 4
+  attribute :rows,                 :integer, default: 4
+  attribute :columns,              :integer, default: 6
+  attribute :dividends_from,       :integer, default: 1
+  attribute :dividends_to,         :integer, default: 1000
+  attribute :divisors_from,        :integer, default: 1
+  attribute :divisors_to,          :integer, default: 20
+  attribute :division_results_min, :integer, default: 1
+  attribute :division_results_max, :integer, default: 100
+  attribute :factors_from,         :integer, default: 1
+  attribute :factors_to,           :integer, default: 12
+  attribute :factors_count_min,    :integer, default: 2
+  attribute :factors_count_max,    :integer, default: 3
+  attribute :addition_from,        :integer, default: 10
+  attribute :addition_to,          :integer, default: 1000
+  attribute :addition_count_min,   :integer, default: 2
+  attribute :addition_count_max,   :integer, default: 4
 
   validates_presence_of :rows, :columns
   validates_presence_of :dividends_from, :dividends_to
@@ -39,7 +41,7 @@ class Puzzles::MathsGrid
       columns.times.map do |col|
         case random_cell_type
         when :addition then Equations::Addition.new(**addition_equation_params)
-        when :division then generate_division_cell
+        when :division then Equations::Division.new(**division_equation_params)
         when :multiplication then Equations::Multiplication.new(**multiplication_equation_params)
         end
       end
@@ -59,14 +61,25 @@ class Puzzles::MathsGrid
       }
     end
 
+    def division_equation_params
+      {
+        dividends_min: dividends_from,
+        dividends_max: dividends_to,
+        divisors_min:  divisors_from,
+        divisors_max:  divisors_to,
+        result_min:    division_results_min,
+        result_max:    division_results_max,
+        random:        @random
+      }
+    end
+
     def multiplication_equation_params
       {
-        count_min: factors_count_min,
-        count_max: factors_count_max,
-        from:      factors_from,
-        to:        factors_to,
-        total_max: nil,
-        random:    @random
+        count_min:  factors_count_min,
+        count_max:  factors_count_max,
+        from:       factors_from,
+        to:         factors_to,
+        random:     @random
       }
     end
 
