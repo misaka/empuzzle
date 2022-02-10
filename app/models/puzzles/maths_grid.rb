@@ -3,22 +3,30 @@ class Puzzles::MathsGrid
   include ActiveModel::Attributes
   include RandomInRange
 
-  attribute :rows,                 :integer, default: 4
-  attribute :columns,              :integer, default: 6
-  attribute :dividends_from,       :integer, default: 1
-  attribute :dividends_to,         :integer, default: 1000
-  attribute :divisors_from,        :integer, default: 1
-  attribute :divisors_to,          :integer, default: 20
-  attribute :division_results_min, :integer, default: 1
-  attribute :division_results_max, :integer, default: 100
-  attribute :factors_from,         :integer, default: 1
-  attribute :factors_to,           :integer, default: 12
-  attribute :factors_count_min,    :integer, default: 2
-  attribute :factors_count_max,    :integer, default: 3
-  attribute :addition_from,        :integer, default: 10
-  attribute :addition_to,          :integer, default: 1000
-  attribute :addition_count_min,   :integer, default: 2
-  attribute :addition_count_max,   :integer, default: 4
+  attribute :rows,                  :integer, default: 4
+  attribute :columns,               :integer, default: 6
+  attribute :dividends_from,        :integer, default: 1
+  attribute :dividends_to,          :integer, default: 1000
+  attribute :divisors_from,         :integer, default: 1
+  attribute :divisors_to,           :integer, default: 20
+  attribute :division_results_min,  :integer, default: 1
+  attribute :division_results_max,  :integer, default: 100
+  attribute :factors_from,          :integer, default: 1
+  attribute :factors_to,            :integer, default: 12
+  attribute :factors_count_min,     :integer, default: 2
+  attribute :factors_count_max,     :integer, default: 3
+  attribute :addition_from,         :integer, default: 10
+  attribute :addition_to,           :integer, default: 1000
+  attribute :addition_count_min,    :integer, default: 2
+  attribute :addition_count_max,    :integer, default: 4
+  attribute :addition_result_min,    :integer
+  attribute :addition_result_max,    :integer, default: 5000
+  attribute :subtraction_from,      :integer, default: 10
+  attribute :subtraction_to,        :integer, default: 1000
+  attribute :subtraction_count_min, :integer, default: 2
+  attribute :subtraction_count_max, :integer, default: 4
+  attribute :subtraction_result_min, :integer, default: 0
+  attribute :subtraction_result_max, :integer
 
   validates_presence_of :rows, :columns
   validates_presence_of :dividends_from, :dividends_to
@@ -41,8 +49,9 @@ class Puzzles::MathsGrid
       columns.times.map do |col|
         case random_cell_type
         when :addition then Equations::Addition.new(**addition_equation_params)
-        when :division then Equations::Division.new(**division_equation_params)
+        when :subtraction then Equations::Subtraction.new(**subtraction_equation_params)
         when :multiplication then Equations::Multiplication.new(**multiplication_equation_params)
+        when :division then Equations::Division.new(**division_equation_params)
         end
       end
     end
@@ -52,12 +61,25 @@ class Puzzles::MathsGrid
 
     def addition_equation_params
       {
-        count_min: addition_count_min,
-        count_max: addition_count_max,
-        from:      addition_from,
-        to:        addition_to,
-        total_max: nil,
-        random:    @random
+        count_min:  addition_count_min,
+        count_max:  addition_count_max,
+        from:       addition_from,
+        to:         addition_to,
+        result_min: addition_result_min,
+        result_max: addition_result_max,
+        random:     @random
+      }
+    end
+
+    def subtraction_equation_params
+      {
+        count_min:  subtraction_count_min,
+        count_max:  subtraction_count_max,
+        from:       subtraction_from,
+        to:         subtraction_to,
+        result_min: subtraction_result_min,
+        result_max: subtraction_result_max,
+        random:     @random
       }
     end
 
@@ -102,6 +124,7 @@ class Puzzles::MathsGrid
   def random_cell_type
     %i[
       addition
+      subtraction
       division
       multiplication
     ].sample(random: @random)

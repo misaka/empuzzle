@@ -33,25 +33,5 @@
         </div>
     </dl>
 
-    <h2>Division Setup</h2>
-
-    <dl class="kids-puzzles-setup">
-        <div class="kids-puzzles-setup-field">
-            <dt><%= form.label :dividends_from %></dt>
-            <dd><%= form.number_field :dividends_from %></dd>
-
-            <dt><%= form.label :dividends_to, "To" %></dt>
-            <dd><%= form.number_field :dividends_to %></dd>
-        </div>
-
-        <div class="kids-puzzles-setup-field">
-            <dt><%= form.label :divisors_from %></dt>
-            <dd><%= form.number_field :divisors_from %></dd>
-
-            <dt><%= form.label :divisors_to, "To" %></dt>
-            <dd><%= form.number_field :divisors_to %></dd>
-        </div>
-    </dl>
-
     <%= submit_tag "Generate new puzzle" %>
 <% end %>

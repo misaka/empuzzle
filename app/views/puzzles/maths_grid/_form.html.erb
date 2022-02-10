@@ -15,6 +15,46 @@
     <%= label_tag "reward" %></dt>
     <%= text_field_tag :reward, @reward, size: 40 %>
 
+    <h2>Addition Setup</h2>
+
+    <dl class="kids-puzzles-setup">
+        <div class="kids-puzzles-setup-field">
+            <dt><%= form.label :addition_count_min, "Minimum number of addition numbers" %></dt>
+            <dd><%= form.number_field :addition_count_min %></dd>
+
+            <dt><%= form.label :addition_count_max, "To" %></dt>
+            <dd><%= form.number_field :addition_count_max %></dd>
+        </div>
+
+        <div class="kids-puzzles-setup-field">
+            <dt><%= form.label :addition_from, "Addition numbers from" %></dt>
+            <dd><%= form.number_field :addition_from %></dd>
+
+            <dt><%= form.label :addition_to, "To" %></dt>
+            <dd><%= form.number_field :addition_to %></dd>
+        </div>
+    </dl>
+
+    <h2>Subtraction Setup</h2>
+
+    <dl class="kids-puzzles-setup">
+        <div class="kids-puzzles-setup-field">
+            <dt><%= form.label :subtraction_count_min, "Minimum number of subtraction numbers" %></dt>
+            <dd><%= form.number_field :subtraction_count_min %></dd>
+
+            <dt><%= form.label :subtraction_count_max, "To" %></dt>
+            <dd><%= form.number_field :subtraction_count_max %></dd>
+        </div>
+
+        <div class="kids-puzzles-setup-field">
+            <dt><%= form.label :subtraction_from, "Subtraction numbers from" %></dt>
+            <dd><%= form.number_field :subtraction_from %></dd>
+
+            <dt><%= form.label :subtraction_to, "To" %></dt>
+            <dd><%= form.number_field :subtraction_to %></dd>
+        </div>
+    </dl>
+
     <h2>Multiplication Setup</h2>
 
     <dl class="kids-puzzles-setup">
@@ -54,26 +94,6 @@
 
             <dt><%= form.label :divisors_to, "To" %></dt>
             <dd><%= form.number_field :divisors_to %></dd>
-        </div>
-    </dl>
-
-    <h2>Addition Setup</h2>
-
-    <dl class="kids-puzzles-setup">
-        <div class="kids-puzzles-setup-field">
-            <dt><%= form.label :addition_count_min, "Minimum number of addition numbers" %></dt>
-            <dd><%= form.number_field :addition_count_min %></dd>
-
-            <dt><%= form.label :addition_count_max, "To" %></dt>
-            <dd><%= form.number_field :addition_count_max %></dd>
-        </div>
-
-        <div class="kids-puzzles-setup-field">
-            <dt><%= form.label :addition_from, "Addition numbers from" %></dt>
-            <dd><%= form.number_field :addition_from %></dd>
-
-            <dt><%= form.label :addition_to, "To" %></dt>
-            <dd><%= form.number_field :addition_to %></dd>
         </div>
     </dl>
 

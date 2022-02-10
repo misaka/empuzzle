@@ -24,6 +24,8 @@ class PuzzlesController < ApplicationController
           :dividends_from, :dividends_to, :divisors_from, :divisors_to,
           :addition_count_min, :addition_count_max,
           :addition_from, :addition_to,
+          :subtraction_count_min, :subtraction_count_max,
+          :subtraction_from, :subtraction_to,
         ]
       )
   end

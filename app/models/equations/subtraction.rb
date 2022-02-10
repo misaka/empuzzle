@@ -1,5 +1,5 @@
 module Equations
-  class Addition
+  class Subtraction
     include ActiveModel::API
     include ActiveModel::Attributes
     include RandomInRange
@@ -21,7 +21,7 @@ module Equations
     end
 
     def type
-      :addition
+      :subtraction
     end
 
     private
@@ -33,7 +33,7 @@ module Equations
           random_in_range(from, to, random: random)
         end
 
-        self.result = numbers.inject(:+)
+        self.result = numbers.inject(:-)
 
         break if result_min.present? && result >= result_min
         break if result_max.present? && result <= result_max
