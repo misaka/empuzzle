@@ -99,35 +99,11 @@ class Puzzles::MathsGrid
     errors.add(:factors_count_min, "cannot be greater than factors_to") if factors_count_min > factors_count_max
   end
 
-  def generate_division_cell
-    OpenStruct.new(
-      type: 'division',
-      dividend: dividend,
-      divisor: divisor
-    )
-  end
-
   def random_cell_type
     %i[
       addition
       division
       multiplication
     ].sample(random: @random)
-  end
-
-  def factors_count
-    random_in_range(factors_count_min, factors_count_max, random: @random)
-  end
-
-  def factor
-    random_in_range(factors_from, factors_to, random: @random)
-  end
-
-  def dividend
-    random_in_range(dividends_from, dividends_to, random: @random)
-  end
-
-  def divisor
-    random_in_range(divisors_from, divisors_to, random: @random)
   end
 end
