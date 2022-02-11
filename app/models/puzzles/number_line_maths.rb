@@ -7,7 +7,7 @@ module Puzzles
     attribute :rows,                       :integer, default: 6
     attribute :reward,                     :string
     attribute :line_range_from,            :integer, default: 0
-    attribute :line_range_to,              :integer, default: 10
+    attribute :line_range_to,              :integer, default: 20
     attribute :addition_numbers_count_min, :integer, default: 2
     attribute :addition_numbers_count_max, :integer, default: 2
     attribute :addition_numbers_from,      :integer, default: 1
@@ -45,7 +45,8 @@ module Puzzles
         count_max: addition_numbers_count_max,
         from:      addition_numbers_from,
         to:        addition_numbers_to,
-        total_max: line_range_to,
+        result_min: line_range_from,
+        result_max: line_range_to,
         random:    @random
       }
     end
