@@ -20,7 +20,11 @@
 }
 
 .kids-puzzles-maths-grid-cell {
-    padding: 1em;
+    padding-top: 2em;
+    padding-bottom: 0.5em;
+    padding-left: 1ex;
+    padding-right: 6ex;
+    text-align: center;
 }
 
 .kids-puzzles-setup dl {
@@ -51,7 +55,7 @@ div.kids-puzzles-setup-field  {
 }
 
 .kids-puzzles-number-line-maths-equation {
-    width: 10em;
+    width: 8em;
     padding: 1em;
     border: 2px solid black;
     display: table-cell;
@@ -64,8 +68,12 @@ div.kids-puzzles-setup-field  {
     display: table-cell;
 }
 
+.kids-puzzles-reward {
+    text-align: center;
+}
+
 @media print {
-    form, form + hr {
+    form, hr {
         display: none;
     }
 
