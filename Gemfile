@@ -71,5 +71,9 @@ group :test do
   gem "capybara"
   gem "rspec-rails"
   gem "selenium-webdriver"
+
+  # Page objects
+  gem "site_prism", "~> 3.7"
+
   gem "webdrivers"
 end
