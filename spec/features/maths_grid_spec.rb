@@ -1,10 +1,6 @@
 require 'rails_helper'
 
 RSpec.feature "maths grid puzzle" do
-  def root_page
-    RootPageObject.new
-  end
-
   def puzzles_page
     PuzzlesPageObject.new
   end
@@ -13,14 +9,22 @@ RSpec.feature "maths grid puzzle" do
     Puzzles::MathsGridPageObject.new
   end
 
-  scenario "visiting maths grid page" do
-    root_page.load
-
-    expect(puzzles_page).to be_displayed
+  scenario "getting to it from the puzzles page" do
+    puzzles_page.load
 
     click_link "Maths Grid"
 
     expect(maths_grid_page).to be_displayed
     expect(page).to have_text "Maths Grid Setup"
+  end
+
+  scenario "default rows and columns set correctly" do
+    maths_grid_page.load
+
+    expect(maths_grid_page.rows_field.value).to eq "4"
+    expect(maths_grid_page.columns_field.value).to eq "6"
+
+    expect(maths_grid_page.rows.count).to eq 4
+    expect(maths_grid_page.rows[0].cells.count).to eq 6
   end
 end
