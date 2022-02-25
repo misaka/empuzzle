@@ -8,7 +8,7 @@ class PuzzlesController < ApplicationController
   end
 
   def maths_grid_2
-    @puzzle = Puzzles::MathsGrid2.new(maths_grid_2_create_params[:puzzles_maths_grid])
+    @puzzle = Puzzles::MathsGrid2.new(maths_grid_2_create_params[:puzzles_maths_grid2])
     @puzzle.validate!
     @reward = params[:reward] || ''
   end
@@ -39,14 +39,16 @@ class PuzzlesController < ApplicationController
   def maths_grid_2_create_params
     params
       .permit(
-        puzzles_maths_grid: [
+        puzzles_maths_grid2: [
           :rows, :columns,
-          :factors_from, :factors_to, :factors_count_min, :factors_count_max,
-          :dividends_from, :dividends_to, :divisors_from, :divisors_to,
-          :addition_count_min, :addition_count_max,
-          :addition_from, :addition_to,
-          :subtraction_count_min, :subtraction_count_max,
-          :subtraction_from, :subtraction_to,
+          :enable_addition,
+          :addition_numbers_count,
+          :addition_numbers_range,
+          :enable_subtraction,
+          :subtraction_numbers_count,
+          :subtraction_numbers_range,
+          :enable_multiplication,
+          :enable_division,
         ]
       )
   end

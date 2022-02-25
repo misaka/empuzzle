@@ -34,7 +34,8 @@ module Equations
 
         self.result = dividend / divisor
 
-        break unless result < result_min or result > result_max
+        break if result_min.present? && result >= result_min
+        break if result_max.present? && result <= result_max
       end
     end
   end

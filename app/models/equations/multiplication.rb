@@ -6,11 +6,10 @@ module Equations
 
     attribute :count_min
     attribute :count_max
-    attribute :from
-    attribute :to
-    attribute :total_max
-    attribute :factors
-    attribute :result
+    attribute :range_start
+    attribute :range_end
+    attribute :result_min
+    attribute :result_max
     attribute :random
 
     def initialize(attributes = {})
@@ -34,7 +33,8 @@ module Equations
 
         self.result = factors.inject(:*)
 
-        break if total_max.nil? || result <= total_max
+        break if result_min.present? && result >= result_min
+        break if result_max.present? && result <= result_max
       end
     end
   end

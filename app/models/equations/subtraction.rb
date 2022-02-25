@@ -6,8 +6,8 @@ module Equations
 
     attribute :count_min
     attribute :count_max
-    attribute :from
-    attribute :to
+    attribute :range_start
+    attribute :range_end
     attribute :result_min
     attribute :result_max
     attribute :numbers
@@ -30,7 +30,7 @@ module Equations
       loop do
         number_count = random_in_range(count_min, count_max, random: random)
         self.numbers = number_count.times.map do
-          random_in_range(from, to, random: random)
+          random_in_range(range_start, range_end, random: random)
         end
 
         self.result = numbers.inject(:-)
