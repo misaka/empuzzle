@@ -3,40 +3,196 @@ class Puzzles::MathsGrid
   include ActiveModel::Attributes
   include RandomInRange
 
-  attribute :rows,                  :integer, default: 4
-  attribute :columns,               :integer, default: 6
-  attribute :dividends_from,        :integer, default: 1
-  attribute :dividends_to,          :integer, default: 1000
-  attribute :divisors_from,         :integer, default: 1
-  attribute :divisors_to,           :integer, default: 20
-  attribute :division_results_min,  :integer, default: 1
-  attribute :division_results_max,  :integer, default: 100
-  attribute :factors_from,          :integer, default: 1
-  attribute :factors_to,            :integer, default: 12
-  attribute :factors_count_min,     :integer, default: 2
-  attribute :factors_count_max,     :integer, default: 3
-  attribute :addition_from,         :integer, default: 10
-  attribute :addition_to,           :integer, default: 1000
-  attribute :addition_count_min,    :integer, default: 2
-  attribute :addition_count_max,    :integer, default: 4
-  attribute :addition_result_min,    :integer
-  attribute :addition_result_max,    :integer, default: 5000
-  attribute :subtraction_from,      :integer, default: 10
-  attribute :subtraction_to,        :integer, default: 1000
-  attribute :subtraction_count_min, :integer, default: 2
-  attribute :subtraction_count_max, :integer, default: 4
-  attribute :subtraction_result_min, :integer, default: 0
-  attribute :subtraction_result_max, :integer
+    ADDITION_NUMBER_COUNT_OPTIONS = [{
+                                     count_min: 2,
+                                     count_max: 2,
+                                   }, {
+                                     count_min: 2,
+                                     count_max: 3,
+                                   }, {
+                                     count_min: 2,
+                                     count_max: 4,
+                                   }, {
+                                     count_min: 3,
+                                     count_max: 3,
+                                   }, {
+                                     count_min: 3,
+                                     count_max: 4,
+                                   }, {
+                                     count_min: 4,
+                                     count_max: 4,
+                                   }]
+  ADDITION_NUMBER_RANGE_OPTIONS = [{
+                                     range_start: 2,
+                                     range_end: 9,
+                                   }, {
+                                     range_start: 2,
+                                     range_end: 20,
+                                   }, {
+                                     range_start: 2,
+                                     range_end: 50,
+                                   }, {
+                                     range_start: 2,
+                                     range_end: 100,
+                                   }]
 
-  validates_presence_of :rows, :columns
-  validates_presence_of :dividends_from, :dividends_to
-  validates_presence_of :divisors_from, :divisors_to
-  validates_presence_of :factors_from, :factors_to
-  validates_presence_of :factors_count_min, :factors_count_max
-  validate :dividends_from_not_greater_than_to
-  validate :divisors_from_not_greater_than_to
-  validate :factors_from_not_greater_than_to
-  validate :factors_count_min_not_greater_than_max
+  SUBTRACTION_NUMBER_COUNT_OPTIONS = [{
+                                        count_min: 2,
+                                        count_max: 2,
+                                      }, {
+                                        count_min: 2,
+                                        count_max: 3,
+                                      }, {
+                                        count_min: 2,
+                                        count_max: 4,
+                                      }, {
+                                        count_min: 3,
+                                        count_max: 3,
+                                      }, {
+                                        count_min: 3,
+                                        count_max: 4,
+                                      }, {
+                                        count_min: 4,
+                                        count_max: 4,
+                                      }]
+  SUBTRACTION_NUMBER_RANGE_OPTIONS = [{
+                                        range_start: 2,
+                                        range_end: 9,
+                                      }, {
+                                        range_start: 2,
+                                        range_end: 20,
+                                      }, {
+                                        range_start: 2,
+                                        range_end: 50,
+                                      }, {
+                                        range_start: 2,
+                                        range_end: 100,
+                                      }]
+
+  MULTIPLICATION_NUMBER_COUNT_OPTIONS = [{
+                                           count_min: 2,
+                                           count_max: 2,
+                                         }, {
+                                           count_min: 2,
+                                           count_max: 3,
+                                         }, {
+                                           count_min: 2,
+                                           count_max: 4,
+                                         }, {
+                                           count_min: 3,
+                                           count_max: 3,
+                                         }, {
+                                           count_min: 3,
+                                           count_max: 4,
+                                         }, {
+                                           count_min: 4,
+                                           count_max: 4,
+                                         }]
+  MULTIPLICATION_NUMBER_RANGE_OPTIONS = [{
+                                           range_start: 2,
+                                           range_end: 9,
+                                         }, {
+                                           range_start: 2,
+                                           range_end: 20,
+                                         }, {
+                                           range_start: 2,
+                                           range_end: 50,
+                                         }, {
+                                           range_start: 2,
+                                           range_end: 100,
+                                         }]
+
+  DIVISORS_RANGE_OPTIONS = [{
+                              divisors_min: 2,
+                              divisors_max: 9,
+                            }, {
+                              divisors_min: 3,
+                              divisors_max: 19,
+                            }, {
+                              divisors_min: 3,
+                              divisors_max: 40,
+                            }, {
+                              divisors_min: 10,
+                              divisors_max: 100,
+                            }]
+
+  DIVIDENDS_RANGE_OPTIONS = [{
+                               dividends_min: 10,
+                               dividends_max: 100,
+                             }, {
+                               dividends_min: 100,
+                               dividends_max: 1000,
+                             }, {
+                               dividends_min: 100,
+                               dividends_max: 10000,
+                             }]
+
+  attribute :rows,                   :integer, default: 4
+  attribute :columns,                :integer, default: 6
+
+  attribute :enable_addition,        :boolean, default: true
+  attribute :addition_numbers_count, :integer, default: 0
+  attribute :addition_numbers_range, :integer, default: 0
+
+  attribute :enable_subtraction,        :boolean, default: true
+  attribute :subtraction_numbers_count, :integer, default: 0
+  attribute :subtraction_numbers_range, :integer, default: 0
+
+  attribute :enable_multiplication,        :boolean, default: true
+  attribute :multiplication_numbers_count, :integer, default: 0
+  attribute :multiplication_numbers_range, :integer, default: 0
+
+  attribute :enable_division, :boolean, default: true
+  attribute :dividends_range, :integer, default: 0
+  attribute :divisors_range,  :integer, default: 0
+
+  # 300,000 words, 18 bits. 36 bits total for the use of 2-word codes, minus one for a 32 bit random number
+
+  # Puzzle Parameters:
+  #
+  # ###                                  0-7  columns                  (3-10)
+  #    ###                               0-7  rows                     (1-8)
+  #       ###                            0-7  addition numbers         (0-0, 2-2, 2-3, 2-4, 3-3, 3-4, 4-4)
+  #          ##                          0-3  addition number sizes    (2-9, 2-20, 2-50, 2-100)
+  #            ##                        0-3  addition results         (??)
+  #              #                       0-1  enable subtraction       (false/true)
+  #               ##                     0-3  subtraction numbers      (2-5)
+  #                 ##                   0-3  subtraction number sizes (2-9, 2-20, 2-50, 2-100)
+  #                   ##                 0-3  subtraction results      (??)
+  #                     #                0-1  enable multiplication    (false/true)
+  #                      ##              0-3  factors                  (2-5)
+  #                        ##            0-3  factor size              (2-9, 2-20, 2-50, 2-100)
+  #                          ##          0-3  factor results           (??)
+  #                            #         0-1  enable division          (false/true)
+  #                             ##       0-3  dividend size            (10-100, 100-1000, 100-10000)
+  #                               ##     0-3  divisor size             (2-9, 2-20, 10-100)
+  #                                 ##   0-3  division results         (??)
+  # ||||||||||||||||||||||||||||||||||||
+  #           11111111112222222222333333
+  # 012345678901234567890123456789012345
+  #
+  validates :rows,    presence: true, numericality: { greater_than: 0, less_than: 9 }
+  validates :columns, presence: true, numericality: { greater_than: 2, less_than: 11  }
+
+  validates :enable_addition,       inclusion: { in: [true, false] }
+  validates :addition_numbers_count, presence: true, numericality: { greater_than_or_equal_to: 0, less_than: 7 }
+  validates :addition_numbers_range, presence: true, numericality: { greater_than_or_equal_to: 0, less_than: 4 }
+
+  validates :enable_subtraction,       inclusion: { in: [true, false] }
+  validates :subtraction_numbers_count, presence: true, numericality: { greater_than_or_equal_to: 0, less_than: 7 }
+  validates :subtraction_numbers_range, presence: true, numericality: { greater_than_or_equal_to: 0, less_than: 4 }
+
+  validates :enable_multiplication, inclusion: { in: [true, false] }
+  validates :multiplication_numbers_count, presence: true, numericality: { greater_than_or_equal_to: 0, less_than: 7 }
+  validates :multiplication_numbers_range, presence: true, numericality: { greater_than_or_equal_to: 0, less_than: 4 }
+
+  validates :enable_division,  inclusion: { in: [true, false] }
+  validates :dividends_range,  presence: true, numericality: { greater_than_or_equal_to: 0, less_than: 4 }
+  validates :divisors_range,   presence: true, numericality: { greater_than_or_equal_to: 0, less_than: 4 }
+
+  def self.addition_numbers_options
+    []
+  end
 
   def initialize(attributes = {})
     super
@@ -60,49 +216,43 @@ class Puzzles::MathsGrid
   private
 
     def addition_equation_params
-      {
-        count_min:  addition_count_min,
-        count_max:  addition_count_max,
-        from:       addition_from,
-        to:         addition_to,
-        result_min: addition_result_min,
-        result_max: addition_result_max,
-        random:     @random
-      }
+      params = { random: @random }
+      params.merge!(ADDITION_NUMBER_COUNT_OPTIONS[addition_numbers_count])
+      params.merge!(ADDITION_NUMBER_RANGE_OPTIONS[addition_numbers_range])
+      params.merge(
+        result_min: 0,
+        result_max: 5000,
+      )
     end
 
     def subtraction_equation_params
-      {
-        count_min:  subtraction_count_min,
-        count_max:  subtraction_count_max,
-        from:       subtraction_from,
-        to:         subtraction_to,
-        result_min: subtraction_result_min,
-        result_max: subtraction_result_max,
-        random:     @random
-      }
-    end
-
-    def division_equation_params
-      {
-        dividends_min: dividends_from,
-        dividends_max: dividends_to,
-        divisors_min:  divisors_from,
-        divisors_max:  divisors_to,
-        result_min:    division_results_min,
-        result_max:    division_results_max,
-        random:        @random
-      }
+      params = { random: @random }
+      params.merge!(SUBTRACTION_NUMBER_COUNT_OPTIONS[subtraction_numbers_count])
+      params.merge!(SUBTRACTION_NUMBER_RANGE_OPTIONS[subtraction_numbers_range])
+      params.merge(
+        result_min: 0,
+        result_max: nil,
+      )
     end
 
     def multiplication_equation_params
-      {
-        count_min:  factors_count_min,
-        count_max:  factors_count_max,
-        from:       factors_from,
-        to:         factors_to,
-        random:     @random
-      }
+      params = { random: @random }
+      params.merge!(MULTIPLICATION_NUMBER_COUNT_OPTIONS[multiplication_numbers_count])
+      params.merge!(MULTIPLICATION_NUMBER_RANGE_OPTIONS[multiplication_numbers_range])
+      params.merge(
+        result_min: 0,
+        result_max: nil,
+      )
+    end
+
+    def division_equation_params
+      params = { random: @random }
+      params.merge!(DIVIDENDS_RANGE_OPTIONS[dividends_range])
+      params.merge!(DIVISORS_RANGE_OPTIONS[divisors_range])
+      params.merge(
+        result_min: 0,
+        result_max: nil,
+      )
     end
 
   def dividends_from_not_greater_than_to
@@ -122,11 +272,12 @@ class Puzzles::MathsGrid
   end
 
   def random_cell_type
-    %i[
-      addition
-      subtraction
-      division
-      multiplication
-    ].sample(random: @random)
+    cell_types = []
+    cell_types << :addition       if enable_addition
+    cell_types << :subtraction    if enable_subtraction
+    cell_types << :multiplication if enable_multiplication
+    cell_types << :division       if enable_division
+
+    cell_types.sample(random: @random)
   end
 end

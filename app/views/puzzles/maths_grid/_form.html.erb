@@ -19,19 +19,18 @@
 
     <dl class="kids-puzzles-setup">
         <div class="kids-puzzles-setup-field">
-            <dt><%= form.label :addition_count_min, "Minimum number of addition numbers" %></dt>
-            <dd><%= form.number_field :addition_count_min %></dd>
-
-            <dt><%= form.label :addition_count_max, "To" %></dt>
-            <dd><%= form.number_field :addition_count_max %></dd>
+            <dt><%= form.label :enable_addition %></dt>
+            <dd><%= form.check_box :enable_addition %></dd>
         </div>
 
         <div class="kids-puzzles-setup-field">
-            <dt><%= form.label :addition_from, "Addition numbers from" %></dt>
-            <dd><%= form.number_field :addition_from %></dd>
+            <dt><%= form.label :addition_numbers_count %></dt>
+            <dd><%= form.select :addition_numbers_count, puzzle_addition_number_counts(@puzzle) %></dd>
+        </div>
 
-            <dt><%= form.label :addition_to, "To" %></dt>
-            <dd><%= form.number_field :addition_to %></dd>
+        <div class="kids-puzzles-setup-field">
+            <dt><%= form.label :addition_numbers_range %></dt>
+            <dd><%= form.select :addition_numbers_range, puzzle_addition_number_ranges(@puzzle) %></dd>
         </div>
     </dl>
 
@@ -39,19 +38,18 @@
 
     <dl class="kids-puzzles-setup">
         <div class="kids-puzzles-setup-field">
-            <dt><%= form.label :subtraction_count_min, "Minimum number of subtraction numbers" %></dt>
-            <dd><%= form.number_field :subtraction_count_min %></dd>
-
-            <dt><%= form.label :subtraction_count_max, "To" %></dt>
-            <dd><%= form.number_field :subtraction_count_max %></dd>
+            <dt><%= form.label :enable_subtraction %></dt>
+            <dd><%= form.check_box :enable_subtraction %></dd>
         </div>
 
         <div class="kids-puzzles-setup-field">
-            <dt><%= form.label :subtraction_from, "Subtraction numbers from" %></dt>
-            <dd><%= form.number_field :subtraction_from %></dd>
+            <dt><%= form.label :subtraction_numbers_count %></dt>
+            <dd><%= form.select :subtraction_numbers_count, puzzle_subtraction_number_counts(@puzzle) %></dd>
+        </div>
 
-            <dt><%= form.label :subtraction_to, "To" %></dt>
-            <dd><%= form.number_field :subtraction_to %></dd>
+        <div class="kids-puzzles-setup-field">
+            <dt><%= form.label :subtraction_numbers_range %></dt>
+            <dd><%= form.select :subtraction_numbers_range, puzzle_subtraction_number_ranges(@puzzle) %></dd>
         </div>
     </dl>
 
@@ -59,41 +57,38 @@
 
     <dl class="kids-puzzles-setup">
         <div class="kids-puzzles-setup-field">
-            <dt><%= form.label :factors_from %></dt>
-            <dd><%= form.number_field :factors_from %></dd>
-
-            <dt><%= form.label :factors_to, "To" %></dt>
-            <dd><%= form.number_field :factors_to %></dd>
+            <dt><%= form.label :enable_multiplication %></dt>
+            <dd><%= form.check_box :enable_multiplication %></dd>
         </div>
-    </dl>
 
-    <dl class="kids-puzzles-setup">
         <div class="kids-puzzles-setup-field">
-            <dt><%= form.label :factors_count_min, "Minimum Number of Factors" %></dt>
-            <dd><%= form.number_field :factors_count_min %></dd>
+            <dt><%= form.label :multiplication_numbers_count %></dt>
+            <dd><%= form.select :multiplication_numbers_count, puzzle_multiplication_number_counts(@puzzle) %></dd>
+        </div>
 
-            <dt><%= form.label :factors_count_max, "Maximum" %></dt>
-            <dd><%= form.number_field :factors_count_max %></dd>
+        <div class="kids-puzzles-setup-field">
+            <dt><%= form.label :multiplication_numbers_range %></dt>
+            <dd><%= form.select :multiplication_numbers_range, puzzle_multiplication_number_ranges(@puzzle) %></dd>
         </div>
     </dl>
+
 
     <h2>Division Setup</h2>
 
     <dl class="kids-puzzles-setup">
         <div class="kids-puzzles-setup-field">
-            <dt><%= form.label :dividends_from %></dt>
-            <dd><%= form.number_field :dividends_from %></dd>
-
-            <dt><%= form.label :dividends_to, "To" %></dt>
-            <dd><%= form.number_field :dividends_to %></dd>
+            <dt><%= form.label :enable_division %></dt>
+            <dd><%= form.check_box :enable_division %></dd>
         </div>
 
         <div class="kids-puzzles-setup-field">
-            <dt><%= form.label :divisors_from %></dt>
-            <dd><%= form.number_field :divisors_from %></dd>
+            <dt><%= form.label :dividends_range %></dt>
+            <dd><%= form.select :dividends_range, puzzle_dividends_ranges(@puzzle) %></dd>
+        </div>
 
-            <dt><%= form.label :divisors_to, "To" %></dt>
-            <dd><%= form.number_field :divisors_to %></dd>
+        <div class="kids-puzzles-setup-field">
+            <dt><%= form.label :divisors_range %></dt>
+            <dd><%= form.select :divisors_range, puzzle_divisors_ranges(@puzzle) %></dd>
         </div>
     </dl>
 

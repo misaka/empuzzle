@@ -1,14 +1,14 @@
 class PuzzlesController < ApplicationController
   def index; end
 
-  def maths_grid
-    @puzzle = Puzzles::MathsGrid.new(maths_grid_create_params[:puzzles_maths_grid])
+  def maths_gridzilla
+    @puzzle = Puzzles::MathsGridzilla.new(maths_gridzilla_create_params[:puzzles_maths_gridzilla])
     @puzzle.validate!
     @reward = params[:reward] || ''
   end
 
-  def maths_grid_2
-    @puzzle = Puzzles::MathsGrid2.new(maths_grid_2_create_params[:puzzles_maths_grid2])
+  def maths_grid
+    @puzzle = Puzzles::MathsGrid.new(maths_grid_create_params[:puzzles_maths_grid])
     @puzzle.validate!
     @reward = params[:reward] || ''
   end
@@ -21,10 +21,10 @@ class PuzzlesController < ApplicationController
 
   private
 
-  def maths_grid_create_params
+  def maths_gridzilla_create_params
     params
       .permit(
-        puzzles_maths_grid: [
+        puzzles_maths_gridzilla: [
           :rows, :columns,
           :factors_from, :factors_to, :factors_count_min, :factors_count_max,
           :dividends_from, :dividends_to, :divisors_from, :divisors_to,
@@ -36,10 +36,10 @@ class PuzzlesController < ApplicationController
       )
   end
 
-  def maths_grid_2_create_params
+  def maths_grid_create_params
     params
       .permit(
-        puzzles_maths_grid2: [
+        puzzles_maths_grid: [
           :rows, :columns,
           :enable_addition,
           :addition_numbers_count,

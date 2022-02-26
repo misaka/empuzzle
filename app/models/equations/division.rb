@@ -34,8 +34,11 @@ module Equations
 
         self.result = dividend / divisor
 
-        break if result_min.present? && result >= result_min
-        break if result_max.present? && result <= result_max
+        Rails.logger.debug("/// #{result_min} < #{result} < #{result_max}")
+
+        next if result_min.present? && result < result_min
+        next if result_max.present? && result > result_max
+        break
       end
     end
   end

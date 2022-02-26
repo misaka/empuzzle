@@ -11,6 +11,8 @@ module Equations
     attribute :result_min
     attribute :result_max
     attribute :random
+    attribute :factors
+    attribute :result
 
     def initialize(attributes = {})
       super
@@ -28,13 +30,16 @@ module Equations
       loop do
         factor_count = random_in_range(count_min, count_max, random: random)
         self.factors = factor_count.times.map do
-          random_in_range(from, to, random: random)
+          random_in_range(range_start, range_end, random: random)
         end
 
         self.result = factors.inject(:*)
 
-        break if result_min.present? && result >= result_min
-        break if result_max.present? && result <= result_max
+        Rails.logger.debug("*** #{result_min} < #{result} < #{result_max}")
+
+        next if result_min.present? && result < result_min
+        next if result_max.present? && result > result_max
+        break
       end
     end
   end
