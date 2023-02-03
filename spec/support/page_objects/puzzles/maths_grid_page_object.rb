@@ -6,9 +6,9 @@ class Puzzles::MathsGridPageObject < BasePageObject
   element :rows_field, 'input#puzzles_maths_grid_rows'
   element :columns_field, 'input#puzzles_maths_grid_columns'
 
-  class MathsGridRow < SitePrism::Section
+  class Row < SitePrism::Section
     elements :cells, ".kids-puzzles-maths-grid-cell"
   end
 
-  sections :rows, MathsGridRow, '.kids-puzzles-maths-grid-row'
+  sections :rows, Row, '.kids-puzzles-maths-grid-row'
 end
