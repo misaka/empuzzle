@@ -73,7 +73,7 @@ div.kids-puzzles-setup-field  {
 }
 
 @media print {
-    form, hr {
+    form, hr, #back-link {
         display: none;
     }
 
