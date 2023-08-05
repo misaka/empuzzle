@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module PuzzlesHelper
   def puzzle_subtraction_results_max_length(puzzle)
     puzzle.grep(Equations::Subtraction).map(&:result).max.to_s.length

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Equations
   class Addition
     include ActiveModel::API
@@ -39,6 +41,7 @@ module Equations
 
         next if result_min.present? && result < result_min
         next if result_max.present? && result > result_max
+
         break
       end
     end

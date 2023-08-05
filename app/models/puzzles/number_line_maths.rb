@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Puzzles
   class NumberLineMaths
     include ActiveModel::API
@@ -35,21 +37,20 @@ module Puzzles
 
     def random_equation_type
       %i[
-      addition
-    ].sample(random: @random)
+        addition
+      ].sample(random: @random)
     end
 
     def addition_equation_params
       {
         count_min: addition_numbers_count_min,
         count_max: addition_numbers_count_max,
-        from:      addition_numbers_from,
-        to:        addition_numbers_to,
+        from: addition_numbers_from,
+        to: addition_numbers_to,
         result_min: line_range_from,
         result_max: line_range_to,
-        random:    @random
+        random: @random
       }
     end
-
   end
 end
