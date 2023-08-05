@@ -81,7 +81,7 @@ group :test do
   gem "selenium-webdriver"
 
   # Page objects
-  gem "site_prism", "~> 3.7"
+  # gem "site_prism", "~> 3.7"
 
-  gem "webdrivers"
+  # gem "webdrivers"
 end
