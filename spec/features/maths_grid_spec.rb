@@ -2,43 +2,30 @@
 
 require "rails_helper"
 
-RSpec.feature "maths grid puzzle" do
-  def puzzles_page
-    @puzzles_page ||= PuzzlesPageObject.new
-  end
-
-  def maths_grid_page
-    @maths_grid_page ||= Puzzles::MathsGridPageObject.new
+RSpec.feature "maths grid puzzle", type: :feature do
+  before do
+    visit "/puzzles"
+    click_link "Maths Grid"
   end
 
   scenario "getting to it from the puzzles page" do
-    puzzles_page.load
-
-    click_link "Maths Grid"
-
-    expect(maths_grid_page).to be_displayed
     expect(page).to have_text "Maths Grid Setup"
   end
 
   scenario "default rows and columns set correctly" do
-    maths_grid_page.load
+    expect(page.find("#puzzles_maths_grid_rows").value).to eq "4"
+    expect(page.find("#puzzles_maths_grid_columns").value).to eq "6"
 
-    expect(maths_grid_page.rows_field.value).to eq "4"
-    expect(maths_grid_page.columns_field.value).to eq "6"
-
-    expect(maths_grid_page.rows.count).to eq 4
-    expect(maths_grid_page.rows[0].cells.count).to eq 6
+    expect(page).to have_css('.kids-puzzles-maths-grid-row', count: 4)
+    expect(page).to have_css('.kids-puzzles-maths-grid-cell', count: 24)
   end
 
   scenario "changing number of rows and columns" do
-    maths_grid_page.load
+    page.find("#puzzles_maths_grid_rows").set "5"
+    page.find("#puzzles_maths_grid_columns").set "7"
+    page.click_button "Generate new puzzle"
 
-    maths_grid_page.rows_field.set "5"
-
-    expect(maths_grid_page.rows_field.value).to eq "5"
-    expect(maths_grid_page.columns_field.value).to eq "6"
-
-    expect(maths_grid_page.rows.count).to eq 4
-    expect(maths_grid_page.rows[0].cells.count).to eq 6
+    expect(page).to have_css('.kids-puzzles-maths-grid-row', count: 5)
+    expect(page).to have_css('.kids-puzzles-maths-grid-cell', count: 35)
   end
 end

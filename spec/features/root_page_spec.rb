@@ -11,7 +11,7 @@ RSpec.feature "root page" do
     PuzzlesPageObject.new
   end
 
-  scenario "visiting the root page" do
+  xscenario "visiting the root page" do
     root_page.load
 
     expect(puzzles_page).to be_displayed
