@@ -2,6 +2,8 @@
 
 class BackLinkComponent < ViewComponent::Base
   def initialize(text: "Back", route: :back)
+    super
+
     @text = text
     @route = route
   end

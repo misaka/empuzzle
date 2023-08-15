@@ -16,8 +16,8 @@ RSpec.feature "maths grid puzzle", type: :feature do
     expect(page.find("#puzzles_maths_grid_rows").value).to eq "4"
     expect(page.find("#puzzles_maths_grid_columns").value).to eq "6"
 
-    expect(page).to have_css('.kids-puzzles-maths-grid-row', count: 4)
-    expect(page).to have_css('.kids-puzzles-maths-grid-cell', count: 24)
+    expect(page).to have_css(".kids-puzzles-maths-grid-row", count: 4)
+    expect(page).to have_css(".kids-puzzles-maths-grid-cell", count: 24)
   end
 
   scenario "changing number of rows and columns" do
@@ -25,7 +25,7 @@ RSpec.feature "maths grid puzzle", type: :feature do
     page.find("#puzzles_maths_grid_columns").set "7"
     page.click_button "Generate new puzzle"
 
-    expect(page).to have_css('.kids-puzzles-maths-grid-row', count: 5)
-    expect(page).to have_css('.kids-puzzles-maths-grid-cell', count: 35)
+    expect(page).to have_css(".kids-puzzles-maths-grid-row", count: 5)
+    expect(page).to have_css(".kids-puzzles-maths-grid-cell", count: 35)
   end
 end

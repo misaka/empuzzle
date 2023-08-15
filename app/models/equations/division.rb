@@ -27,7 +27,7 @@ module Equations
       :division
     end
 
-    private
+  private
 
     def initialize_numbers
       loop do

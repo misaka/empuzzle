@@ -26,7 +26,7 @@ module Equations
       :multiplication
     end
 
-    private
+  private
 
     def initialize_factors
       loop do

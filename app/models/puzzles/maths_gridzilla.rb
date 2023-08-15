@@ -31,11 +31,11 @@ module Puzzles
     attribute :subtraction_result_min, :integer, default: 0
     attribute :subtraction_result_max, :integer
 
-    validates_presence_of :rows, :columns
-    validates_presence_of :dividends_from, :dividends_to
-    validates_presence_of :divisors_from, :divisors_to
-    validates_presence_of :factors_from, :factors_to
-    validates_presence_of :factors_count_min, :factors_count_max
+    validates :rows, :columns, presence: true
+    validates :dividends_from, :dividends_to, presence: true
+    validates :divisors_from, :divisors_to, presence: true
+    validates :factors_from, :factors_to, presence: true
+    validates :factors_count_min, :factors_count_max, presence: true
     validate :dividends_from_not_greater_than_to
     validate :divisors_from_not_greater_than_to
     validate :factors_from_not_greater_than_to
@@ -60,7 +60,7 @@ module Puzzles
       end
     end
 
-    private
+  private
 
     def addition_equation_params
       {
@@ -70,7 +70,7 @@ module Puzzles
         range_end: addition_to,
         result_min: addition_result_min,
         result_max: addition_result_max,
-        random: @random
+        random: @random,
       }
     end
 
@@ -82,7 +82,7 @@ module Puzzles
         range_end: subtraction_to,
         result_min: subtraction_result_min,
         result_max: subtraction_result_max,
-        random: @random
+        random: @random,
       }
     end
 
@@ -94,7 +94,7 @@ module Puzzles
         divisors_max: divisors_to,
         result_min: division_results_min,
         result_max: division_results_max,
-        random: @random
+        random: @random,
       }
     end
 
@@ -104,7 +104,7 @@ module Puzzles
         count_max: factors_count_max,
         range_start: factors_from,
         range_end: factors_to,
-        random: @random
+        random: @random,
       }
     end
 

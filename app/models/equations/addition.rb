@@ -26,7 +26,7 @@ module Equations
       :addition
     end
 
-    private
+  private
 
     def initialize_numbers
       loop do

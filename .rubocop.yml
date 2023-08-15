@@ -1,7 +1,11 @@
 AllCops:
   DefaultFormatter: pacman
 
-# Use double-quoted strings, because you’ll probably need to use interpolation
-# somewhere.
-Style/StringLiterals:
-  EnforcedStyle: double_quotes
+inherit_gem:
+  rubocop-govuk:
+    - config/default.yml
+    - config/rails.yml
+
+inherit_mode:
+  merge:
+    - Exclude

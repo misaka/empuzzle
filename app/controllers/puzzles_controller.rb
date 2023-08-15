@@ -21,20 +21,31 @@ class PuzzlesController < ApplicationController
     @reward = params[:reward] || ""
   end
 
-  private
+private
 
   def maths_gridzilla_create_params
     params
       .permit(
         puzzles_maths_gridzilla: %i[
-          rows columns
-          factors_from factors_to factors_count_min factors_count_max
-          dividends_from dividends_to divisors_from divisors_to
-          addition_count_min addition_count_max
-          addition_from addition_to
-          subtraction_count_min subtraction_count_max
-          subtraction_from subtraction_to
-        ]
+          rows
+          columns
+          factors_from
+          factors_to
+          factors_count_min
+          factors_count_max
+          dividends_from
+          dividends_to
+          divisors_from
+          divisors_to
+          addition_count_min
+          addition_count_max
+          addition_from
+          addition_to
+          subtraction_count_min
+          subtraction_count_max
+          subtraction_from
+          subtraction_to
+        ],
       )
   end
 
@@ -42,7 +53,8 @@ class PuzzlesController < ApplicationController
     params
       .permit(
         puzzles_maths_grid: %i[
-          rows columns
+          rows
+          columns
           enable_addition
           addition_numbers_count
           addition_numbers_range
@@ -51,7 +63,7 @@ class PuzzlesController < ApplicationController
           subtraction_numbers_range
           enable_multiplication
           enable_division
-        ]
+        ],
       )
   end
 
@@ -61,14 +73,13 @@ class PuzzlesController < ApplicationController
         puzzles_number_line_maths: %i[
           rows
           reward
-          line_range_from line_range_to
-          addition_numbers_count_min addition_numbers_count_max
-          addition_numbers_from addition_numbers_to
-        ]
+          line_range_from
+          line_range_to
+          addition_numbers_count_min
+          addition_numbers_count_max
+          addition_numbers_from
+          addition_numbers_to
+        ],
       )
-  end
-
-  def transform_values_for_keys(p, *keys, &block)
-    p.merge(p.slice(*keys).transform_values(&block))
   end
 end

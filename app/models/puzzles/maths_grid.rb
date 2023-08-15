@@ -6,129 +6,174 @@ module Puzzles
     include ActiveModel::Attributes
     include RandomInRange
 
-    ADDITION_NUMBER_COUNT_OPTIONS = [{
-      count_min: 2,
-      count_max: 2
-    }, {
-      count_min: 2,
-      count_max: 3
-    }, {
-      count_min: 2,
-      count_max: 4
-    }, {
-      count_min: 3,
-      count_max: 3
-    }, {
-      count_min: 3,
-      count_max: 4
-    }, {
-      count_min: 4,
-      count_max: 4
-    }].freeze
-    ADDITION_NUMBER_RANGE_OPTIONS = [{
-      range_start: 2,
-      range_end: 9
-    }, {
-      range_start: 2,
-      range_end: 20
-    }, {
-      range_start: 2,
-      range_end: 50
-    }, {
-      range_start: 2,
-      range_end: 100
-    }].freeze
+    ADDITION_NUMBER_COUNT_OPTIONS = [
+      {
+        count_min: 2,
+        count_max: 2,
+      },
+      {
+        count_min: 2,
+        count_max: 3,
+      },
+      {
+        count_min: 2,
+        count_max: 4,
+      },
+      {
+        count_min: 3,
+        count_max: 3,
+      },
+      {
+        count_min: 3,
+        count_max: 4,
+      },
+      {
+        count_min: 4,
+        count_max: 4,
+      },
+    ].freeze
+    ADDITION_NUMBER_RANGE_OPTIONS = [
+      {
+        range_start: 2,
+        range_end: 9,
+      },
+      {
+        range_start: 2,
+        range_end: 20,
+      },
+      {
+        range_start: 2,
+        range_end: 50,
+      },
+      {
+        range_start: 2,
+        range_end: 100,
+      },
+    ].freeze
 
-    SUBTRACTION_NUMBER_COUNT_OPTIONS = [{
-      count_min: 2,
-      count_max: 2
-    }, {
-      count_min: 2,
-      count_max: 3
-    }, {
-      count_min: 2,
-      count_max: 4
-    }, {
-      count_min: 3,
-      count_max: 3
-    }, {
-      count_min: 3,
-      count_max: 4
-    }, {
-      count_min: 4,
-      count_max: 4
-    }].freeze
-    SUBTRACTION_NUMBER_RANGE_OPTIONS = [{
-      range_start: 2,
-      range_end: 9
-    }, {
-      range_start: 2,
-      range_end: 20
-    }, {
-      range_start: 2,
-      range_end: 50
-    }, {
-      range_start: 2,
-      range_end: 100
-    }].freeze
+    SUBTRACTION_NUMBER_COUNT_OPTIONS = [
+      {
+        count_min: 2,
+        count_max: 2,
+      },
+      {
+        count_min: 2,
+        count_max: 3,
+      },
+      {
+        count_min: 2,
+        count_max: 4,
+      },
+      {
+        count_min: 3,
+        count_max: 3,
+      },
+      {
+        count_min: 3,
+        count_max: 4,
+      },
+      {
+        count_min: 4,
+        count_max: 4,
+      },
+    ].freeze
+    SUBTRACTION_NUMBER_RANGE_OPTIONS = [
+      {
+        range_start: 2,
+        range_end: 9,
+      },
+      {
+        range_start: 2,
+        range_end: 20,
+      },
+      {
+        range_start: 2,
+        range_end: 50,
+      },
+      {
+        range_start: 2,
+        range_end: 100,
+      },
+    ].freeze
 
-    MULTIPLICATION_NUMBER_COUNT_OPTIONS = [{
-      count_min: 2,
-      count_max: 2
-    }, {
-      count_min: 2,
-      count_max: 3
-    }, {
-      count_min: 2,
-      count_max: 4
-    }, {
-      count_min: 3,
-      count_max: 3
-    }, {
-      count_min: 3,
-      count_max: 4
-    }, {
-      count_min: 4,
-      count_max: 4
-    }].freeze
-    MULTIPLICATION_NUMBER_RANGE_OPTIONS = [{
-      range_start: 2,
-      range_end: 9
-    }, {
-      range_start: 2,
-      range_end: 20
-    }, {
-      range_start: 2,
-      range_end: 50
-    }, {
-      range_start: 2,
-      range_end: 100
-    }].freeze
+    MULTIPLICATION_NUMBER_COUNT_OPTIONS = [
+      {
+        count_min: 2,
+        count_max: 2,
+      },
+      {
+        count_min: 2,
+        count_max: 3,
+      },
+      {
+        count_min: 2,
+        count_max: 4,
+      },
+      {
+        count_min: 3,
+        count_max: 3,
+      },
+      {
+        count_min: 3,
+        count_max: 4,
+      },
+      {
+        count_min: 4,
+        count_max: 4,
+      },
+    ].freeze
+    MULTIPLICATION_NUMBER_RANGE_OPTIONS = [
+      {
+        range_start: 2,
+        range_end: 9,
+      },
+      {
+        range_start: 2,
+        range_end: 20,
+      },
+      {
+        range_start: 2,
+        range_end: 50,
+      },
+      {
+        range_start: 2,
+        range_end: 100,
+      },
+    ].freeze
 
-    DIVISORS_RANGE_OPTIONS = [{
-      divisors_min: 2,
-      divisors_max: 9
-    }, {
-      divisors_min: 3,
-      divisors_max: 19
-    }, {
-      divisors_min: 3,
-      divisors_max: 40
-    }, {
-      divisors_min: 10,
-      divisors_max: 100
-    }].freeze
+    DIVISORS_RANGE_OPTIONS = [
+      {
+        divisors_min: 2,
+        divisors_max: 9,
+      },
+      {
+        divisors_min: 3,
+        divisors_max: 19,
+      },
+      {
+        divisors_min: 3,
+        divisors_max: 40,
+      },
+      {
+        divisors_min: 10,
+        divisors_max: 100,
+      },
+    ].freeze
 
-    DIVIDENDS_RANGE_OPTIONS = [{
-      dividends_min: 10,
-      dividends_max: 100
-    }, {
-      dividends_min: 100,
-      dividends_max: 1000
-    }, {
-      dividends_min: 100,
-      dividends_max: 10_000
-    }].freeze
+    DIVIDENDS_RANGE_OPTIONS = [
+      {
+        dividends_min: 10,
+        dividends_max: 100,
+      },
+      {
+        dividends_min: 100,
+        dividends_max: 1000,
+      },
+      {
+        dividends_min: 100,
+        dividends_max: 10_000,
+      },
+    ].freeze
 
     attribute :rows,                   :integer, default: 4
     attribute :columns,                :integer, default: 6
@@ -216,7 +261,7 @@ module Puzzles
       end
     end
 
-    private
+  private
 
     def addition_equation_params
       params = { random: @random }
@@ -224,7 +269,7 @@ module Puzzles
       params.merge!(ADDITION_NUMBER_RANGE_OPTIONS[addition_numbers_range])
       params.merge(
         result_min: 0,
-        result_max: 5000
+        result_max: 5000,
       )
     end
 
@@ -234,7 +279,7 @@ module Puzzles
       params.merge!(SUBTRACTION_NUMBER_RANGE_OPTIONS[subtraction_numbers_range])
       params.merge(
         result_min: 0,
-        result_max: nil
+        result_max: nil,
       )
     end
 
@@ -244,7 +289,7 @@ module Puzzles
       params.merge!(MULTIPLICATION_NUMBER_RANGE_OPTIONS[multiplication_numbers_range])
       params.merge(
         result_min: 0,
-        result_max: nil
+        result_max: nil,
       )
     end
 
@@ -254,7 +299,7 @@ module Puzzles
       params.merge!(DIVISORS_RANGE_OPTIONS[divisors_range])
       params.merge(
         result_min: 0,
-        result_max: nil
+        result_max: nil,
       )
     end
 

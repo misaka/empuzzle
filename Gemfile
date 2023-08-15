@@ -62,6 +62,11 @@ end
 
 group :development do
   gem "rubocop"
+
+  # Sorry but I'm just a fan of the govuk style guide. Should probably copy
+  # these at some point, or maybe just keep it this way.
+  gem "rubocop-govuk", require: false
+
   gem "rubocop-rails"
   gem "rubocop-rspec"
 

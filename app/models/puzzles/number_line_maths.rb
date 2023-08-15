@@ -33,7 +33,7 @@ module Puzzles
       line_range_to - line_range_from
     end
 
-    private
+  private
 
     def random_equation_type
       %i[
@@ -49,7 +49,7 @@ module Puzzles
         to: addition_numbers_to,
         result_min: line_range_from,
         result_max: line_range_to,
-        random: @random
+        random: @random,
       }
     end
   end
