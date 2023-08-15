@@ -1,27 +1,3 @@
 <%= render BackLinkComponent.new(route: puzzles_path) %>
 
-<div class="kids-puzzles-content">
-<table class="kids-puzzles-puzzle kids-puzzles-maths-grid">
-<% @puzzle.cells.each do |row| %>
-    <tr class="kids-puzzles-maths-grid-row">
-    <% row.each do |cell| %>
-        <% @cell = cell %>
-        <td class="kids-puzzles-maths-grid-cell">
-            <%= render "puzzles/maths_grid/#{cell.type}_cell", puzzle: row, equation: cell %>
-        </td>
-    <% end %>
-    </tr>
-<% end %>
-</table>
-
-<% if @reward.present? %>
-<div class="kids-puzzles-reward">
-    Reward: <%= @reward %>
-</div>
-<% end %>
-
-</div>
-
-<hr>
-
-<%= render "puzzles/maths_grid/form" %>
+<%= render MathsGridComponent.new(puzzle: @puzzle) %>
