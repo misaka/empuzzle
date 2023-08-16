@@ -182,15 +182,15 @@ module Puzzles
     attribute :addition_numbers_count, :integer, default: 0
     attribute :addition_numbers_range, :integer, default: 0
 
-    attribute :enable_subtraction,        :boolean, default: true
+    attribute :enable_subtraction,        :boolean, default: false
     attribute :subtraction_numbers_count, :integer, default: 0
     attribute :subtraction_numbers_range, :integer, default: 0
 
-    attribute :enable_multiplication,        :boolean, default: true
+    attribute :enable_multiplication,        :boolean, default: false
     attribute :multiplication_numbers_count, :integer, default: 0
     attribute :multiplication_numbers_range, :integer, default: 0
 
-    attribute :enable_division, :boolean, default: true
+    attribute :enable_division, :boolean, default: false
     attribute :dividends_range, :integer, default: 0
     attribute :divisors_range,  :integer, default: 0
 

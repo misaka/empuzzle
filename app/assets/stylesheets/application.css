@@ -20,11 +20,13 @@
 }
 
 .kids-puzzles-maths-grid-cell {
-    padding-top: 2em;
-    padding-bottom: 0.5em;
-    padding-left: 1ex;
-    padding-right: 6ex;
-    text-align: center;
+    /* padding-top: 2em; */
+    /* padding-bottom: 0.5em; */
+    padding-left: 2ex;
+    /* padding-right: 6ex; */
+    height: 5em;
+    text-align: left;
+    vertical-align: middle;
 }
 
 .kids-puzzles-setup dl {
