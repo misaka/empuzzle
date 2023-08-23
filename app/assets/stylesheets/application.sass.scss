@@ -74,6 +74,10 @@ div.kids-puzzles-setup-field  {
     text-align: center;
 }
 
+.kids-puzzles-visually-hidden {
+    display: none;
+}
+
 @media print {
     form, hr, #back-link {
         display: none;

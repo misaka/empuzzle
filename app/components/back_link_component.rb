@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class BackLinkComponent < ViewComponent::Base
-  def initialize(text: "Back", route: :back)
+  def initialize(route: :back, text:)
     super
 
     @text = text

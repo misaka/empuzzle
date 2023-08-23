@@ -1,1 +1,3 @@
-<%= link_to @text, @route, id: "back-link", class: "btn btn-primary" %>
+<%= link_to @route, id: "back-link", class: "btn btn-primary" do %>
+  Back <span class="kids-puzzles-visually-hidden">to <%= @text %></span>
+<% end %>

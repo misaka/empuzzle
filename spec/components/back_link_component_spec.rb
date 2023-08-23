@@ -3,13 +3,10 @@
 require "rails_helper"
 
 RSpec.describe BackLinkComponent, type: :component do
-  pending "add some examples to (or delete) #{__FILE__}"
+  let(:component) { described_class.new(text: "space", route: "/") }
+  let!(:rendered) { render_inline(component) }
 
-  # it "renders something useful" do
-  #   expect(
-  #     render_inline(described_class.new(attr: "value")) { "Hello, components!" }.css("p").to_html
-  #   ).to include(
-  #     "Hello, components!"
-  #   )
-  # end
+  subject { page }
+
+  it { should have_link("Back", href: "/") }
 end
