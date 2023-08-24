@@ -11,6 +11,7 @@ gem "bootsnap", require: false
 gem "cssbundling-rails"
 # gem "importmap-rails"
 gem "jbuilder"
+gem "pg", "~> 1.5"
 gem "propshaft"
 gem "puma", "~> 6.3"
 gem "redis", "~> 4.0"

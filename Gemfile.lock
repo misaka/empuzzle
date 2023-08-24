@@ -137,6 +137,7 @@ GEM
     parser (3.2.2.3)
       ast (~> 2.4.1)
       racc
+    pg (1.5.3)
     propshaft (0.7.0)
       actionpack (>= 7.0.0)
       activesupport (>= 7.0.0)
@@ -282,6 +283,7 @@ DEPENDENCIES
   cssbundling-rails
   debug
   jbuilder
+  pg (~> 1.5)
   propshaft
   pry-rails
   puma (~> 6.3)
