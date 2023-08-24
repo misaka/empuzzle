@@ -2,19 +2,19 @@
 
 require_relative "boot"
 
-# require "rails/all"
+require "rails"
 
 # Running without a db for now.
-# require "active_record/railtie"
+require "active_record/railtie"
 require "active_model/railtie"
-# require "active_storage/engine"
+require "active_storage/engine"
 require "action_controller/railtie"
 require "action_view/railtie"
 # require "action_mailer/railtie"
 require "active_job/railtie"
 require "action_cable/engine"
 # require "action_mailbox/engine"
-# require "action_text/engine"
+require "action_text/engine"
 require "rails/test_unit/railtie"
 
 # Require the gems listed in Gemfile, including any gems
