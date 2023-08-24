@@ -248,6 +248,8 @@ GEM
       websocket (~> 1.0)
     stimulus-rails (1.2.2)
       railties (>= 6.0.0)
+    tailwindcss-rails (2.0.30)
+      railties (>= 6.0.0)
     thor (1.2.2)
     timeout (0.4.0)
     turbo-rails (1.4.0)
@@ -296,6 +298,7 @@ DEPENDENCIES
   rubocop-rspec
   selenium-webdriver
   stimulus-rails
+  tailwindcss-rails
   turbo-rails
   tzinfo-data
   view_component
