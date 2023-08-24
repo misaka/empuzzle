@@ -97,9 +97,6 @@ GEM
       activesupport (>= 5.0)
     i18n (1.14.1)
       concurrent-ruby (~> 1.0)
-    importmap-rails (1.2.1)
-      actionpack (>= 6.0.0)
-      railties (>= 6.0.0)
     io-console (0.6.0)
     irb (1.7.4)
       reline (>= 0.3.6)
@@ -148,8 +145,10 @@ GEM
     pry (0.14.2)
       coderay (~> 1.1)
       method_source (~> 1.0)
+    pry-rails (0.3.9)
+      pry (>= 0.10.4)
     public_suffix (5.0.3)
-    puma (5.6.6)
+    puma (6.3.1)
       nio4r (~> 2.0)
     racc (1.7.1)
     rack (2.2.8)
@@ -282,12 +281,11 @@ DEPENDENCIES
   capybara
   cssbundling-rails
   debug
-  importmap-rails
   jbuilder
   propshaft
-  pry
-  puma (~> 5.0)
-  rails (~> 7.0.1)
+  pry-rails
+  puma (~> 6.3)
+  rails (~> 7.0.7)
   redis (~> 4.0)
   rspec-rails
   rubocop
@@ -302,7 +300,7 @@ DEPENDENCIES
   web-console
 
 RUBY VERSION
-   ruby 3.1.0p0
+   ruby 3.2.0p0
 
 BUNDLED WITH
    2.1.4
