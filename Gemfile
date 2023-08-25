@@ -9,7 +9,7 @@ gem "rails", "~> 7.0.7"
 
 gem "bootsnap", require: false
 gem "cssbundling-rails"
-# gem "importmap-rails"
+gem "importmap-rails"
 gem "jbuilder"
 gem "pg", "~> 1.5"
 gem "propshaft"
