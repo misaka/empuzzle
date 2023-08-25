@@ -1,124 +1,135 @@
+<div class="grid ml-0")
 <h1>Maths Grid Puzzle</h1>
 
-<div class="kids-puzzles-content">
-<table class="kids-puzzles-puzzle kids-puzzles-maths-grid" style="width: 100%">
-<% @puzzle.cells.each do |row| %>
-    <tr class="kids-puzzles-maths-grid-row">
-    <% row.each do |cell| %>
-        <% @cell = cell %>
-      <td class="kids-puzzles-maths-grid-cell">
-        <p>
-          <%= render cell_component_class(type: cell.type).new(equation: cell) %>
-        </p>
-      </td>
-    <% end %>
-    </tr>
-<% end %>
-</table>
-
-<% if @reward.present? %>
-  <div class="kids-puzzles-reward">
-    Reward: <%= @reward %>
-  </div>
-<% end %>
-
-</div>
-
-<hr>
-
 <%= form_for @puzzle, url: puzzles_maths_grid_path, method: :get do |form| %>
-    <h2>Maths Grid Setup</h2>
+    <h2 class="ml-0">Puzzle Setup</h2>
 
-    <dl class="kids-puzzles-setup">
-        <div class="kids-puzzles-setup-field">
-            <dt><%= form.label :rows %></dt>
-            <dd><%= form.number_field :rows %></dd>
+    <div class="flex flex-row">
+        <div class="flex flex-col">
+            <%= form.label :rows %>
+            <%= form.number_field :rows %>
         </div>
-        <div class="kids-puzzles-setup-field">
-            <dt><%= form.label :columns %></dt>
-            <dd><%= form.number_field :columns %></dd>
+        <div class="flex flex-col">
+            <%= form.label :columns %>
+            <%= form.number_field :columns %>
         </div>
-    </dl>
+        </div>
 
-    <%= label_tag "reward" %></dt>
+    <div class="flex flex-row space-x-8">
+        <div class="basis-1/4">
+            <h2>Addition Setup</h2>
+
+            <dl class="kids-puzzles-setup">
+                <div class="kids-puzzles-setup-field">
+                    <dt><%= form.label :enable_addition %></dt>
+                    <dd><%= form.check_box :enable_addition %></dd>
+                </div>
+
+                <div class="kids-puzzles-setup-field">
+                    <dt><%= form.label :addition_numbers_count %></dt>
+                    <dd><%= form.select :addition_numbers_count, puzzle_addition_number_counts(@puzzle) %></dd>
+                </div>
+
+                <div class="kids-puzzles-setup-field">
+                    <dt><%= form.label :addition_numbers_range %></dt>
+                    <dd><%= form.select :addition_numbers_range, puzzle_addition_number_ranges(@puzzle) %></dd>
+                </div>
+            </dl>
+        </div>
+
+        <div class="grid basis-1/4">
+            <h2>Subtraction Setup</h2>
+
+            <dl class="kids-puzzles-setup">
+                <div class="kids-puzzles-setup-field">
+                    <dt><%= form.label :enable_subtraction %></dt>
+                    <dd><%= form.check_box :enable_subtraction %></dd>
+                </div>
+
+                <div class="kids-puzzles-setup-field">
+                    <dt><%= form.label :subtraction_numbers_count %></dt>
+                    <dd><%= form.select :subtraction_numbers_count, puzzle_subtraction_number_counts(@puzzle) %></dd>
+                </div>
+
+                <div class="kids-puzzles-setup-field">
+                    <dt><%= form.label :subtraction_numbers_range %></dt>
+                    <dd><%= form.select :subtraction_numbers_range, puzzle_subtraction_number_ranges(@puzzle) %></dd>
+                </div>
+            </dl>
+        </div>
+
+        <div class="grid basis-1/4">
+            <h2>Multiplication Setup</h2>
+
+            <dl class="kids-puzzles-setup">
+                <div class="kids-puzzles-setup-field">
+                    <dt><%= form.label :enable_multiplication %></dt>
+                    <dd><%= form.check_box :enable_multiplication %></dd>
+                </div>
+
+                <div class="kids-puzzles-setup-field">
+                    <dt><%= form.label :multiplication_numbers_count %></dt>
+                    <dd><%= form.select :multiplication_numbers_count, puzzle_multiplication_number_counts(@puzzle) %></dd>
+                </div>
+
+                <div class="kids-puzzles-setup-field">
+                    <dt><%= form.label :multiplication_numbers_range %></dt>
+                    <dd><%= form.select :multiplication_numbers_range, puzzle_multiplication_number_ranges(@puzzle) %></dd>
+                </div>
+            </dl>
+        </div>
+
+        <div class="grid basis-1/4">
+            <h2>Division Setup</h2>
+
+            <dl class="kids-puzzles-setup">
+                <div class="kids-puzzles-setup-field">
+                    <dt><%= form.label :enable_division %></dt>
+                    <dd><%= form.check_box :enable_division %></dd>
+                </div>
+
+                <div class="kids-puzzles-setup-field">
+                    <dt><%= form.label :dividends_range %></dt>
+                    <dd><%= form.select :dividends_range, puzzle_dividends_ranges(@puzzle) %></dd>
+                </div>
+
+                <div class="kids-puzzles-setup-field">
+                    <dt><%= form.label :divisors_range %></dt>
+                    <dd><%= form.select :divisors_range, puzzle_divisors_ranges(@puzzle) %></dd>
+                </div>
+            </dl>
+        </div>
+    </div>
+
+    <%= label_tag "reward" %>
     <%= text_field_tag :reward, @reward, size: 40 %>
-
-    <h2>Addition Setup</h2>
-
-    <dl class="kids-puzzles-setup">
-        <div class="kids-puzzles-setup-field">
-            <dt><%= form.label :enable_addition %></dt>
-            <dd><%= form.check_box :enable_addition %></dd>
-        </div>
-
-        <div class="kids-puzzles-setup-field">
-            <dt><%= form.label :addition_numbers_count %></dt>
-            <dd><%= form.select :addition_numbers_count, puzzle_addition_number_counts(@puzzle) %></dd>
-        </div>
-
-        <div class="kids-puzzles-setup-field">
-            <dt><%= form.label :addition_numbers_range %></dt>
-            <dd><%= form.select :addition_numbers_range, puzzle_addition_number_ranges(@puzzle) %></dd>
-        </div>
-    </dl>
-
-    <h2>Subtraction Setup</h2>
-
-    <dl class="kids-puzzles-setup">
-        <div class="kids-puzzles-setup-field">
-            <dt><%= form.label :enable_subtraction %></dt>
-            <dd><%= form.check_box :enable_subtraction %></dd>
-        </div>
-
-        <div class="kids-puzzles-setup-field">
-            <dt><%= form.label :subtraction_numbers_count %></dt>
-            <dd><%= form.select :subtraction_numbers_count, puzzle_subtraction_number_counts(@puzzle) %></dd>
-        </div>
-
-        <div class="kids-puzzles-setup-field">
-            <dt><%= form.label :subtraction_numbers_range %></dt>
-            <dd><%= form.select :subtraction_numbers_range, puzzle_subtraction_number_ranges(@puzzle) %></dd>
-        </div>
-    </dl>
-
-    <h2>Multiplication Setup</h2>
-
-    <dl class="kids-puzzles-setup">
-        <div class="kids-puzzles-setup-field">
-            <dt><%= form.label :enable_multiplication %></dt>
-            <dd><%= form.check_box :enable_multiplication %></dd>
-        </div>
-
-        <div class="kids-puzzles-setup-field">
-            <dt><%= form.label :multiplication_numbers_count %></dt>
-            <dd><%= form.select :multiplication_numbers_count, puzzle_multiplication_number_counts(@puzzle) %></dd>
-        </div>
-
-        <div class="kids-puzzles-setup-field">
-            <dt><%= form.label :multiplication_numbers_range %></dt>
-            <dd><%= form.select :multiplication_numbers_range, puzzle_multiplication_number_ranges(@puzzle) %></dd>
-        </div>
-    </dl>
-
-
-    <h2>Division Setup</h2>
-
-    <dl class="kids-puzzles-setup">
-        <div class="kids-puzzles-setup-field">
-            <dt><%= form.label :enable_division %></dt>
-            <dd><%= form.check_box :enable_division %></dd>
-        </div>
-
-        <div class="kids-puzzles-setup-field">
-            <dt><%= form.label :dividends_range %></dt>
-            <dd><%= form.select :dividends_range, puzzle_dividends_ranges(@puzzle) %></dd>
-        </div>
-
-        <div class="kids-puzzles-setup-field">
-            <dt><%= form.label :divisors_range %></dt>
-            <dd><%= form.select :divisors_range, puzzle_divisors_ranges(@puzzle) %></dd>
-        </div>
-    </dl>
 
     <%= submit_tag "Generate new puzzle" %>
 <% end %>
+
+<hr>
+
+<div class="kids-puzzles-content">
+    <table class="kids-puzzles-puzzle kids-puzzles-maths-grid" style="width: 100%">
+        <% @puzzle.cells.each do |row| %>
+            <tr class="kids-puzzles-maths-grid-row">
+                <% row.each do |cell| %>
+                    <% @cell = cell %>
+                    <td class="kids-puzzles-maths-grid-cell">
+                        <p>
+                            <%= render cell_component_class(type: cell.type).new(equation: cell) %>
+                        </p>
+                    </td>
+                <% end %>
+            </tr>
+        <% end %>
+    </table>
+
+    <% if @reward.present? %>
+        <div class="kids-puzzles-reward">
+            Reward: <%= @reward %>
+        </div>
+    <% end %>
+
+</div>
+</div>

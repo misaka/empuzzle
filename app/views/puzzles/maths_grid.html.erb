@@ -1,3 +1,5 @@
-<%= render BackLinkComponent.new(text: "puzzles list", route: puzzles_path) %>
+<% content_for :nav do %>
+  <%= render BackLinkComponent.new(text: "puzzles list", route: puzzles_path) %>
+<% end %>
 
 <%= render MathsGridComponent.new(puzzle: @puzzle) %>
