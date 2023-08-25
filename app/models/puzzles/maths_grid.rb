@@ -194,31 +194,6 @@ module Puzzles
     attribute :dividends_range, :integer, default: 0
     attribute :divisors_range,  :integer, default: 0
 
-    # 300,000 words, 18 bits. 36 bits total for the use of 2-word codes, minus one for a 32 bit random number
-
-    # Puzzle Parameters:
-    #
-    # ###                                  0-7  columns                  (3-10)
-    #    ###                               0-7  rows                     (1-8)
-    #       ###                            0-7  addition numbers         (0-0, 2-2, 2-3, 2-4, 3-3, 3-4, 4-4)
-    #          ##                          0-3  addition number sizes    (2-9, 2-20, 2-50, 2-100)
-    #            ##                        0-3  addition results         (??)
-    #              #                       0-1  enable subtraction       (false/true)
-    #               ##                     0-3  subtraction numbers      (2-5)
-    #                 ##                   0-3  subtraction number sizes (2-9, 2-20, 2-50, 2-100)
-    #                   ##                 0-3  subtraction results      (??)
-    #                     #                0-1  enable multiplication    (false/true)
-    #                      ##              0-3  factors                  (2-5)
-    #                        ##            0-3  factor size              (2-9, 2-20, 2-50, 2-100)
-    #                          ##          0-3  factor results           (??)
-    #                            #         0-1  enable division          (false/true)
-    #                             ##       0-3  dividend size            (10-100, 100-1000, 100-10000)
-    #                               ##     0-3  divisor size             (2-9, 2-20, 10-100)
-    #                                 ##   0-3  division results         (??)
-    # ||||||||||||||||||||||||||||||||||||
-    #           11111111112222222222333333
-    # 012345678901234567890123456789012345
-    #
     validates :rows,    presence: true, numericality: { greater_than: 0, less_than: 9 }
     validates :columns, presence: true, numericality: { greater_than: 2, less_than: 11 }
 
