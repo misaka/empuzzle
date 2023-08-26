@@ -47,7 +47,7 @@ module Puzzles
       @levels_configs ||= {
         "6-8" => {
           addition: {
-            count: 2..4,
+            count: 2..2,
             range: 1..9,
             result_range: 2..10,
           },

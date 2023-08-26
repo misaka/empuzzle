@@ -11,7 +11,7 @@ Rails.application.routes.draw do
             only: %i[create index new show],
             path_names: { new: ":puzzle_type/new" }
   resolve("Puzzles::MathsGrid") do |puzzle, options|
-    [:puzzle, puzzle.id]
+    [:puzzle]
   end
 
   # namespace :puzzles do
