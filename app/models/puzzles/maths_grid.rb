@@ -1,10 +1,35 @@
 # frozen_string_literal: true
 
 module Puzzles
-  class MathsGrid
-    include ActiveModel::API
-    include ActiveModel::Attributes
+  class MathsGrid < ::Puzzle
+    # include ActiveModel::API
+    # include ActiveModel::Attributes
     include RandomInRange
+
+    jsonb_accessor :config,
+                   title: :string,
+                   external_id: :integer,
+                   reviewed_at: :datetime,
+
+                   rows: [:integer, default: 4],
+                   columns: [:integer, default: 6],
+
+                   enable_addition: [:boolean, default: true],
+                   addition_numbers_count: [:integer, default: 0],
+                   addition_numbers_range: [:integer, default: 0],
+
+                   enable_subtraction: [:boolean, default: false],
+                   subtraction_numbers_count: [:integer, default: 0],
+                   subtraction_numbers_range: [:integer, default: 0],
+
+                   enable_multiplication: [:boolean, default: false],
+                   multiplication_numbers_count: [:integer, default: 0],
+                   multiplication_numbers_range: [:integer, default: 0],
+
+                   enable_division: [:boolean, default: false],
+                   dividends_range: [:integer, default: 0],
+                   divisors_range: [:integer, default: 0]
+
 
     ADDITION_NUMBER_COUNT_OPTIONS = [
       {
@@ -174,25 +199,6 @@ module Puzzles
         dividends_max: 10_000,
       },
     ].freeze
-
-    attribute :rows,                   :integer, default: 4
-    attribute :columns,                :integer, default: 6
-
-    attribute :enable_addition,        :boolean, default: true
-    attribute :addition_numbers_count, :integer, default: 0
-    attribute :addition_numbers_range, :integer, default: 0
-
-    attribute :enable_subtraction,        :boolean, default: false
-    attribute :subtraction_numbers_count, :integer, default: 0
-    attribute :subtraction_numbers_range, :integer, default: 0
-
-    attribute :enable_multiplication,        :boolean, default: false
-    attribute :multiplication_numbers_count, :integer, default: 0
-    attribute :multiplication_numbers_range, :integer, default: 0
-
-    attribute :enable_division, :boolean, default: false
-    attribute :dividends_range, :integer, default: 0
-    attribute :divisors_range,  :integer, default: 0
 
     validates :rows,    presence: true, numericality: { greater_than: 0, less_than: 9 }
     validates :columns, presence: true, numericality: { greater_than: 2, less_than: 11 }
