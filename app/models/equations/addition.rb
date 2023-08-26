@@ -4,7 +4,6 @@ module Equations
   class Addition
     include ActiveModel::API
     include ActiveModel::Attributes
-    include RandomInRange
 
     attribute :count
     attribute :range
@@ -27,10 +26,8 @@ module Equations
 
     def initialize_numbers
       10.times do |n|
-        number_count = random_in_range(count.min, count.max, random:)
-        self.numbers = number_count.times.map do
-          random_in_range(range.min, range.max, random:)
-        end
+        number_count = random.rand(count)
+        self.numbers = number_count.times.map { random.rand(range) }
 
         self.result = numbers.inject(:+)
 

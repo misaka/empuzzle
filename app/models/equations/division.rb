@@ -4,7 +4,6 @@ module Equations
   class Division
     include ActiveModel::API
     include ActiveModel::Attributes
-    include RandomInRange
 
     attribute :dividends_range
     attribute :divisors_range
@@ -29,8 +28,8 @@ module Equations
 
     def initialize_numbers
       10.times do |n|
-        self.dividend = random_in_range(dividends_range.min, dividends_range.max, random:).to_f
-        self.divisor  = random_in_range(divisors_range.min, divisors_range.max, random:).to_f
+        self.dividend = random.rand(dividends_range).to_f
+        self.divisor  = random.rand(divisors_range).to_f
 
         self.result = dividend / divisor
 

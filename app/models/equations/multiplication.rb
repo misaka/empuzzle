@@ -4,7 +4,6 @@ module Equations
   class Multiplication
     include ActiveModel::API
     include ActiveModel::Attributes
-    include RandomInRange
 
     attribute :count
     attribute :range
@@ -27,10 +26,8 @@ module Equations
 
     def initialize_factors
       10.times do |n|
-        factor_count = random_in_range(count.min, count.max, random:)
-        self.factors = factor_count.times.map do
-          random_in_range(range.min, range.max, random:)
-        end
+        factor_count = random.rand(count)
+        self.factors = factor_count.times.map { random.rand(range) }
 
         self.result = factors.inject(:*)
 

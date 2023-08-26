@@ -15,8 +15,6 @@
 #
 module Puzzles
   class MathsGrid < ::Puzzle
-    include RandomInRange
-
     after_initialize :set_defaults
 
     jsonb_accessor :config,
