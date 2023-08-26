@@ -1,12 +1,12 @@
 # frozen_string_literal: true
 
-class MathsGridComponent < ViewComponent::Base
-  attr_reader :maths_grid
+class MathsGridFormComponent < ViewComponent::Base
+  attr_reader :puzzle
 
-  def initialize(maths_grid:)
+  def initialize(puzzle:)
     super
 
-    @maths_grid = maths_grid
+    @puzzle = puzzle
   end
 
   def cell_component_class(type:)

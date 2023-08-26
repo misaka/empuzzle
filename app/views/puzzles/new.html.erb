@@ -2,4 +2,6 @@
   <%= render BackLinkComponent.new(text: "puzzles list", route: puzzles_path) %>
 <% end %>
 
-<%= render MathsGridComponent.new(puzzle: @puzzle) %>
+<div class="grid ml-0")
+  <%= render @form_component.new(puzzle: @puzzle) %>
+</div>

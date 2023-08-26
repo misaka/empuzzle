@@ -1,0 +1,7 @@
+<% content_for :nav do %>
+  <%= render BackLinkComponent.new(text: "puzzles list", route: puzzles_path) %>
+<% end %>
+
+<div class="grid ml-0")
+  <%= render @form_component.new(puzzle: @puzzle) %>
+</div>
