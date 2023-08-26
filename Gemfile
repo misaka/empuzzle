@@ -7,6 +7,7 @@ ruby "3.2.0"
 
 gem "rails", "~> 7.0.7"
 
+gem "annotate"
 gem "bootsnap", require: false
 gem "cssbundling-rails"
 gem "importmap-rails"

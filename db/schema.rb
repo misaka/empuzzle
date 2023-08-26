@@ -15,9 +15,11 @@ ActiveRecord::Schema[7.0].define(version: 2023_08_24_215518) do
   enable_extension "plpgsql"
 
   create_table "puzzles", force: :cascade do |t|
-    t.string "type"
+    t.string "type", null: false
     t.jsonb "config"
+    t.integer "level"
     t.text "reward"
+    t.bigint "seed"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
