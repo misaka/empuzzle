@@ -20,8 +20,8 @@ module Puzzles
     after_initialize :set_defaults
 
     jsonb_accessor :config,
-                   rows: [:integer, default: 4],
-                   columns: [:integer, default: 6]
+                   rows: [:integer, { default: 4 }],
+                   columns: [:integer, { default: 6 }]
 
     enum :level, %w[6-8], prefix: "level"
 
@@ -47,8 +47,8 @@ module Puzzles
             dividends_range: 1..20,
             divisors_range: 2..5,
             result_decimal_places: 0,
-          }
-        }
+          },
+        },
       }.with_indifferent_access
     end
 
@@ -61,21 +61,21 @@ module Puzzles
         columns.times.map do |_col|
           case random_cell_type
           when "addition"
-          then Equations::Addition.new(
-                 **level_config[:addition].merge(random:)
-               )
+            Equations::Addition.new(
+              **level_config[:addition].merge(random:),
+            )
           when "subtraction"
-          then Equations::Subtraction.new(
-                 **level_config[:subtraction].merge(random:)
-               )
+            Equations::Subtraction.new(
+              **level_config[:subtraction].merge(random:),
+            )
           when "multiplication"
-          then Equations::Multiplication.new(
-                 **level_config[:multiplication].merge(random:)
-               )
+            Equations::Multiplication.new(
+              **level_config[:multiplication].merge(random:),
+            )
           when "division"
-          then Equations::Division.new(
-                 **level_config[:division].merge(random:)
-               )
+            Equations::Division.new(
+              **level_config[:division].merge(random:),
+            )
           end
         end
       end

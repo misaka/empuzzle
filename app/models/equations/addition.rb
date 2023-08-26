@@ -32,19 +32,19 @@ module Equations
           random_in_range(range.min, range.max, random:)
         end
 
-        self.result = self.numbers.inject(:+)
+        self.result = numbers.inject(:+)
 
-        Rails.logger.debug "+++ [##{n}] #{self.numbers.join(" + ")} = #{result} ;" +
+        Rails.logger.debug "+++ [##{n}] #{numbers.join(' + ')} = #{result} ;" \
                            " #{result_range&.min} < #{result} < #{result_range&.max}"
 
-        return if valid_result?
+        return if valid_result? # rubocop:disable Lint/NonLocalExitFromIterator
       end
 
       raise "Could not generate valid result"
     end
 
     def valid_result?
-      result_range.blank? || result_range.include?(result)
+      @result_range.blank? || @result_range.include?(result)
     end
   end
 end

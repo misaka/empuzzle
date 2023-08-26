@@ -34,10 +34,10 @@ module Equations
 
         self.result = factors.inject(:*)
 
-        Rails.logger.debug "*** [##{n}] #{self.factors.join(" * ")} = #{result}" +
-                           (result_range.present? ? " ; #{result_range.min} < #{result} < #{result_range.max}" : "")
+        Rails.logger.debug "*** [##{n}] #{factors.join(' * ')} = #{result}" +
+          (result_range.present? ? " ; #{result_range.min} < #{result} < #{result_range.max}" : "")
 
-        return if valid_result?
+        return if valid_result? # rubocop:disable Lint/NonLocalExitFromIterator
       end
 
       raise "Could not generate valid result"

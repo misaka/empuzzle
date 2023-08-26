@@ -1,5 +1,8 @@
 AllCops:
   DefaultFormatter: pacman
+  Exclude:
+    - lib/tasks/auto_annotate_models.rake
+  TargetRubyVersion: 3.2.0
 
 inherit_gem:
   rubocop-govuk:

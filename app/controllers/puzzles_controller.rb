@@ -55,11 +55,11 @@ private
       .fetch(:puzzles_maths_grid, {})
       .permit(
         %i[
-            rows
-            columns
-            level
-            reward
-          ],
+          rows
+          columns
+          level
+          reward
+        ],
       )
   end
 

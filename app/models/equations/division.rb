@@ -29,15 +29,15 @@ module Equations
 
     def initialize_numbers
       10.times do |n|
-        self.dividend = random_in_range(dividends_range.min, dividends_range.max, random: random).to_f
-        self.divisor  = random_in_range(divisors_range.min, divisors_range.max, random: random).to_f
+        self.dividend = random_in_range(dividends_range.min, dividends_range.max, random:).to_f
+        self.divisor  = random_in_range(divisors_range.min, divisors_range.max, random:).to_f
 
         self.result = dividend / divisor
 
-        Rails.logger.debug "/// [##{n}] #{self.dividend} ÷ #{self.divisor} = #{result}" +
-                           (result_range.present? ? " ; #{result_range.min} < #{result} < #{result_range.max}" : "")
+        Rails.logger.debug "/// [##{n}] #{dividend} ÷ #{divisor} = #{result}" +
+          (result_range.present? ? " ; #{result_range.min} < #{result} < #{result_range.max}" : "")
 
-        return if valid_result?
+        return if valid_result? # rubocop:disable Lint/NonLocalExitFromIterator
       end
 
       raise "Could not generate valid result"

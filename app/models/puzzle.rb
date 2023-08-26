@@ -12,5 +12,4 @@
 #  updated_at :datetime         not null
 #
 class Puzzle < ApplicationRecord
-
 end
