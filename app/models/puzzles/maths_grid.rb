@@ -44,7 +44,7 @@ module Puzzles
     enum :level, %w[6-8], prefix: "level"
 
     def levels_configs
-      {
+      @levels_configs ||= {
         "6-8" => {
           addition: {
             count: 2..4,
@@ -59,9 +59,12 @@ module Puzzles
           },
           multiplication: {
             count: 2..2,
+            range: 1..9,
           },
           division: {
-            count: 2..2,
+            dividends_range: 1..20,
+            divisors_range: 2..5,
+            result_decimal_places: 0,
           }
         }
       }.with_indifferent_access
@@ -85,19 +88,19 @@ module Puzzles
       @cells ||= rows.times.map do |_row|
         columns.times.map do |_col|
           case random_cell_type
-          when :addition
+          when "addition"
           then Equations::Addition.new(
                  **level_config[:addition].merge(random:)
                )
-          when :subtraction
+          when "subtraction"
           then Equations::Subtraction.new(
                  **level_config[:subtraction].merge(random:)
                )
-          when :multiplication
+          when "multiplication"
           then Equations::Multiplication.new(
                  **level_config[:multiplication].merge(random:)
                )
-          when :division
+          when "division"
           then Equations::Division.new(
                  **level_config[:division].merge(random:)
                )
@@ -169,7 +172,7 @@ module Puzzles
     end
 
     def random_cell_type
-      cell_types = %i[addition subtraction] # levels_configs.keys
+      cell_types = level_config.keys
       cell_types.sample(random:)
     end
 

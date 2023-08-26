@@ -1,16 +1,8 @@
 # frozen_string_literal: true
 
 module PuzzlesHelper
-  # def puzzle_subtraction_results_max_length(puzzle)
-  #   puzzle.grep(Equations::Subtraction).map(&:result).max.to_s.length
-  # end
-
   def puzzle_addition_results_max_length(puzzle)
     puzzle.grep(Equations::Addition).map(&:result).max.to_s.length
-  end
-
-  def puzzle_multiplication_results_max_length(puzzle)
-    puzzle.grep(Equations::Multiplication).map(&:result).max.to_s.length
   end
 
   def puzzle_addition_numbers_options(puzzle)
@@ -31,11 +23,11 @@ module PuzzlesHelper
     end
   end
 
-  def puzzle_subtraction_number_counts(puzzle)
-    puzzle.class::SUBTRACTION_NUMBER_COUNT_OPTIONS.map.with_index do |option, idx|
-      ["#{option[:count_min]} - #{option[:count_max]}", idx]
-    end
-  end
+  # def puzzle_subtraction_number_counts(puzzle)
+  #   puzzle.class::SUBTRACTION_NUMBER_COUNT_OPTIONS.map.with_index do |option, idx|
+  #     ["#{option[:count_min]} - #{option[:count_max]}", idx]
+  #   end
+  # end
 
   def puzzle_subtraction_number_ranges(puzzle)
     puzzle.class::SUBTRACTION_NUMBER_RANGE_OPTIONS.map.with_index do |option, idx|

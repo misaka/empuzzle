@@ -26,12 +26,7 @@ module Equations
   private
 
     def initialize_numbers
-      max_tries = 10
-      try = 0
-      loop do
-        raise "too many tries" if try >= max_tries
-        try += 1
-
+      10.times do |n|
         number_count = random_in_range(count.min, count.max, random: random)
         self.numbers = number_count.times.map do
           random_in_range(range.min, range.max, random: random)
@@ -39,13 +34,17 @@ module Equations
 
         self.result = numbers.inject(:-)
 
-        Rails.logger.debug("--- [#{try}] #{self.numbers.join(" - ")} = #{result} ; #{result_range&.min} < #{result} < #{result_range&.max}")
+        Rails.logger.debug "+++ [##{n}] #{self.numbers.join(" - ")} = #{result} ;" +
+                           " #{result_range&.min} < #{result} < #{result_range&.max}"
 
-        next if result_range.present? && result < result_range.min
-        next if result_range.present? && result > result_range.max
-
-        break
+        return if valid_result?
       end
+
+      raise "Could not generate valid result"
+    end
+
+    def valid_result?
+      result_range.present? && result_range.include?(result)
     end
   end
 end

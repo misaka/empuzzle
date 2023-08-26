@@ -1,12 +1,12 @@
 # frozen_string_literal: true
 
 class DivisionCellComponent < ViewComponent::Base
-  attr_reader :equation, :puzzle
+  attr_reader :equation, :maths_grid
 
-  def initialize(equation:, puzzle:)
+  def initialize(equation:, maths_grid:)
     super
 
     @equation = equation
-    @puzzle = puzzle
+    @maths_grid = maths_grid
   end
 end

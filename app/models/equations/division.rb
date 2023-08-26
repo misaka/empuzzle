@@ -6,12 +6,10 @@ module Equations
     include ActiveModel::Attributes
     include RandomInRange
 
-    attribute :dividends_min
-    attribute :dividends_max
-    attribute :divisors_min
-    attribute :divisors_max
-    attribute :result_min
-    attribute :result_max
+    attribute :dividends_range
+    attribute :divisors_range
+    attribute :result_decimal_places
+    attribute :result_range
     attribute :dividend
     attribute :divisor
     attribute :result
@@ -30,19 +28,24 @@ module Equations
   private
 
     def initialize_numbers
-      loop do
-        self.dividend = random_in_range(dividends_min, dividends_max, random: random)
-        self.divisor  = random_in_range(divisors_min, divisors_max, random: random)
+      10.times do |n|
+        self.dividend = random_in_range(dividends_range.min, dividends_range.max, random: random).to_f
+        self.divisor  = random_in_range(divisors_range.min, divisors_range.max, random: random).to_f
 
         self.result = dividend / divisor
 
-        Rails.logger.debug("/// #{result_min} < #{result} < #{result_max}")
+        Rails.logger.debug "/// [##{n}] #{self.dividend} ÷ #{self.divisor} = #{result}" +
+                           (result_range.present? ? " ; #{result_range.min} < #{result} < #{result_range.max}" : "")
 
-        next if result_min.present? && result < result_min
-        next if result_max.present? && result > result_max
-
-        break
+        return if valid_result?
       end
+
+      raise "Could not generate valid result"
+    end
+
+    def valid_result?
+      result.round(result_decimal_places) == result &&
+        (result_range.blank? || result_range.include?(result))
     end
   end
 end

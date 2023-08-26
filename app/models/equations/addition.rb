@@ -26,21 +26,25 @@ module Equations
   private
 
     def initialize_numbers
-      loop do
-        number_count = random_in_range(count.min, count.max, random: random)
+      10.times do |n|
+        number_count = random_in_range(count.min, count.max, random:)
         self.numbers = number_count.times.map do
-          random_in_range(range.min, range.max, random: random)
+          random_in_range(range.min, range.max, random:)
         end
 
-        self.result = numbers.inject(:+)
+        self.result = self.numbers.inject(:+)
 
-        Rails.logger.debug("+++ #{result_range&.min} < #{result} < #{result_range&.max}")
+        Rails.logger.debug "+++ [##{n}] #{self.numbers.join(" + ")} = #{result} ;" +
+                           " #{result_range&.min} < #{result} < #{result_range&.max}"
 
-        next if result_range&.min.present? && result < result_range.min
-        next if result_range&.max.present? && result > result_range.max
-
-        break
+        return if valid_result?
       end
+
+      raise "Could not generate valid result"
+    end
+
+    def valid_result?
+      result_range.blank? || result_range.include?(result)
     end
   end
 end
