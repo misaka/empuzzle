@@ -1,25 +1,24 @@
-<% if @maths_grid.persisted? %>
-    <div class="kids-puzzles-content">
-        <table class="kids-puzzles-puzzle kids-puzzles-maths-grid" style="width: 100%">
-            <% @maths_grid.cells.each do |row| %>
-                <tr class="kids-puzzles-maths-grid-row">
-                    <% row.each do |cell| %>
-                        <% @cell = cell %>
-                        <td class="kids-puzzles-maths-grid-cell">
-                            <p>
-                                <%= render cell_component_class(type: cell.type).new(equation: cell) %>
-                            </p>
-                        </td>
-                    <% end %>
-                </tr>
-            <% end %>
-        </table>
-
-        <% if @reward.present? %>
-            <div class="kids-puzzles-reward">
-                Reward: <%= @reward %>
-            </div>
+<div class="kids-puzzles-content">
+  <table class="kids-puzzles-puzzle kids-puzzles-maths-grid" style="width: 100%">
+    <% @maths_grid.cells.each do |row| %>
+      <tr class="kids-puzzles-maths-grid-row">
+        <% row.each do |cell| %>
+          <% @cell = cell %>
+          <td class="kids-puzzles-maths-grid-cell">
+            <p>
+              <%= render cell_component_class(type: cell.type)
+                    .new(equation: cell, maths_grid:) %>
+            </p>
+          </td>
         <% end %>
+      </tr>
+    <% end %>
+  </table>
 
+  <% if @reward.present? %>
+    <div class="kids-puzzles-reward">
+      Reward: <%= @reward %>
     </div>
-<% end %>
+  <% end %>
+
+</div>

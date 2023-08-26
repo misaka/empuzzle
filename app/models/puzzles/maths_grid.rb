@@ -52,8 +52,9 @@ module Puzzles
             result_range: 2..10,
           },
           subtraction: {
-            count: 2..4,
+            count: 2..2,
             range: 1..9,
+            result_range: 1..9,
             # negative_results: false,
           },
           multiplication: {
@@ -84,10 +85,22 @@ module Puzzles
       @cells ||= rows.times.map do |_row|
         columns.times.map do |_col|
           case random_cell_type
-          when :addition then Equations::Addition.new(**level_config[:addition].merge(random:))
-          when :subtraction then Equations::Subtraction.new(*level_config[:subtraction])
-          when :multiplication then Equations::Multiplication.new(**level_config[:multiplication])
-          when :division then Equations::Division.new(**level_config[:division])
+          when :addition
+          then Equations::Addition.new(
+                 **level_config[:addition].merge(random:)
+               )
+          when :subtraction
+          then Equations::Subtraction.new(
+                 **level_config[:subtraction].merge(random:)
+               )
+          when :multiplication
+          then Equations::Multiplication.new(
+                 **level_config[:multiplication].merge(random:)
+               )
+          when :division
+          then Equations::Division.new(
+                 **level_config[:division].merge(random:)
+               )
           end
         end
       end
@@ -156,9 +169,8 @@ module Puzzles
     end
 
     def random_cell_type
-      cell_types = levels_configs.keys
+      cell_types = %i[addition subtraction] # levels_configs.keys
       cell_types.sample(random:)
-      :addition
     end
 
     def set_defaults

@@ -3,10 +3,10 @@
 class MathsGridComponent < ViewComponent::Base
   attr_reader :maths_grid
 
-  def initialize(maths_grid:)
+  def initialize(puzzle:)
     super
 
-    @maths_grid = maths_grid
+    @maths_grid = puzzle
   end
 
   def cell_component_class(type:)

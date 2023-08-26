@@ -1,11 +1,12 @@
 # frozen_string_literal: true
 
 class AdditionCellComponent < ViewComponent::Base
-  attr_reader :equation
+  attr_reader :equation, :maths_grid
 
-  def initialize(equation:)
+  def initialize(equation:, maths_grid:)
     super
 
     @equation = equation
+    @maths_grid = maths_grid
   end
 end
