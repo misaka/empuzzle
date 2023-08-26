@@ -6,12 +6,9 @@ module Equations
     include ActiveModel::Attributes
     include RandomInRange
 
-    attribute :count_min
-    attribute :count_max
-    attribute :range_start
-    attribute :range_end
-    attribute :result_min
-    attribute :result_max
+    attribute :count
+    attribute :range
+    attribute :result_range
     attribute :numbers
     attribute :result
     attribute :random
@@ -30,17 +27,17 @@ module Equations
 
     def initialize_numbers
       loop do
-        number_count = random_in_range(count_min, count_max, random: random)
+        number_count = random_in_range(count.min, count.max, random: random)
         self.numbers = number_count.times.map do
-          random_in_range(range_start, range_end, random: random)
+          random_in_range(range.min, range.max, random: random)
         end
 
         self.result = numbers.inject(:+)
 
-        Rails.logger.debug("+++ #{result_min} < #{result} < #{result_max}")
+        Rails.logger.debug("+++ #{result_range&.min} < #{result} < #{result_range&.max}")
 
-        next if result_min.present? && result < result_min
-        next if result_max.present? && result > result_max
+        next if result_range&.min.present? && result < result_range.min
+        next if result_range&.max.present? && result > result_range.max
 
         break
       end

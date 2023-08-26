@@ -117,18 +117,7 @@ private
         %i[
             rows
             columns
-            enable_addition
-            addition_numbers_count
-            addition_numbers_range
-            enable_subtraction
-            subtraction_numbers_count
-            subtraction_numbers_range
-            enable_multiplication
-            multiplication_numbers_count
-            multiplication_numbers_range
-            enable_division
-            dividends_range
-            divisors_range
+            level
             reward
           ],
       )
