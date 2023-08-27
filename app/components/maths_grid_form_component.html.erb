@@ -1,7 +1,7 @@
 <%= form_for @puzzle, url: puzzles_path, method: "POST" do |form| %>
   <%= hidden_field_tag :puzzle_type, "maths_grid" %>
 
-  <h2 class="ml-0">Puzzle Setup</h2>
+  <h2 class="ml-0"><%= t "puzzles.maths_grid.setup_heading" %></h2>
 
   <div class="flex flex-row">
     <div class="flex flex-col">
@@ -23,5 +23,5 @@
   <%= label_tag "reward" %>
   <%= text_field_tag :reward, @reward, size: 40 %>
 
-  <%= submit_tag "Generate new puzzle" %>
+  <%= submit_tag t "puzzles.generate_new_puzzle" %>
 <% end %>
