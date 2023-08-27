@@ -1,7 +1,7 @@
-<%= form_for @puzzle, url: puzzles_path, method: "POST" do |form| %>
-  <%= hidden_field_tag :puzzle_type, "maths_grid" %>
+<h1 class="ml-0"><%= t "puzzles.maths_grid.setup_heading" %></h2>
 
-  <h2 class="ml-0"><%= t "puzzles.maths_grid.setup_heading" %></h2>
+  <%= form_for @puzzle, url: puzzles_path, method: "POST" do |form| %>
+  <%= hidden_field_tag :puzzle_type, "maths_grid" %>
 
   <div class="flex flex-row">
     <div class="flex flex-col">
