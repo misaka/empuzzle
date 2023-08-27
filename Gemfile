@@ -34,6 +34,9 @@ group :development do
   gem "rubocop-govuk", require: false
   gem "rubocop-rails"
   gem "rubocop-rspec"
+  gem "syntax_tree", require: false
+  gem "syntax_tree-haml", require: false
+  gem "syntax_tree-rbs", require: false
   gem "web-console"
 end
 
