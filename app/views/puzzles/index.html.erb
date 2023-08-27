@@ -1,3 +1,15 @@
-<ul>
-    <li><%= link_to('New Maths Grid', new_puzzle_path(puzzle_type: :maths_grid)) %></li>
-</ul>
+<%= button_to t("puzzles.maths_grid.new_puzzle"),
+              new_puzzle_path(puzzle_type: :maths_grid),
+              class: "py-2 px-4 bg-gray-200 cursor-pointer",
+              method: :get %>
+
+<% @puzzles.each do |puzzle| %>
+  <%= link_to puzzle, class: "flex hover:bg-gray-200" do %>
+    <div class="flex-initial w-48">
+      <%= puzzle.created_at.to_fs(:default) %>
+    </div>
+    <div class="flex-1">
+      <%= puzzle.to_s %>
+    </div>
+  <% end %>
+<% end %>

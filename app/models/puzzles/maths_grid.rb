@@ -23,11 +23,11 @@ module Puzzles
                    rows: [:integer, { default: 4 }],
                    columns: [:integer, { default: 6 }]
 
-    enum :level, %w[6-8], prefix: "level"
+    enum :level, ["ages 6-8"], prefix: "level"
 
     def levels_configs
       @levels_configs ||= {
-        "6-8" => {
+        "ages 6-8" => {
           addition: {
             count: 2..2,
             range: 1..9,
@@ -67,6 +67,18 @@ module Puzzles
           end
         end
       end
+    end
+
+    def type_name
+      t("puzzles.maths_grid.type_name")
+    end
+
+    def to_s
+      I18n.t(
+        "puzzles.maths_grid.to_s",
+        level: I18n.t("puzzles.maths_grid.levels.#{level}"),
+        size: "#{columns}x#{rows}"
+       )
     end
 
   private

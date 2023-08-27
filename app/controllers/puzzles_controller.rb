@@ -14,7 +14,9 @@ class PuzzlesController < ApplicationController
     end
   end
 
-  def index; end
+  def index
+    @puzzles = Puzzle.all.order(created_at: :desc)
+  end
 
   def new
     @form_component = puzzle_classes[@puzzle_type][:form_component]
