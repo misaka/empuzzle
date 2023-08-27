@@ -57,25 +57,13 @@ module Puzzles
     end
 
     def cells
-      @cells ||= rows.times.map do |_row|
-        columns.times.map do |_col|
-          case random_cell_type
-          when "addition"
-            Equations::Addition.new(
-              **level_config[:addition].merge(random:),
-            )
-          when "subtraction"
-            Equations::Subtraction.new(
-              **level_config[:subtraction].merge(random:),
-            )
-          when "multiplication"
-            Equations::Multiplication.new(
-              **level_config[:multiplication].merge(random:),
-            )
-          when "division"
-            Equations::Division.new(
-              **level_config[:division].merge(random:),
-            )
+      @cells ||= self.data["cells"].map do |row|
+        row.map do |cell|
+          case cell["type"]
+          when "addition" then Equations::Addition.from_h(cell)
+          when "subtraction" then Equations::Subtraction.from_h(cell)
+          when "multiplication" then Equations::Multiplication.from_h(cell)
+          when "division" then Equations::Division.from_h(cell)
           end
         end
       end
@@ -98,10 +86,35 @@ module Puzzles
 
     def generate_data
       self.data ||= {
-        cells: cells.map do |row|
+        cells: generate_cells.map do |row|
           row.map &:to_h
         end,
       }
+    end
+
+    def generate_cells
+      rows.times.map do |_row|
+        columns.times.map do |_col|
+          case random_cell_type
+          when "addition"
+            Equations::Addition.new(
+              **level_config[:addition].merge(random:),
+            )
+          when "subtraction"
+            Equations::Subtraction.new(
+              **level_config[:subtraction].merge(random:),
+            )
+          when "multiplication"
+            Equations::Multiplication.new(
+              **level_config[:multiplication].merge(random:),
+            )
+          when "division"
+            Equations::Division.new(
+              **level_config[:division].merge(random:),
+            )
+          end
+        end
+      end
     end
   end
 end

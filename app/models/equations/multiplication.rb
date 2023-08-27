@@ -15,7 +15,7 @@ module Equations
     def initialize(attributes = {})
       super
 
-      initialize_factors
+      initialize_factors if result.blank?
     end
 
     def type
@@ -30,9 +30,8 @@ module Equations
       }
     end
 
-    def from_h(hash)
-      self.factors = hash["factors"]
-      self.result = hash["result"]
+    def self.from_h(hash)
+      new(**hash.slice("factors", "result"))
     end
 
   private
