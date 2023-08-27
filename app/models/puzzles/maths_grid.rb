@@ -6,6 +6,7 @@
 #
 #  id         :bigint           not null, primary key
 #  config     :jsonb
+#  data       :jsonb
 #  level      :integer
 #  reward     :text
 #  seed       :bigint

@@ -17,6 +17,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_08_24_215518) do
   create_table "puzzles", force: :cascade do |t|
     t.string "type", null: false
     t.jsonb "config"
+    t.jsonb "data"
     t.integer "level"
     t.text "reward"
     t.bigint "seed"
