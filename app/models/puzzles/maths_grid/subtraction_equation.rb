@@ -1,7 +1,8 @@
 # frozen_string_literal: true
 
-module Equations
-  class Addition
+# rubocop:disable Style/RedundantSelf
+module Puzzles
+  class MathsGrid::SubtractionEquation
     include ActiveModel::API
     include ActiveModel::Attributes
 
@@ -19,7 +20,7 @@ module Equations
     end
 
     def type
-      :addition
+      :subtraction
     end
 
     def to_h
@@ -37,9 +38,9 @@ module Equations
         number_count = random.rand(count)
         self.numbers = number_count.times.map { random.rand(range) }
 
-        self.result = numbers.inject(:+)
+        self.result = numbers.inject(:-)
 
-        Rails.logger.debug "+++ [##{n}] #{numbers.join(" + ")} = #{result} ;" \
+        Rails.logger.debug "+++ [##{n}] #{self.numbers.join(" - ")} = #{result} ;" \
                              " #{result_range&.min} < #{result} < #{result_range&.max}"
 
         return if valid_result? # rubocop:disable Lint/NonLocalExitFromIterator
@@ -49,7 +50,8 @@ module Equations
     end
 
     def valid_result?
-      @result_range.blank? || @result_range.include?(result)
+      result_range.present? && result_range.include?(result)
     end
   end
 end
+# rubocop:enable Style/RedundantSelf

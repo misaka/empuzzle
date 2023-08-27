@@ -11,6 +11,12 @@ class SubtractionCellComponent < ViewComponent::Base
   end
 
   def results_max_length
-    maths_grid.cells.grep(Equations::Subtraction).map(&:result).max.to_s.length
+    maths_grid
+      .cells
+      .grep(Puzzles::MathsGrid::SubtractionEquation)
+      .map(&:result)
+      .max
+      .to_s
+      .length
   end
 end

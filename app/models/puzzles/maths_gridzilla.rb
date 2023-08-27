@@ -53,13 +53,13 @@ module Puzzles
           columns.times.map do |_col|
             case random_cell_type
             when :addition
-              Equations::Addition.new(**addition_equation_params)
+              AdditionEquation.new(**addition_equation_params)
             when :subtraction
-              Equations::Subtraction.new(**subtraction_equation_params)
+              SubtractionEquation.new(**subtraction_equation_params)
             when :multiplication
-              Equations::Multiplication.new(**multiplication_equation_params)
+              MultiplicationEquation.new(**multiplication_equation_params)
             when :division
-              Equations::Division.new(**division_equation_params)
+              DivisionEquation.new(**division_equation_params)
             end
           end
         end

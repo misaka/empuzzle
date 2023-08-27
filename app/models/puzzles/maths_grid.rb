@@ -62,13 +62,13 @@ module Puzzles
           row.map do |cell|
             case cell["type"]
             when "addition"
-              Equations::Addition.from_h(cell)
+              AdditionEquation.from_h(cell)
             when "subtraction"
-              Equations::Subtraction.from_h(cell)
+              SubtractionEquation.from_h(cell)
             when "multiplication"
-              Equations::Multiplication.from_h(cell)
+              MultiplicationEquation.from_h(cell)
             when "division"
-              Equations::Division.from_h(cell)
+              DivisionEquation.from_h(cell)
             end
           end
         end
@@ -110,17 +110,15 @@ module Puzzles
         columns.times.map do |_col|
           case random_cell_type
           when "addition"
-            Equations::Addition.new(**level_config[:addition].merge(random:))
+            AdditionEquation.new(**level_config[:addition].merge(random:))
           when "subtraction"
-            Equations::Subtraction.new(
-              **level_config[:subtraction].merge(random:)
-            )
+            SubtractionEquation.new(**level_config[:subtraction].merge(random:))
           when "multiplication"
-            Equations::Multiplication.new(
+            MultiplicationEquation.new(
               **level_config[:multiplication].merge(random:)
             )
           when "division"
-            Equations::Division.new(**level_config[:division].merge(random:))
+            DivisionEquation.new(**level_config[:division].merge(random:))
           end
         end
       end

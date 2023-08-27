@@ -1,45 +1,47 @@
 # frozen_string_literal: true
 
-module Equations
-  class Multiplication
+module Puzzles
+  class MathsGrid::DivisionEquation
     include ActiveModel::API
     include ActiveModel::Attributes
 
-    attribute :count
-    attribute :range
+    attribute :dividends_range
+    attribute :divisors_range
+    attribute :result_decimal_places
     attribute :result_range
-    attribute :random
-    attribute :factors
+    attribute :dividend
+    attribute :divisor
     attribute :result
+    attribute :random
 
     def initialize(attributes = {})
       super
 
-      initialize_factors if result.blank?
+      initialize_numbers if result.blank?
     end
 
     def type
-      :multiplication
+      :division
     end
 
     def to_h
-      { factors:, result:, type: }
+      { dividend:, divisor:, result:, type: }
     end
 
     def self.from_h(hash)
-      new(**hash.slice("factors", "result"))
+      new(**hash.slice("dividend", "divisor", "result"))
     end
 
     private
 
-    def initialize_factors
+    def initialize_numbers
       10.times do |n|
-        factor_count = random.rand(count)
-        self.factors = factor_count.times.map { random.rand(range) }
+        self.dividend = random.rand(dividends_range).to_f
+        self.divisor = random.rand(divisors_range).to_f
 
-        self.result = factors.inject(:*)
+        self.result = dividend / divisor
 
-        Rails.logger.debug "*** [##{n}] #{factors.join(" * ")} = #{result}" +
+        Rails.logger.debug "/// [##{n}] #{dividend} ÷ #{divisor} = #{result}" +
                              (
                                if result_range.present?
                                  " ; #{result_range.min} < #{result} < #{result_range.max}"
@@ -55,7 +57,8 @@ module Equations
     end
 
     def valid_result?
-      result_range.blank? || result_range.include?(result)
+      result.round(result_decimal_places) == result &&
+        (result_range.blank? || result_range.include?(result))
     end
   end
 end
