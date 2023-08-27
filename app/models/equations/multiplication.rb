@@ -22,6 +22,19 @@ module Equations
       :multiplication
     end
 
+    def to_h
+      {
+        factors:,
+        result:,
+        type:,
+      }
+    end
+
+    def from_h(hash)
+      self.factors = hash["factors"]
+      self.result = hash["result"]
+    end
+
   private
 
     def initialize_factors

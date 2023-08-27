@@ -16,6 +16,7 @@
 #
 module Puzzles
   class MathsGrid < ::Puzzle
+    before_create :generate_data
     after_initialize :set_defaults
 
     jsonb_accessor :config,
@@ -93,6 +94,14 @@ module Puzzles
 
     def set_defaults
       self.seed ||= rand(2**32)
+    end
+
+    def generate_data
+      self.data ||= {
+        cells: cells.map do |row|
+          row.map &:to_h
+        end,
+      }
     end
   end
 end

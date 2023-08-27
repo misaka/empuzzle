@@ -23,6 +23,19 @@ module Equations
       :subtraction
     end
 
+    def to_h
+      {
+        numbers:,
+        result:,
+        type:,
+      }
+    end
+
+    def from_h(hash)
+      self.numbers = hash["numbers"]
+      self.result = hash["result"]
+    end
+
   private
 
     def initialize_numbers

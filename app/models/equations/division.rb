@@ -24,6 +24,21 @@ module Equations
       :division
     end
 
+    def to_h
+      {
+        dividend:,
+        divisor:,
+        result:,
+        type:,
+      }
+    end
+
+    def from_h(hash)
+      self.dividend = hash["dividend"]
+      self.divisor = hash["divisor"]
+      self.result = hash["result"]
+    end
+
   private
 
     def initialize_numbers
