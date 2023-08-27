@@ -11,10 +11,14 @@ class MathsGridComponent < ViewComponent::Base
 
   def cell_component_class(type:)
     case type
-    when :addition       then AdditionCellComponent
-    when :division       then DivisionCellComponent
-    when :multiplication then MultiplicationCellComponent
-    when :subtraction    then SubtractionCellComponent
+    when :addition
+      AdditionCellComponent
+    when :division
+      DivisionCellComponent
+    when :multiplication
+      MultiplicationCellComponent
+    when :subtraction
+      SubtractionCellComponent
     end
   end
 end

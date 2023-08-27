@@ -11,6 +11,12 @@ class MultiplicationCellComponent < ViewComponent::Base
   end
 
   def results_max_length
-    @maths_grid.cells.grep(Equations::Multiplication).map(&:result).max.to_s.length
+    @maths_grid
+      .cells
+      .grep(Equations::Multiplication)
+      .map(&:result)
+      .max
+      .to_s
+      .length
   end
 end

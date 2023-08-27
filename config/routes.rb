@@ -5,7 +5,9 @@ Rails.application.routes.draw do
 
   resources :puzzles,
             only: %i[create index new show],
-            path_names: { new: ":puzzle_type/new" }
+            path_names: {
+              new: ":puzzle_type/new"
+            }
   resolve("Puzzles::MathsGrid") do |puzzle|
     route_for(:puzzle, action: :show, id: puzzle.id)
   end

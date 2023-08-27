@@ -23,18 +23,14 @@ module Equations
     end
 
     def to_h
-      {
-        factors:,
-        result:,
-        type:,
-      }
+      { factors:, result:, type: }
     end
 
     def self.from_h(hash)
       new(**hash.slice("factors", "result"))
     end
 
-  private
+    private
 
     def initialize_factors
       10.times do |n|
@@ -43,8 +39,14 @@ module Equations
 
         self.result = factors.inject(:*)
 
-        Rails.logger.debug "*** [##{n}] #{factors.join(' * ')} = #{result}" +
-          (result_range.present? ? " ; #{result_range.min} < #{result} < #{result_range.max}" : "")
+        Rails.logger.debug "*** [##{n}] #{factors.join(" * ")} = #{result}" +
+                             (
+                               if result_range.present?
+                                 " ; #{result_range.min} < #{result} < #{result_range.max}"
+                               else
+                                 ""
+                               end
+                             )
 
         return if valid_result? # rubocop:disable Lint/NonLocalExitFromIterator
       end

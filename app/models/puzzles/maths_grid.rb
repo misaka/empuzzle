@@ -31,24 +31,24 @@ module Puzzles
           addition: {
             count: 2..2,
             range: 1..9,
-            result_range: 2..10,
+            result_range: 2..10
           },
           subtraction: {
             count: 2..2,
             range: 1..9,
-            result_range: 1..9,
+            result_range: 1..9
             # negative_results: false,
           },
           multiplication: {
             count: 2..2,
-            range: 1..9,
+            range: 1..9
           },
           division: {
             dividends_range: 1..20,
             divisors_range: 2..5,
-            result_decimal_places: 0,
-          },
-        },
+            result_decimal_places: 0
+          }
+        }
       }.with_indifferent_access
     end
 
@@ -57,16 +57,21 @@ module Puzzles
     end
 
     def cells
-      @cells ||= self.data["cells"].map do |row|
-        row.map do |cell|
-          case cell["type"]
-          when "addition" then Equations::Addition.from_h(cell)
-          when "subtraction" then Equations::Subtraction.from_h(cell)
-          when "multiplication" then Equations::Multiplication.from_h(cell)
-          when "division" then Equations::Division.from_h(cell)
+      @cells ||=
+        data["cells"].map do |row|
+          row.map do |cell|
+            case cell["type"]
+            when "addition"
+              Equations::Addition.from_h(cell)
+            when "subtraction"
+              Equations::Subtraction.from_h(cell)
+            when "multiplication"
+              Equations::Multiplication.from_h(cell)
+            when "division"
+              Equations::Division.from_h(cell)
+            end
           end
         end
-      end
     end
 
     def type_name
@@ -78,10 +83,10 @@ module Puzzles
         "puzzles.maths_grid.to_s",
         level: I18n.t("puzzles.maths_grid.levels.#{level}"),
         size: "#{columns}x#{rows}"
-       )
+      )
     end
 
-  private
+    private
 
     def random
       @random ||= Random.new(seed)
@@ -97,11 +102,7 @@ module Puzzles
     end
 
     def generate_data
-      self.data ||= {
-        cells: generate_cells.map do |row|
-          row.map &:to_h
-        end,
-      }
+      self.data ||= { cells: generate_cells.map { |row| row.map(&:to_h) } }
     end
 
     def generate_cells
@@ -109,21 +110,17 @@ module Puzzles
         columns.times.map do |_col|
           case random_cell_type
           when "addition"
-            Equations::Addition.new(
-              **level_config[:addition].merge(random:),
-            )
+            Equations::Addition.new(**level_config[:addition].merge(random:))
           when "subtraction"
             Equations::Subtraction.new(
-              **level_config[:subtraction].merge(random:),
+              **level_config[:subtraction].merge(random:)
             )
           when "multiplication"
             Equations::Multiplication.new(
-              **level_config[:multiplication].merge(random:),
+              **level_config[:multiplication].merge(random:)
             )
           when "division"
-            Equations::Division.new(
-              **level_config[:division].merge(random:),
-            )
+            Equations::Division.new(**level_config[:division].merge(random:))
           end
         end
       end

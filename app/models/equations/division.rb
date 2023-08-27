@@ -25,29 +25,30 @@ module Equations
     end
 
     def to_h
-      {
-        dividend:,
-        divisor:,
-        result:,
-        type:,
-      }
+      { dividend:, divisor:, result:, type: }
     end
 
     def self.from_h(hash)
       new(**hash.slice("dividend", "divisor", "result"))
     end
 
-  private
+    private
 
     def initialize_numbers
       10.times do |n|
         self.dividend = random.rand(dividends_range).to_f
-        self.divisor  = random.rand(divisors_range).to_f
+        self.divisor = random.rand(divisors_range).to_f
 
         self.result = dividend / divisor
 
         Rails.logger.debug "/// [##{n}] #{dividend} ÷ #{divisor} = #{result}" +
-          (result_range.present? ? " ; #{result_range.min} < #{result} < #{result_range.max}" : "")
+                             (
+                               if result_range.present?
+                                 " ; #{result_range.min} < #{result} < #{result_range.max}"
+                               else
+                                 ""
+                               end
+                             )
 
         return if valid_result? # rubocop:disable Lint/NonLocalExitFromIterator
       end

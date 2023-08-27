@@ -23,18 +23,14 @@ module Equations
     end
 
     def to_h
-      {
-        numbers:,
-        result:,
-        type:,
-      }
+      { numbers:, result:, type: }
     end
 
     def self.from_h(hash)
       new(**hash.slice("numbers", "result"))
     end
 
-  private
+    private
 
     def initialize_numbers
       10.times do |n|
@@ -43,8 +39,8 @@ module Equations
 
         self.result = numbers.inject(:+)
 
-        Rails.logger.debug "+++ [##{n}] #{numbers.join(' + ')} = #{result} ;" \
-                           " #{result_range&.min} < #{result} < #{result_range&.max}"
+        Rails.logger.debug "+++ [##{n}] #{numbers.join(" + ")} = #{result} ;" \
+                             " #{result_range&.min} < #{result} < #{result_range&.max}"
 
         return if valid_result? # rubocop:disable Lint/NonLocalExitFromIterator
       end

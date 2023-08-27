@@ -30,7 +30,7 @@ class PuzzlesController < ApplicationController
     @puzzle_component = puzzle_classes[@puzzle_type][:puzzle_component]
   end
 
-private
+  private
 
   def puzzle_classes
     {
@@ -42,8 +42,8 @@ private
       maths_grid: {
         puzzle_class: Puzzles::MathsGrid,
         form_component: MathsGridFormComponent,
-        puzzle_component: MathsGridComponent,
-      },
+        puzzle_component: MathsGridComponent
+      }
       # number_line_maths: {
       #   puzzle_class: Puzzles::NumberLineMaths,
       #   form_component: NumberLineMathsFormComponent,
@@ -53,16 +53,7 @@ private
   end
 
   def puzzle_params
-    params
-      .fetch(:puzzles_maths_grid, {})
-      .permit(
-        %i[
-          rows
-          columns
-          level
-          reward
-        ],
-      )
+    params.fetch(:puzzles_maths_grid, {}).permit(%i[rows columns level reward])
   end
 
   def set_puzzle_type
