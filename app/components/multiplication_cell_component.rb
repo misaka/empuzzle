@@ -13,7 +13,7 @@ class MultiplicationCellComponent < ViewComponent::Base
   def results_max_length
     @maths_grid
       .cells
-      .grep(Puzzles::MathsGrid::MultiplicationEquation)
+      .grep(Puzzles::MathsGrid::Equation)
       .map(&:result)
       .max
       .to_s

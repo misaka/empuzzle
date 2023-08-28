@@ -29,23 +29,19 @@ module Puzzles
       @levels_configs ||= {
         "ages 6-8" => {
           addition: {
-            count: 2..2,
             range: 1..9,
-            result_range: 2..10
+            result_range: 2..10,
           },
           subtraction: {
-            count: 2..2,
             range: 1..9,
-            result_range: 1..9
+            result_range: 1..9,
             # negative_results: false,
           },
           multiplication: {
-            count: 2..2,
             range: 1..9
           },
           division: {
-            dividends_range: 1..20,
-            divisors_range: 2..5,
+            range: [1..20, 2..5],
             result_decimal_places: 0
           }
         }
@@ -60,16 +56,7 @@ module Puzzles
       @cells ||=
         data["cells"].map do |row|
           row.map do |cell|
-            case cell["type"]
-            when "addition"
-              AdditionEquation.from_h(cell)
-            when "subtraction"
-              SubtractionEquation.from_h(cell)
-            when "multiplication"
-              MultiplicationEquation.from_h(cell)
-            when "division"
-              DivisionEquation.from_h(cell)
-            end
+            Equation.from_h(cell)
           end
         end
     end
@@ -108,18 +95,10 @@ module Puzzles
     def generate_cells
       rows.times.map do |_row|
         columns.times.map do |_col|
-          case random_cell_type
-          when "addition"
-            AdditionEquation.new(**level_config[:addition].merge(random:))
-          when "subtraction"
-            SubtractionEquation.new(**level_config[:subtraction].merge(random:))
-          when "multiplication"
-            MultiplicationEquation.new(
-              **level_config[:multiplication].merge(random:)
-            )
-          when "division"
-            DivisionEquation.new(**level_config[:division].merge(random:))
-          end
+          cell_type = random_cell_type
+          Equation.new(
+            **level_config[cell_type].merge(random:, type: cell_type)
+          )
         end
       end
     end
