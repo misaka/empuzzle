@@ -30,11 +30,11 @@ module Puzzles
         "ages 6-8" => {
           addition: {
             range: 1..9,
-            result_range: 2..10,
+            result_range: 2..10
           },
           subtraction: {
             range: 1..9,
-            result_range: 1..9,
+            result_range: 1..9
             # negative_results: false,
           },
           multiplication: {
@@ -54,11 +54,7 @@ module Puzzles
 
     def cells
       @cells ||=
-        data["cells"].map do |row|
-          row.map do |cell|
-            Equation.from_h(cell)
-          end
-        end
+        data["cells"].map { |row| row.map { |cell| Equation.from_h(cell) } }
     end
 
     def type_name

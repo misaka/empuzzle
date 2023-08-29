@@ -18,15 +18,12 @@ module Puzzles
       super
 
       if result.blank?
-        if range.is_a? Array
-          if range.length != 2
-            raise "when range is an array it's length must be 2"
-          end
+        if range.is_a?(Array) && (range.length != 2)
+          raise "when range is an array it's length must be 2"
         end
 
         initialize_numbers
       end
-
     end
 
     def to_h
@@ -47,7 +44,9 @@ module Puzzles
         "subtraction" => :-,
         "multiplication" => :*,
         "division" => :/
-      }[type.to_s]
+      }[
+        type.to_s
+      ]
     end
 
     def initialize_numbers
@@ -56,7 +55,7 @@ module Puzzles
       10.times do |n|
         self.numbers = ranges.map { |r| random.rand(r) }
 
-        self.result = numbers.inject(operator)
+        self.result = generate_result
 
         Rails.logger.debug "#{operator.to_s * 3} [##{n}] #{numbers.join(" #{operator} ")} = #{result} ;" \
                              " #{result_range&.min} < #{result} < #{result_range&.max}"
@@ -67,11 +66,17 @@ module Puzzles
       raise "Could not generate valid result"
     end
 
+    def generate_result
+      if type.to_s == "division"
+        numbers.map(&:to_f).inject(operator)
+      else
+        numbers.inject(operator)
+      end
+    end
+
     def valid_result?
       result.round(result_decimal_places) == result &&
         (result_range.blank? || result_range.include?(result))
-
-      @result_range.blank? || @result_range.include?(result)
     end
   end
 end

@@ -15,6 +15,8 @@ class MathsGridComponent < ViewComponent::Base
       division: DivisionCellComponent,
       multiplication: MultiplicationCellComponent,
       subtraction: SubtractionCellComponent
-    }[type.to_sym]
+    }[
+      type.to_sym
+    ]
   end
 end
