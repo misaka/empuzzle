@@ -26,7 +26,6 @@ gem "view_component"
 group :development, :test do
   gem "debug", platforms: %i[mri mingw x64_mingw]
   gem "pry-rails"
-  gem "rspec-rails"
 end
 
 group :development do
@@ -43,5 +42,7 @@ end
 group :test do
   gem "capybara"
   gem "capybara-screenshot"
+  gem "factory_bot_rails"
+  gem "rspec-rails"
   gem "selenium-webdriver"
 end
