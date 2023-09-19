@@ -58,7 +58,7 @@ module Puzzles
     end
 
     def type_name
-      t("puzzles.maths_grid.type_name")
+      I18n.t("puzzles.maths_grid.type_name")
     end
 
     def to_s
