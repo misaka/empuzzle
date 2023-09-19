@@ -1,11 +1,11 @@
 <% content_for :content do %>
   <h1><%= content_for :title %></h1>
 
-  <div class="flex">
-    <div class="flex-none w-48">
+  <div class="flex divide-x-4 p-4">
+    <div class="flex-none p-4">
       <%= content_for :sidebar %>
     </div>
-    <div class="flex-auto">
+    <div class="flex-auto p-4">
       <%= content_for :main %>
     </div
   </div>
