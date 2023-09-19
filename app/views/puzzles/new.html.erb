@@ -2,6 +2,8 @@
   <%= render BackLinkComponent.new(text: "puzzles list", route: puzzles_path) %>
 <% end %>
 
-<div class="grid ml-0">
+<% content_for :sidebar do %>
   <%= render @form_component.new(puzzle: @puzzle) %>
-</div>
+<% end %>
+<% content_for :main do %>
+<% end %>
