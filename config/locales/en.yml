@@ -31,11 +31,11 @@
 
 en:
   puzzles:
-    generate_new_puzzle: "Generate new puzzle"
+    generate_new_puzzle: "Generate puzzle"
     maths_grid:
       levels:
         ages 6-8: "ages 6-8"
       new_puzzle: "New Maths Grid"
-      setup_heading: "New Maths Grid Puzzle Setup"
+      setup_heading: "Puzzle Setup"
       to_s: "Maths Grid Puzzle for %{level} (%{size})"
       type_name: "Maths Grid Puzzle"

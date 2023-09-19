@@ -1,12 +1,12 @@
 <% content_for :content do %>
   <div class="flex">
-    <div class="flex-none w-48 debug">
+    <div class="flex-none w-48">
       <%= content_for :sidebar %>
     </div>
     <div class="flex-auto">
       <%= content_for :main %>
     </div
-  </div>>
+  </div>
 <% end %>
 
 <%= render template: 'layouts/application' %>

@@ -1,27 +1,36 @@
-<h1 class="ml-0"><%= t "puzzles.maths_grid.setup_heading" %></h2>
+<h2 class="ml-0"><%= t "puzzles.maths_grid.setup_heading" %></h2>
 
-  <%= form_for @puzzle, url: puzzles_path, method: "POST" do |form| %>
+<%= form_for @puzzle, url: puzzles_path, method: "POST" do |form| %>
   <%= hidden_field_tag :puzzle_type, "maths_grid" %>
 
-  <div class="flex flex-row">
-    <div class="flex flex-col">
-      <%= form.label :rows %>
-      <%= form.number_field :rows %>
-    </div>
-    <div class="flex flex-col">
-      <%= form.label :columns %>
-      <%= form.number_field :columns %>
+  <div class="flex-col w-fit">
+    <div class="flex flex-nowrap mt-2 justify-left">
+      <%= form.label :rows, class: "flex-none w-20 self-center" %>
+      <%= form.number_field :rows, class: "flex-auto w-16" %>
     </div>
 
-    <div class="flex flex-col">
-      <%= form.label :level %>
-      <%= form.select :level, Puzzles::MathsGrid.levels.keys %>
+    <div class="flex flex-nowrap mt-2 justify-left">
+      <%= form.label :columns, class: "flex-none w-20 self-center" %>
+      <%= form.number_field :columns, class: "flex-auto w-16" %>
+    </div>
+
+    <div class="flex flex-nowrap mt-2 justify-between">
+      <%= form.label :level, class: "flex-none w-10 self-center" %>
+    </div>
+    <div class="flex flex-nowrap">
+        <%= form.select :level, Puzzles::MathsGrid.levels.keys, class: "flex-auto w-16" %>
+    </div>
+
+    <div class="flex flex-nowrap mt-2">
+      <%= label_tag "reward" %>
+    </div>
+
+    <div class="flex flex-nowrap">
+      <%= text_field_tag :reward, @reward, class: "flex-auto w-40" %>
+    </div>
+
+    <div class="flex mt-2 justify-center">
+      <%= submit_tag t("puzzles.generate_new_puzzle") %>
     </div>
   </div>
-
-
-  <%= label_tag "reward" %>
-  <%= text_field_tag :reward, @reward, size: 40 %>
-
-  <%= submit_tag t "puzzles.generate_new_puzzle" %>
 <% end %>

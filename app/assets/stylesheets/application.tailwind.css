@@ -16,6 +16,15 @@
   button[type="submit"] {
     @apply py-2 px-4 bg-gray-200 cursor-pointer;
   }
+  .debug {
+    @apply border-2 border-red-500;
+  }
+  .debug-green {
+    @apply border-2 border-green-500;
+  }
+  .debug-blue {
+    @apply border-2 border-blue-500;
+  }
 }
 
 /*
