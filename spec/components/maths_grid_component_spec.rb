@@ -23,7 +23,7 @@ RSpec.describe MathsGridComponent, type: :component do
       end
 
       it "should have the correct number of cells" do
-        expect(cells.length).to eq 24
+        expect(cells.length).to eq 12
       end
 
       it "should have correctly rendered cells" do

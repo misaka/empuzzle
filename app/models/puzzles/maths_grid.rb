@@ -20,29 +20,33 @@ module Puzzles
     after_initialize :set_defaults
 
     jsonb_accessor :config,
-                   rows: [:integer, { default: 4 }],
-                   columns: [:integer, { default: 6 }]
+                   rows: [:integer],
+                   columns: [:integer]
 
     enum :level, ["ages 6-8"], prefix: "level"
 
     def levels_configs
       @levels_configs ||= {
         "ages 6-8" => {
-          addition: {
-            range: 1..9,
-            result_range: 2..10
-          },
-          subtraction: {
-            range: 1..9,
-            result_range: 1..9
-            # negative_results: false,
-          },
-          multiplication: {
-            range: 1..9
-          },
-          division: {
-            range: [1..20, 2..5],
-            result_decimal_places: 0
+          rows: 6,
+          columns: 2,
+          equations: {
+            addition: {
+              range: 1..9,
+              result_range: 2..10
+            },
+            subtraction: {
+              range: 1..9,
+              result_range: 1..9
+              # negative_results: false,
+            },
+            multiplication: {
+              range: 1..9
+            },
+            division: {
+              range: [1..20, 2..5],
+              result_decimal_places: 0
+            }
           }
         }
       }.with_indifferent_access
@@ -69,6 +73,14 @@ module Puzzles
       )
     end
 
+    def columns
+      level_config[:columns]
+    end
+
+    def rows
+      level_config[:rows]
+    end
+
     private
 
     def random
@@ -76,11 +88,12 @@ module Puzzles
     end
 
     def random_cell_type
-      cell_types = level_config.keys
+      cell_types = level_config[:equations].keys
       cell_types.sample(random:)
     end
 
     def set_defaults
+      self.level ||= "ages 6-8"
       self.seed ||= rand(2**32)
     end
 
@@ -93,7 +106,7 @@ module Puzzles
         columns.times.map do |_col|
           cell_type = random_cell_type
           Equation.new(
-            **level_config[cell_type].merge(random:, type: cell_type)
+            **level_config[:equations][cell_type].merge(random:, type: cell_type)
           )
         end
       end

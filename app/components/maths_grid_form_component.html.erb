@@ -2,16 +2,6 @@
   <%= hidden_field_tag :puzzle_type, "maths_grid" %>
 
   <div class="flex-col w-fit">
-    <div class="flex flex-nowrap mt-2 justify-left">
-      <%= form.label :rows, class: "flex-none w-20 self-center" %>
-      <%= form.number_field :rows, class: "flex-auto w-16" %>
-    </div>
-
-    <div class="flex flex-nowrap mt-2 justify-left">
-      <%= form.label :columns, class: "flex-none w-20 self-center" %>
-      <%= form.number_field :columns, class: "flex-auto w-16" %>
-    </div>
-
     <div class="flex flex-nowrap mt-2 justify-between">
       <%= form.label :level, class: "flex-none w-10 self-center" %>
     </div>
