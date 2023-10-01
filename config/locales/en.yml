@@ -34,7 +34,6 @@ en:
     generate_new_sheet: "Generate sheet"
     maths_grid:
       levels:
-        ages 6-8: "ages 6-8"
       new_puzzle: "New Maths Grid"
       setup_heading: "Puzzle Setup"
       to_s: "Maths Grid Puzzle for %{level} (%{size})"

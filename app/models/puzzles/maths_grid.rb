@@ -23,11 +23,33 @@ module Puzzles
                    rows: [:integer],
                    columns: [:integer]
 
-    enum :level, ["ages 6-8"], prefix: "level"
+    enum :level, ["ages 7-8 (KS2)", "ages 6-7 (KS1)"], prefix: "level"
 
     def levels_configs
       @levels_configs ||= {
-        "ages 6-8" => {
+        "ages 6-7 (KS1)" => {
+          rows: 6,
+          columns: 2,
+          equations: {
+            addition: {
+              range: 1..9,
+              result_range: 2..10
+            },
+            subtraction: {
+              range: 1..9,
+              result_range: 1..9
+              # negative_results: false,
+            },
+            multiplication: {
+              range: 1..9
+            },
+            division: {
+              range: [1..20, 2..5],
+              result_decimal_places: 0
+            }
+          }
+        },
+        "ages 7-8 (KS2)" => {
           rows: 6,
           columns: 2,
           equations: {
@@ -93,7 +115,7 @@ module Puzzles
     end
 
     def set_defaults
-      self.level ||= "ages 6-8"
+      self.level ||= "ages 6-7 (KS1)"
       self.seed ||= rand(2**32)
     end
 
