@@ -23,7 +23,7 @@ module Puzzles
                    rows: [:integer],
                    columns: [:integer]
 
-    enum :level, ["ages 7-8 (KS2)", "ages 6-7 (KS1)"], prefix: "level"
+    enum :level, ["ages 6-7 (KS1)", "ages 7-8 (KS2)"], prefix: "level"
 
     def levels_configs
       @levels_configs ||= {
