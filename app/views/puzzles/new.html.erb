@@ -2,7 +2,13 @@
   <%= render BackLinkComponent.new(text: "puzzles list", route: puzzles_path) %>
 <% end %>
 
+<% content_for :title do %>
+  <%= @puzzle.type_name %>
+<% end %>
+
 <% content_for :sidebar do %>
+  <h2 class="ml-0"><%= t "puzzle_setup" %></h2>
+
   <%= render @form_component.new(puzzle: @puzzle) %>
 <% end %>
 <% content_for :main do %>

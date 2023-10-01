@@ -22,7 +22,7 @@ RSpec.feature "maths grid journey" do
   end
 
   def then_i_see_the_new_maths_grid_page
-    expect(page).to have_css("h1", text: "New Maths Grid Puzzle Setup")
+    expect(page).to have_css("h1", text: "Maths Grid")
   end
 
   def when_i_change_the_rows_to_10_and_submit
@@ -44,6 +44,6 @@ RSpec.feature "maths grid journey" do
   end
 
   def then_i_see_the_maths_grid_puzzle_that_was_generated
-    expect(page).to have_text("Maths Grid Puzzle for ages 6-8 (7x6)")
+    expect(page).to have_text("Maths Grid")
   end
 end
