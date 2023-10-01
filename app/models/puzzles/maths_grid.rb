@@ -103,6 +103,13 @@ module Puzzles
       level_config[:rows]
     end
 
+    def generate_data
+      self.data ||= { cells: generate_cells.map { |row| row.map(&:to_h) } }
+    rescue StandardError => err
+      Rails.logger.error("Error generating data for (seed=#{self.seed}) #{self}")
+      raise err
+    end
+
     private
 
     def random
@@ -117,10 +124,6 @@ module Puzzles
     def set_defaults
       self.level ||= "ages 6-7 (KS1)"
       self.seed ||= rand(2**32)
-    end
-
-    def generate_data
-      self.data ||= { cells: generate_cells.map { |row| row.map(&:to_h) } }
     end
 
     def generate_cells

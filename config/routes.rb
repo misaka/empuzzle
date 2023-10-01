@@ -8,6 +8,10 @@ Rails.application.routes.draw do
             path_names: {
               new: ":puzzle_type/new"
             }
+  # When we nest this route in the puzzles resource, it preceds the new route
+  # breaking it.
+  get "puzzles/:puzzle_type/:seed", to: "puzzles#show", as: :puzzle_generator
+
   resolve("Puzzles::MathsGrid") do |puzzle|
     route_for(:puzzle, action: :show, id: puzzle.id)
   end

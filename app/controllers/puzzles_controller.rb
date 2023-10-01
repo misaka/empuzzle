@@ -26,8 +26,15 @@ class PuzzlesController < ApplicationController
   end
 
   def show
-    @puzzle = Puzzle.find(params[:id])
-    @puzzle_type = @puzzle.type.split("::").last.underscore
+    if params[:id]
+      @puzzle = Puzzle.find(params[:id])
+      @puzzle_type = @puzzle.type.split("::").last.underscore
+    elsif params[:puzzle_type] && params[:seed]
+      @puzzle_type = params[:puzzle_type].underscore
+      @puzzle =
+        puzzle_classes[@puzzle_type][:puzzle_class].new(seed: params[:seed])
+      @puzzle.generate_data
+    end
     @form_component = puzzle_classes[@puzzle_type][:form_component]
     @puzzle_component = puzzle_classes[@puzzle_type][:puzzle_component]
   end
