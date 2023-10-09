@@ -4,7 +4,7 @@ RSpec.describe Puzzles::MathsGrid::Equation do
   let(:random) { Random.new(31_337) }
   let(:result_decimal_places) { nil }
   let(:result_range) { nil }
-  let(:type) { :addition }
+  let(:type) { "addition" }
 
   let(:equation) do
     described_class.new(
@@ -33,7 +33,7 @@ RSpec.describe Puzzles::MathsGrid::Equation do
   end
 
   context "subtraction" do
-    let(:type) { :subtraction }
+    let(:type) { "subtraction" }
     let(:result_range) { 1..9 }
 
     describe "numbers" do
@@ -50,7 +50,7 @@ RSpec.describe Puzzles::MathsGrid::Equation do
   end
 
   context "multiplication" do
-    let(:type) { :multiplication }
+    let(:type) { "multiplication" }
 
     describe "numbers" do
       subject(:numbers) { equation.numbers }
@@ -66,20 +66,32 @@ RSpec.describe Puzzles::MathsGrid::Equation do
   end
 
   context "division" do
-    let(:type) { :division }
+    let(:type) { "division" }
     let(:result_decimal_places) { 0 }
     let(:result_range) { 2.0..10.0 }
+    let(:random) { Random.new(31_334) }
 
     describe "numbers" do
       subject(:numbers) { equation.numbers }
 
-      it { should eq([7, 1]) }
+      it { should eq([6, 2]) }
     end
 
     describe "result" do
       subject(:result) { equation.result }
 
-      it { should eq(7) }
+      it { should eq(3) }
+    end
+  end
+
+  context "unknown equation type" do
+    let(:type) { "nuthin" }
+
+    it "raises an error" do
+      expect { equation }.to raise_error(
+        ArgumentError,
+        /unknown equation type: nuthin/i
+      )
     end
   end
 

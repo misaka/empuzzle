@@ -19,9 +19,7 @@ module Puzzles
     before_create :generate_data
     after_initialize :set_defaults
 
-    jsonb_accessor :config,
-                   rows: [:integer],
-                   columns: [:integer]
+    jsonb_accessor :config, rows: [:integer], columns: [:integer]
 
     enum :level, ["ages 6-7 (KS1)", "ages 7-8 (KS2)"], prefix: "level"
 
@@ -44,7 +42,7 @@ module Puzzles
               range: 1..9
             },
             division: {
-              range: [1..20, 2..5],
+              range: [2..20, 2..5],
               result_decimal_places: 0
             }
           }
@@ -66,7 +64,7 @@ module Puzzles
               range: 1..9
             },
             division: {
-              range: [1..20, 2..5],
+              range: [2..20, 2..5],
               result_decimal_places: 0
             }
           }
@@ -105,9 +103,9 @@ module Puzzles
 
     def generate_data
       self.data ||= { cells: generate_cells.map { |row| row.map(&:to_h) } }
-    rescue StandardError => err
-      Rails.logger.error("Error generating data for (seed=#{self.seed}) #{self}")
-      raise err
+    rescue StandardError => e
+      Rails.logger.error("Error generating data for (seed=#{seed}) #{self}")
+      raise e
     end
 
     private
@@ -131,7 +129,10 @@ module Puzzles
         columns.times.map do |_col|
           cell_type = random_cell_type
           Equation.new(
-            **level_config[:equations][cell_type].merge(random:, type: cell_type)
+            **level_config[:equations][cell_type].merge(
+              random:,
+              type: cell_type
+            )
           )
         end
       end
