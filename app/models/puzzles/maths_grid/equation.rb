@@ -50,10 +50,10 @@ module Puzzles
     end
 
     def initialize_numbers
-      ranges = range.is_a?(Array) ? range : [range] * 2
+      ranges = range.is_a?(Array) ? range : [range, range]
 
       10.times do |n|
-        self.numbers = ranges.map { |r| random.rand(r) }
+        self.numbers = generate_numbers(ranges)
 
         self.result = generate_result
 
@@ -66,6 +66,34 @@ module Puzzles
       raise "Could not generate valid result"
     end
 
+    def generate_numbers(ranges)
+      case type
+      when "division"
+        generate_division_numbers(*ranges)
+      when "addition", "subtraction", "multiplication"
+        ranges.map { |r| random.rand(r) }
+      else
+        raise ArgumentError, "Unknown equation type: #{type}"
+      end
+    end
+
+    def generate_division_numbers(dividend_range, divisor_range)
+      divisor = random.rand(divisor_range)
+      quotient = calculate_quotient(dividend_range, divisor)
+      dividend = quotient * divisor
+
+      [dividend, divisor]
+    end
+
+    def calculate_quotient(dividend_range, divisor)
+      quotient_range_min = dividend_range.min / divisor
+      quotient_range_min = 1 if quotient_range_min < 1
+
+      quotient_range_max = dividend_range.max / divisor
+      quotient_range = quotient_range_min..quotient_range_max
+      random.rand(quotient_range)
+    end
+
     def generate_result
       if type.to_s == "division"
         numbers.map(&:to_f).inject(operator)
@@ -75,8 +103,15 @@ module Puzzles
     end
 
     def valid_result?
-      result.round(result_decimal_places) == result &&
-        (result_range.blank? || result_range.include?(result))
+      result_is_whole_number? && result_in_range?
+    end
+
+    def result_is_whole_number?
+      result.round(result_decimal_places) == result
+    end
+
+    def result_in_range?
+      (result_range.blank? || result_range.include?(result))
     end
   end
 end
