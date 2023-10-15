@@ -5,6 +5,7 @@ module Puzzles
     include ActiveModel::API
     include ActiveModel::Attributes
     include SubtractionEquationConcern
+    include MultiplicationEquationConcern
 
     # attribute :count
     attribute :range
@@ -71,6 +72,8 @@ module Puzzles
       case type
       when "division"
         generate_division_numbers(*ranges)
+      when "multiplication"
+        generate_multiplication_numbers(*ranges, result_range)
       when "subtraction"
         generate_subtraction_numbers(*ranges, result_range)
       when "addition", "multiplication"
