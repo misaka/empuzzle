@@ -34,7 +34,7 @@ module Puzzles
               result_range: 2..10
             },
             subtraction: {
-              range: 1..9,
+              range: 2..10,
               result_range: 1..9
               # negative_results: false,
             },

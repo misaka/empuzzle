@@ -39,13 +39,13 @@ RSpec.describe Puzzles::MathsGrid::Equation do
     describe "numbers" do
       subject(:numbers) { equation.numbers }
 
-      it { should eq([8, 7]) }
+      it { should eq([8, 1]) }
     end
 
     describe "result" do
       subject(:result) { equation.result }
 
-      it { should eq(1) }
+      it { should eq(7) }
     end
   end
 
@@ -98,7 +98,7 @@ RSpec.describe Puzzles::MathsGrid::Equation do
   describe "#to_h" do
     subject(:hash) { equation.to_h }
 
-    it { should eq({ numbers: [8, 7], result: 15, type: :addition }) }
+    it { should eq({ numbers: [8, 7], result: 15, type: "addition" }) }
   end
 
   describe ".from_h" do

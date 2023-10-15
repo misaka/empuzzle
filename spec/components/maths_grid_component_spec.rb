@@ -33,10 +33,10 @@ RSpec.describe MathsGridComponent, type: :component do
         #
         # This test overlaps with the equation components, but this test needs to
         # check that the correct cell type is rendered.
-        expect(cells[0].text).to include("2\n⟌16")
-        expect(cells[2].text).to include("6 x 9")
-        expect(cells[3].text).to include("1 + 3")
-        expect(cells[6].text).to include("9 - 8")
+        expect(cells[0].text).to include("5\n⟌15")
+        expect(cells[1].text).to include("9 - 7")
+        expect(cells[3].text).to include("7 + 1")
+        expect(cells[6].text).to include("9 x 3")
       end
     end
   end
