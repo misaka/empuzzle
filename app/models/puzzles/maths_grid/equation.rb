@@ -83,23 +83,6 @@ module Puzzles
       end
     end
 
-    def generate_division_numbers(dividend_range, divisor_range)
-      divisor = random.rand(divisor_range)
-      quotient = calculate_quotient(dividend_range, divisor)
-      dividend = quotient * divisor
-
-      [dividend, divisor]
-    end
-
-    def calculate_quotient(dividend_range, divisor)
-      quotient_range_min = dividend_range.min / divisor
-      quotient_range_min = 1 if quotient_range_min < 1
-
-      quotient_range_max = dividend_range.max / divisor
-      quotient_range = quotient_range_min..quotient_range_max
-      random.rand(quotient_range)
-    end
-
     def generate_result
       if type.to_s == "division"
         numbers.map(&:to_f).inject(operator)
