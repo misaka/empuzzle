@@ -4,13 +4,14 @@ RSpec.describe Puzzles::MathsGrid::Equation do
   let(:random) { Random.new(31_337) }
   let(:result_decimal_places) { nil }
   let(:result_range) { nil }
+  let(:ranges) { 1..9 }
   let(:type) { "addition" }
 
   let(:equation) do
     described_class.new(
       **{
         random:,
-        range: 1..9,
+        ranges: ranges,
         result_decimal_places:,
         result_range:,
         type:
@@ -68,19 +69,20 @@ RSpec.describe Puzzles::MathsGrid::Equation do
   context "division" do
     let(:type) { "division" }
     let(:result_decimal_places) { 0 }
-    let(:result_range) { 2.0..10.0 }
-    let(:random) { Random.new(31_334) }
+    let(:ranges) { [2..20, 2..5] }
+    let(:result_range) { 2..10 }
+    let(:random) { Random.new(31_331) }
 
     describe "numbers" do
       subject(:numbers) { equation.numbers }
 
-      it { should eq([6, 2]) }
+      it { should eq([12, 3]) }
     end
 
     describe "result" do
       subject(:result) { equation.result }
 
-      it { should eq(3) }
+      it { should eq(4.0) }
     end
   end
 

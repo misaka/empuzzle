@@ -6,9 +6,10 @@ module Puzzles
     include ActiveModel::Attributes
     include SubtractionEquationConcern
     include MultiplicationEquationConcern
+    include DivisionEquationConcern
 
     # attribute :count
-    attribute :range
+    attribute :ranges
     attribute :type
     attribute :result_range
     attribute :result_decimal_places, default: 0
@@ -19,13 +20,15 @@ module Puzzles
     def initialize(attributes = {})
       super
 
-      if result.blank?
-        if range.is_a?(Array) && (range.length != 2)
-          raise "when range is an array it's length must be 2"
+      if ranges.is_a?(Array)
+        if ranges.length != 2
+          raise "when ranges is an array it's length must be 2"
         end
-
-        initialize_numbers
+      else
+        self.ranges = [ranges, ranges]
       end
+
+      initialize_numbers if result.blank?
     end
 
     def to_h
@@ -52,8 +55,6 @@ module Puzzles
     end
 
     def initialize_numbers
-      ranges = range.is_a?(Array) ? range : [range, range]
-
       10.times do |n|
         self.numbers = generate_numbers(ranges)
 
@@ -71,12 +72,12 @@ module Puzzles
     def generate_numbers(ranges)
       case type
       when "division"
-        generate_division_numbers(*ranges)
+        generate_division_numbers(*ranges, result_range)
       when "multiplication"
         generate_multiplication_numbers(*ranges, result_range)
       when "subtraction"
         generate_subtraction_numbers(*ranges, result_range)
-      when "addition", "multiplication"
+      when "addition" # , "multiplication"
         ranges.map { |r| random.rand(r) }
       else
         raise ArgumentError, "Unknown equation type: #{type}"

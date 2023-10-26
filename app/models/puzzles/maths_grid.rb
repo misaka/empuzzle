@@ -30,19 +30,19 @@ module Puzzles
           columns: 2,
           equations: {
             addition: {
-              range: 1..9,
+              ranges: 1..9,
               result_range: 2..10
             },
             subtraction: {
-              range: 2..10,
+              ranges: 2..10,
               result_range: 1..9
               # negative_results: false,
             },
             multiplication: {
-              range: 1..9
+              ranges: 1..9
             },
             division: {
-              range: [2..20, 2..5],
+              ranges: [2..20, 2..5],
               result_decimal_places: 0
             }
           }
@@ -52,19 +52,19 @@ module Puzzles
           columns: 2,
           equations: {
             addition: {
-              range: 1..9,
+              ranges: 1..9,
               result_range: 2..10
             },
             subtraction: {
-              range: 1..9,
+              ranges: 1..9,
               result_range: 1..9
               # negative_results: false,
             },
             multiplication: {
-              range: 1..9
+              ranges: 1..9
             },
             division: {
-              range: [2..20, 2..5],
+              ranges: [2..20, 2..5],
               result_decimal_places: 0
             }
           }
