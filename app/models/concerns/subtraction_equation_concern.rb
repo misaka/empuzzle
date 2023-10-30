@@ -24,8 +24,9 @@ module SubtractionEquationConcern
       min = difference_range.min if min < difference_range.min
 
       max = minuend - subtrahend_range.min
-      max = difference_range.min if max < difference_range.min
       max = difference_range.max if max > difference_range.max
+
+      raise RangeError, "Difference range is invalid" if min > max
 
       min..max
     end

@@ -34,9 +34,8 @@ module Puzzles
               result_range: 2..10
             },
             subtraction: {
-              ranges: 2..10,
+              ranges: [2..10, 1..5],
               result_range: 1..9
-              # negative_results: false,
             },
             multiplication: {
               ranges: 1..9
