@@ -4,6 +4,7 @@ module Puzzles
   class MathsGrid::Equation
     include ActiveModel::API
     include ActiveModel::Attributes
+    include AdditionEquationConcern
     include SubtractionEquationConcern
     include MultiplicationEquationConcern
     include DivisionEquationConcern
@@ -77,8 +78,8 @@ module Puzzles
         generate_multiplication_numbers(*ranges, result_range)
       when "subtraction"
         generate_subtraction_numbers(*ranges, result_range)
-      when "addition" # , "multiplication"
-        ranges.map { |r| random.rand(r) }
+      when "addition"
+        generate_addition_numbers(*ranges, result_range)
       else
         raise ArgumentError, "Unknown equation type: #{type}"
       end
