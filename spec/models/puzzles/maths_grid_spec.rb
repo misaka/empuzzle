@@ -20,4 +20,12 @@ RSpec.describe Puzzles::MathsGrid do
       100.times { |_n| described_class.new.generate_data }
     }.not_to raise_error
   end
+
+  it "does not repeat equations in the same puzzle" do
+    10.times do
+      puzzle = described_class.new
+      cells = puzzle.generate_data[:cells].flatten
+      expect(cells.uniq).to eq cells
+    end
+  end
 end

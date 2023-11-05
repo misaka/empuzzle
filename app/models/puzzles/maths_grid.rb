@@ -124,15 +124,25 @@ module Puzzles
     end
 
     def generate_cells
+      equations = Set.new
+
       rows.times.map do |_row|
         columns.times.map do |_col|
-          cell_type = random_cell_type
-          Equation.new(
-            **level_config[:equations][cell_type].merge(
-              random:,
-              type: cell_type
-            )
-          )
+          eq = nil
+          loop do
+            cell_type = random_cell_type
+            eq =
+              Equation.new(
+                **level_config[:equations][cell_type].merge(
+                  random:,
+                  type: cell_type
+                )
+              )
+            break unless equations.include?(eq.to_h)
+          ensure
+            equations.add(eq.to_h)
+          end
+          eq
         end
       end
     end
