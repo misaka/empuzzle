@@ -1,3 +1,3 @@
-<%= equation.numbers.map { |n| "<span class='kids-puzzles-number'>#{n}</span>" }.join(" + ").html_safe %>
+<%= equation.numbers.join(" + ").html_safe %>
 =
-<%= equation.result %>
+<span class="print:hidden"><%= equation.result %></span>
