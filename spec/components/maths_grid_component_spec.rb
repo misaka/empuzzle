@@ -4,7 +4,25 @@ require "rails_helper"
 
 RSpec.describe MathsGridComponent, type: :component do
   let(:seed) { 31_337 }
-  let(:maths_grid) { create(:maths_grid, seed:, rows: 8, columns: 3) }
+  let(:maths_grid) do
+    create(
+      :maths_grid,
+      seed:,
+      data: {
+        # NB: The structure here doesn't quite match the rows and columns of
+        # this maths grid, but it works (for now)
+        cells: [
+          [
+            { type: "addition", numbers: [4, 5], result: 9 },
+            { type: "subtraction", numbers: [9, 4], result: 5 },
+            { type: "multiplication", numbers: [6, 2], result: 12 },
+            { type: "division", numbers: [15, 5], result: 3 }
+          ]
+        ]
+      }
+
+    )
+  end
 
   let(:component) { described_class.new(puzzle: maths_grid) }
 
@@ -23,20 +41,16 @@ RSpec.describe MathsGridComponent, type: :component do
       end
 
       it "should have the correct number of cells" do
-        expect(cells.length).to eq 12
+        expect(cells.length).to eq 4
       end
 
       it "should have correctly rendered cells" do
-        # The cell values are determined by the seed. If the way the seed is
-        # used to generate the random number, he cells will change and test will
-        # break.
-        #
-        # This test overlaps with the equation components, but this test needs to
-        # check that the correct cell type is rendered.
-        expect(cells[0].text).to include("5\n⟌15")
-        expect(cells[1].text).to include("9 - 4")
-        expect(cells[3].text).to include("6 + 1")
-        expect(cells[11].text).to include("6 x 4")
+        # Try to determine which equation compononent is rendered in each cell
+        # by looking for the operator. There must be a better way ¯\_(ツ)_/¯
+        expect(cells[0]).to have_text "+"
+        expect(cells[1]).to have_text "-"
+        expect(cells[2]).to have_text "x"
+        expect(cells[3]).to have_text "÷"
       end
     end
   end
