@@ -33,8 +33,6 @@ module Puzzles
     end
 
     def to_h
-      Rails.logger.info("equation type: #{type}")
-
       { numbers:, result:, type: }
     end
 

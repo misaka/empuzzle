@@ -11,7 +11,7 @@ RSpec.describe Puzzles::MathsGrid::Equation do
     described_class.new(
       **{
         random:,
-        ranges: ranges,
+        ranges:,
         result_decimal_places:,
         result_range:,
         type:

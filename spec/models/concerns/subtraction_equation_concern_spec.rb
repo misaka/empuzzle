@@ -1,7 +1,5 @@
 require "rails_helper"
 
-
-
 RSpec.describe SubtractionEquationConcern do
   let(:random) { Random.new(31_337) }
   let(:result_decimal_places) { nil }
@@ -95,10 +93,7 @@ RSpec.describe SubtractionEquationConcern do
 
       it "raises a range error" do
         expect { calculate_difference_range }.to(
-          raise_error(
-            RangeError,
-            "Difference range is invalid"
-          )
+          raise_error(RangeError, "Difference range is invalid")
         )
       end
     end

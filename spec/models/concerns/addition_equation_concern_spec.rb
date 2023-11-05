@@ -38,11 +38,7 @@ RSpec.describe AdditionEquationConcern do
 
   describe "calculate_addend_range" do
     let(:calculated_addend_range) do
-      equation.calculate_addend_range(
-        augend,
-        addend_range,
-        sum_range
-      )
+      equation.calculate_addend_range(augend, addend_range, sum_range)
     end
 
     context "sum_range is nil" do
