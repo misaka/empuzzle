@@ -46,3 +46,5 @@ group :test do
   gem "rspec-rails"
   gem "selenium-webdriver"
 end
+
+gem "dockerfile-rails", ">= 1.0.0", :group => :development
