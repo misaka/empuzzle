@@ -1,0 +1,11 @@
+<div>
+  <ol class="list-reset flex">
+    <% @crumbs.each_with_index do |crumb, idx| %>
+      <li class="after:content-['>'] after:px-2 last:after:content-['']">
+      <%= link_to crumb[:path], class: "underline" do %>
+        <%= crumb[:text] %>
+      <% end %>
+      </li>
+    <% end %>
+  </ol>
+</div>

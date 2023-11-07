@@ -1,5 +1,7 @@
 <% content_for :nav do %>
-  <%= render BackLinkComponent.new(text: "puzzles list", route: puzzles_path) %>
+  <%= render BreadcrumbsComponent.new([
+    { text: "Home", path: puzzles_path },
+  ]) %>
 <% end %>
 
 <% content_for :title do %>

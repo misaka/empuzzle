@@ -1,5 +1,7 @@
 <% content_for :nav do %>
-  <%= render BackLinkComponent.new(text: "new puzzle", route: new_puzzle_path(puzzle_type: :maths_grid)) %>
+  <%= render BreadcrumbsComponent.new([
+    { text: "Home", path: puzzles_path },
+  ]) %>
 <% end %>
 
 <% content_for :title do %>
