@@ -4,7 +4,6 @@ module Puzzles
   class MathsGridzilla
     include ActiveModel::API
     include ActiveModel::Attributes
-    include RandomInRange
 
     attribute :rows, :integer, default: 4
     attribute :columns, :integer, default: 6

@@ -4,7 +4,6 @@ module Puzzles
   class NumberLineMaths
     include ActiveModel::API
     include ActiveModel::Attributes
-    include RandomInRange
 
     attribute :rows, :integer, default: 6
     attribute :reward, :string
