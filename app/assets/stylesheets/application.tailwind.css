@@ -14,11 +14,15 @@
   }
   input[type="submit"],
   button[type="submit"] {
-    @apply py-2 px-4 my-4 bg-cyan-200 cursor-pointer;
+    @apply py-2 px-4 my-4 bg-cyan-600 text-white cursor-pointer hover:bg-cyan-700;
+  }
+  a {
+    @apply text-cyan-600 hover:text-cyan-700;
   }
   label {
     @apply pt-4;
   }
+
   .debug {
     @apply border-2 border-red-500;
   }
@@ -29,13 +33,3 @@
     @apply border-2 border-blue-500;
   }
 }
-
-/*
-
-@layer components {
-  .btn-primary {
-    @apply py-2 px-4 bg-blue-200;
-  }
-}
-
-*/
