@@ -1,19 +1,13 @@
 <% content_for :nav do %>
-  <%= render BackLinkComponent.new(text: "puzzles list", route: puzzles_path) %>
+  <%= render BackLinkComponent.new(text: "new puzzle", route: new_puzzle_path(puzzle_type: :maths_grid)) %>
 <% end %>
 
 <% content_for :title do %>
-  <%= @puzzle.type_name %>
+  <div class="print:hidden">
+    <%= @puzzle.type_name %>
+  </div>
 <% end %>
 
-<% content_for :sidebar do %>
-  <h2 class="ml-0"><%= t "puzzle_setup" %></h2>
-
-  <%= render @form_component.new(puzzle: @puzzle) %>
-<% end %>
-
-<% content_for :main do %>
-  <h2 class="ml-0"><%= t "puzzle_sheet" %></h2>
-
+<% content_for :content do %>
   <%= render @puzzle_component.new(puzzle: @puzzle) %>
 <% end %>
