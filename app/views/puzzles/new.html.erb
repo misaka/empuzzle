@@ -6,10 +6,33 @@
   <%= @puzzle.type_name %>
 <% end %>
 
-<% content_for :sidebar do %>
-  <h2 class="ml-0"><%= t "puzzle_setup" %></h2>
+<h2 class="ml-0"><%= t "puzzle_setup" %></h2>
 
-  <%= render @form_component.new(puzzle: @puzzle) %>
-<% end %>
-<% content_for :main do %>
+<% content_for :content do %>
+  <%= form_for @puzzle, url: puzzles_path, method: "POST" do |form| %>
+    <%= hidden_field_tag :puzzle_type, "maths_grid" %>
+    <p><%= t "puzzles.#{@puzzle_type}.new_description" %></p>
+
+    <div class="flex-col w-fit">
+      <div class="flex flex-nowrap mt-2 justify-between pt-4">
+        <%= form.label :level, class: "flex-none w-10 self-center" %>
+      </div>
+      <div class="flex flex-nowrap">
+        <%= form.select :level, @puzzle.class.levels.keys, class: "flex-auto w-16" %>
+      </div>
+
+      <div class="flex flex-nowrap mt-2 pt-4">
+        <%= label_tag "reward" %>
+      </div>
+
+      <div class="flex flex-nowrap">
+        <%= text_field_tag :reward, @reward, class: "flex-auto w-80" %>
+      </div>
+
+      <div class="flex mt-2 justify-left pt-4">
+        <%= submit_tag t("puzzles.generate_new_sheet") %>
+      </div>
+    </div>
+  <% end %>
+
 <% end %>

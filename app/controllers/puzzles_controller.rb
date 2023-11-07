@@ -3,8 +3,6 @@
 class PuzzlesController < ApplicationController
   before_action :set_puzzle_type, only: %i[create new]
 
-  layout "with_sidebar"
-
   def create
     @puzzle = @puzzle_class.new(puzzle_params)
     @puzzle.validate

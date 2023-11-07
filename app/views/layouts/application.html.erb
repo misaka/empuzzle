@@ -16,6 +16,8 @@
       <%= content_for :nav %>
     </nav>
     <main class="container mx-auto mt-28 px-5">
+      <h1><%= content_for :title %></h1>
+
       <%= content_for?(:content) ? yield(:content) : yield %>
     </main>
   </body>

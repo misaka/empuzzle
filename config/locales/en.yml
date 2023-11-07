@@ -34,6 +34,7 @@ en:
     generate_new_sheet: "Generate sheet"
     maths_grid:
       levels:
+      new_description: "Generate a news sheet of arithmetic equations."
       new_puzzle: "New Maths Grid"
       setup_heading: "Puzzle Setup"
       to_s: "Maths Grid Puzzle for %{level} (%{size})"
