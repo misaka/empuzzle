@@ -2,4 +2,6 @@
 
 ---
 options:
+  fullstaq: true
+  jemalloc: true
   postgresql: true
