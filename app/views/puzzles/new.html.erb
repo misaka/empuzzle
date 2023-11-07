@@ -14,14 +14,14 @@
     <p><%= t "puzzles.#{@puzzle_type}.new_description" %></p>
 
     <div class="flex-col w-fit">
-      <div class="flex flex-nowrap mt-2 justify-between pt-4">
+      <div class="flex flex-nowrap mt-2 justify-between">
         <%= form.label :level, class: "flex-none w-10 self-center" %>
       </div>
       <div class="flex flex-nowrap">
         <%= form.select :level, @puzzle.class.levels.keys, class: "flex-auto w-16" %>
       </div>
 
-      <div class="flex flex-nowrap mt-2 pt-4">
+      <div class="flex flex-nowrap mt-2">
         <%= label_tag "reward" %>
       </div>
 
@@ -29,7 +29,7 @@
         <%= text_field_tag :reward, @reward, class: "flex-auto w-80" %>
       </div>
 
-      <div class="flex mt-2 justify-left pt-4">
+      <div class="flex mt-2 justify-left">
         <%= submit_tag t("puzzles.generate_new_sheet") %>
       </div>
     </div>
