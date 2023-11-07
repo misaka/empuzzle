@@ -1,28 +1,21 @@
-# fly.toml file generated for empuzzle on 2023-11-07T11:21:28Z
+# fly.toml app configuration file generated for empuzzle on 2023-11-07T12:04:08Z
+#
+# See https://fly.io/docs/reference/configuration/ for information about how to use this file.
+#
 
 app = "empuzzle"
-kill_signal = "SIGINT"
-kill_timeout = 5
-mounts = []
-processes = []
+primary_region = "lhr"
+console_command = "/rails/bin/rails console"
 
-[[services]]
+[build]
+
+[http_service]
   internal_port = 3000
+  force_https = true
+  auto_stop_machines = true
+  auto_start_machines = true
+  min_machines_running = 0
   processes = ["app"]
-  protocol = "tcp"
-  [services.concurrency]
-    hard_limit = 25
-    soft_limit = 20
-    type = "connections"
-
-  [[services.ports]]
-    force_https = true
-    handlers = ["http"]
-    port = 80
-
-  [[services.ports]]
-    handlers = ["tls", "http"]
-    port = 443
 
 [[statics]]
   guest_path = "/rails/public"

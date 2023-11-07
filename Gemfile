@@ -48,3 +48,7 @@ group :test do
 end
 
 gem "dockerfile-rails", ">= 1.0.0", :group => :development
+
+gem "sentry-ruby", "~> 5.12"
+
+gem "sentry-rails", "~> 5.12"
