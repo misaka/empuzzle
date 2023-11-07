@@ -1,11 +1,10 @@
-<% content_for :sidebar do %>
+<% content_for :content do %>
   <%= button_to t("puzzles.maths_grid.new_puzzle"),
                 new_puzzle_path(puzzle_type: :maths_grid),
-                class: "py-2 px-4 bg-gray-200 cursor-pointer",
-                method: :get %>
-<% end %>
+                                class: "py-2 px-4 bg-gray-200 cursor-pointer",
+                                method: :get %>
 
-<% content_for :main do %>
+
   <% @puzzles.each do |puzzle| %>
     <%= link_to puzzle, class: "flex hover:bg-gray-200" do %>
       <div class="flex-initial w-48">
