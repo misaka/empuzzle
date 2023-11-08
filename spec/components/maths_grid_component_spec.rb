@@ -25,32 +25,33 @@ RSpec.describe MathsGridComponent, type: :component do
 
   let(:component) { described_class.new(puzzle: maths_grid) }
 
-  describe "the rendered component" do
+  describe "rendering the component" do
+    subject { page }
     let!(:rendered) { render_inline(component) }
 
-    subject { page }
-
     it { should have_css(".kids-puzzles-maths-grid") }
+  end
 
-    describe "the rendered cells" do
-      let(:cells) do
-        page.find(".kids-puzzles-maths-grid").find_all(
-          ".kids-puzzles-maths-grid-cell"
-        )
-      end
+  describe "the rendered cells" do
+    subject { page }
+    let!(:rendered) { render_inline(component) }
+    let(:cells) do
+      page.find(".kids-puzzles-maths-grid").find_all(
+        ".kids-puzzles-maths-grid-cell"
+      )
+    end
 
-      it "should have the correct number of cells" do
-        expect(cells.length).to eq 4
-      end
+    it "should have the correct number of cells" do
+      expect(cells.length).to eq 4
+    end
 
-      it "should have correctly rendered cells" do
-        # Try to determine which equation compononent is rendered in each cell
-        # by looking for the operator. There must be a better way ¯\_(ツ)_/¯
-        expect(cells[0]).to have_text "+"
-        expect(cells[1]).to have_text "-"
-        expect(cells[2]).to have_text "x"
-        expect(cells[3]).to have_text "÷"
-      end
+    it "should have correctly rendered cells" do
+      # Try to determine which equation compononent is rendered in each cell
+      # by looking for the operator. There must be a better way ¯\_(ツ)_/¯
+      expect(cells[0]).to have_text "+"
+      expect(cells[1]).to have_text "-"
+      expect(cells[2]).to have_text "x"
+      expect(cells[3]).to have_text "÷"
     end
   end
 end
