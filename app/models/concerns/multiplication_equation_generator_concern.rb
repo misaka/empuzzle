@@ -1,13 +1,17 @@
-module MultiplicationEquationConcern
+module MultiplicationEquationGeneratorConcern
   extend ActiveSupport::Concern
-  included do
+
+  class_methods do
     # multiplier x multiplicand = product
     def generate_multiplication_numbers(
-      multiplier_range,
-      multiplicand_range,
-      product_range,
-      decimal_places = 0
+      multiplier_range:,
+      random:,
+      multiplicand_range: nil,
+      product_range: nil,
+      decimal_places: 0
     )
+      multiplicand_range ||= multiplier_range
+
       multiplier = random.rand(multiplier_range).round(decimal_places)
 
       multiplicand =

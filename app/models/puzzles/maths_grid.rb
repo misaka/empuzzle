@@ -30,19 +30,21 @@ module Puzzles
           columns: 2,
           equations: {
             addition: {
-              ranges: 1..9,
-              result_range: 2..10
+              augend_range: 1..9,
+              sum_range: 2..10
             },
             subtraction: {
-              ranges: [2..10, 1..5],
-              result_range: 1..9
+              minuend_range: 2..10,
+              subtrahend_range: 1..5,
+              difference_range: 1..9
             },
             multiplication: {
-              ranges: 1..9
+              multiplier_range: 1..9
             },
             division: {
-              ranges: [2..20, 2..5],
-              result_decimal_places: 0
+              dividend_range: 2..20,
+              divisor_range: 2..5,
+              quotient_range: 1..9
             }
           }
         },
@@ -51,24 +53,25 @@ module Puzzles
           columns: 2,
           equations: {
             addition: {
-              ranges: 1..9,
-              result_range: 2..10
+              augend_range: 1..9,
+              sum_range: 2..10
             },
             subtraction: {
-              ranges: [2..10, 1..5],
-              result_range: 1..9
-              # negative_results: false,
+              minuend_range: 2..10,
+              subtrahend_range: 1..5,
+              difference_range: 1..9
             },
             multiplication: {
-              ranges: 1..9
+              multiplier_range: 1..9
             },
             division: {
-              ranges: [2..20, 2..5],
-              result_decimal_places: 0
+              dividend_range: 2..20,
+              divisor_range: 2..5,
+              quotient_range: 1..9
             }
           }
         }
-      }.with_indifferent_access
+      }
     end
 
     def level_config
@@ -77,7 +80,7 @@ module Puzzles
 
     def cells
       @cells ||=
-        data["cells"].map { |row| row.map { |cell| Equation.from_h(cell) } }
+        data["cells"].map { |row| row.map { |cell| ::Equation.from_h(cell) } }
     end
 
     def type_name
@@ -130,14 +133,7 @@ module Puzzles
         columns.times.map do |_col|
           eq = nil
           loop do
-            cell_type = random_cell_type
-            eq =
-              Equation.new(
-                **level_config[:equations][cell_type].merge(
-                  random:,
-                  type: cell_type
-                )
-              )
+            eq = generate_equation(random_cell_type)
             break unless equations.include?(eq.to_h)
           ensure
             equations.add(eq.to_h)
@@ -145,6 +141,11 @@ module Puzzles
           eq
         end
       end
+    end
+
+    def generate_equation(cell_type)
+      config = level_config[:equations][cell_type].merge(random:)
+      ::Equation.generate(type: cell_type, **config)
     end
   end
 end

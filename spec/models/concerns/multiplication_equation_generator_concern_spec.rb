@@ -1,21 +1,13 @@
 require "rails_helper"
 
-RSpec.describe MultiplicationEquationConcern do
+RSpec.describe MultiplicationEquationGeneratorConcern do
   let(:random) { Random.new(31_337) }
-  let(:dummy_equation_class) do
-    Class.new do
-      include ActiveModel::API
-      include ActiveModel::Attributes
-      include MultiplicationEquationConcern
 
-      attribute :random
-
-      def initialize(attributes = {})
-        super
-      end
-    end
+  let(:equation_class) do
+    Class.new { include MultiplicationEquationGeneratorConcern }
   end
-  let(:equation) { dummy_equation_class.new(random:) }
+
+  # multiplier x multiplicand = product
 
   describe "generate_multiplication_numbers" do
     let(:multiplier_range) { 1..9 }
@@ -27,18 +19,38 @@ RSpec.describe MultiplicationEquationConcern do
 
     it "should return numbers within the original ranges" do
       expect(
-        equation.generate_multiplication_numbers(
-          multiplier_range,
-          multiplicand_range,
-          product_range
+        equation_class.generate_multiplication_numbers(
+          multiplier_range:,
+          multiplicand_range:,
+          product_range:,
+          random:
         )
       ).to eq [8, 2]
+    end
+
+    it "sets the multiplicand_range to multiplier_range if nil" do
+      expect(
+        equation_class.generate_multiplication_numbers(
+          multiplier_range:,
+          product_range:,
+          random:
+        )
+      ).to eq [8, 2]
+    end
+
+    it "does not require the product_range" do
+      expect(
+        equation_class.generate_multiplication_numbers(
+          multiplier_range:,
+          random:
+        )
+      ).to eq [8, 7]
     end
   end
 
   describe "calculate_multiplicand_range" do
     let(:calculated_multiplicand_range) do
-      equation.calculate_multiplicand_range(
+      equation_class.calculate_multiplicand_range(
         multiplier,
         multiplicand_range,
         product_range
