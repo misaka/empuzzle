@@ -30,10 +30,14 @@
 # available at https://guides.rubyonrails.org/i18n.html.
 
 en:
+  activerecord:
+    attributes:
+      puzzle:
+        ages_6_to_7: ages 6 to 7 (KS1)
+        ages_7_to_8: ages 7 to 8 (KS2)
   puzzles:
     generate_new_sheet: "Generate sheet"
     maths_grid:
-      levels:
       new_description: "Generate a news sheet of arithmetic equations."
       new_puzzle: "New Maths Grid"
       setup_heading: "Puzzle Setup"

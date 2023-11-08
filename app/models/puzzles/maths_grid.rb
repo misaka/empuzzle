@@ -21,11 +21,11 @@ module Puzzles
 
     jsonb_accessor :config, rows: [:integer], columns: [:integer]
 
-    enum :level, ["ages 6-7 (KS1)", "ages 7-8 (KS2)"], prefix: "level"
+    enum :level, ["ages_6_to_7", "ages_7_to_8"], prefix: "level"
 
     def levels_configs
       @levels_configs ||= {
-        "ages 6-7 (KS1)" => {
+        "ages_6_to_7" => {
           rows: 6,
           columns: 2,
           equations: {
@@ -46,7 +46,7 @@ module Puzzles
             }
           }
         },
-        "ages 7-8 (KS2)" => {
+        "ages_7_to_8" => {
           rows: 6,
           columns: 2,
           equations: {
@@ -87,7 +87,7 @@ module Puzzles
     def to_s
       I18n.t(
         "puzzles.maths_grid.to_s",
-        level: I18n.t("puzzles.maths_grid.levels.#{level}"),
+        level: self.class.human_attribute_name(level),
         size: "#{columns}x#{rows}"
       )
     end
@@ -119,7 +119,7 @@ module Puzzles
     end
 
     def set_defaults
-      self.level ||= "ages 6-7 (KS1)"
+      self.level ||= "ages_6_to_7"
       self.seed ||= rand(2**32)
     end
 

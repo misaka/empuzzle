@@ -20,7 +20,9 @@
         <%= form.label :level, class: "flex-none w-10 self-center" %>
       </div>
       <div class="flex flex-nowrap">
-        <%= form.select :level, @puzzle.class.levels.keys, class: "flex-auto w-16" %>
+        <%= form.select :level,
+                        @puzzle.class.levels.keys.map { |l| [@puzzle.class.human_attribute_name(l), l] },
+                        class: "flex-auto w-16" %>
       </div>
 
       <div class="flex flex-nowrap mt-2">
