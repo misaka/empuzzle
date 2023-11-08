@@ -21,7 +21,7 @@ module Puzzles
 
     jsonb_accessor :config, rows: [:integer], columns: [:integer]
 
-    enum :level, ["ages_6_to_7", "ages_7_to_8"], prefix: "level"
+    enum :level, %w[ages_6_to_7 ages_7_to_8], prefix: "level"
 
     def levels_configs
       @levels_configs ||= {

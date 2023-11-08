@@ -20,7 +20,6 @@ RSpec.describe MathsGridComponent, type: :component do
           ]
         ]
       }
-
     )
   end
 
