@@ -1,24 +1,16 @@
 require "rails_helper"
 
-RSpec.describe DivisionEquationConcern do
+RSpec.describe DivisionEquationGeneratorConcern do
   let(:random) { Random.new(31_337) }
 
-  let(:dummy_equation_class) do
+  let(:equation_class) do
     Class.new do
-      include ActiveModel::API
-      include ActiveModel::Attributes
-      include DivisionEquationConcern
-
-      attribute :random
-
-      def initialize(attributes = {})
-        super
-      end
+      include DivisionEquationGeneratorConcern
     end
   end
-  let(:equation) { dummy_equation_class.new(random:) }
 
   # dividend / divisor = quotient
+
   describe "generate_division_numbers" do
     let(:dividend_range) { 1..20 }
     let(:divisor_range) { 1..10 }
@@ -29,18 +21,29 @@ RSpec.describe DivisionEquationConcern do
 
     it "should return numbers within the original ranges" do
       expect(
-        equation.generate_division_numbers(
-          dividend_range,
-          divisor_range,
-          quotient_range
+        equation_class.generate_division_numbers(
+          dividend_range:,
+          divisor_range:,
+          quotient_range:,
+          random:
         )
       ).to eq [16, 8]
+    end
+
+    it "does not require a dividend_range" do
+      expect(
+        equation_class.generate_division_numbers(
+          divisor_range:,
+          quotient_range:,
+          random:
+        )
+      ).to eq [56, 8]
     end
   end
 
   describe "calculate_quotient_range" do
     let(:calculated_quotient_range) do
-      equation.calculate_quotient_range(dividend_range, divisor, quotient_range)
+      equation_class.calculate_quotient_range(dividend_range, divisor, quotient_range)
     end
 
     context "calculated quotient min is higher than the supplied quotient min" do

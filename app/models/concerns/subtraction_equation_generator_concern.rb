@@ -1,13 +1,16 @@
-module SubtractionEquationConcern
+module SubtractionEquationGeneratorConcern
   extend ActiveSupport::Concern
 
-  included do
+  class_methods do
     # minuend - subtrahend = difference
     def generate_subtraction_numbers(
-      minuend_range,
-      subtrahend_range,
-      difference_range
-    )
+      minuend_range:,
+      subtrahend_range:,
+      difference_range:,
+      random:
+        )
+      subtrahend_range ||= minuend_range
+
       minuend = random.rand(minuend_range)
 
       calculated_multiplicand_range =

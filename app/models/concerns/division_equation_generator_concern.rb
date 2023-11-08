@@ -1,9 +1,9 @@
-module DivisionEquationConcern
+module DivisionEquationGeneratorConcern
   extend ActiveSupport::Concern
 
-  included do
+  class_methods do
     # dividend / divisor = quotient
-    def generate_division_numbers(dividend_range, divisor_range, quotient_range)
+    def generate_division_numbers(dividend_range: nil, divisor_range:, quotient_range:, random:)
       divisor = random.rand(divisor_range)
 
       quotient =

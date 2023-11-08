@@ -1,21 +1,15 @@
 require "rails_helper"
 
-RSpec.describe AdditionEquationConcern do
+RSpec.describe AdditionEquationGeneratorConcern do
   let(:random) { Random.new(31_337) }
-  let(:dummy_equation_class) do
+
+  let(:dummy_class) do
     Class.new do
-      include ActiveModel::API
-      include ActiveModel::Attributes
-      include AdditionEquationConcern
-
-      attribute :random
-
-      def initialize(attributes = {})
-        super
-      end
+      include AdditionEquationGeneratorConcern
     end
   end
-  let(:equation) { dummy_equation_class.new(random:) }
+
+  # augend + addend = sum
 
   describe "generate_addition_numbers" do
     let(:augend_range) { 1..9 }
@@ -27,10 +21,21 @@ RSpec.describe AdditionEquationConcern do
 
     it "should return numbers within the original ranges" do
       expect(
-        equation.generate_addition_numbers(
-          augend_range,
-          addend_range,
-          sum_range
+        dummy_class.generate_addition_numbers(
+          augend_range:,
+          addend_range:,
+          sum_range:,
+          random:
+        )
+      ).to eq [8, 7]
+    end
+
+    it "sets the addend_range to augend_range if nil" do
+      expect(
+        dummy_class.generate_addition_numbers(
+          augend_range:,
+          sum_range:,
+          random:
         )
       ).to eq [8, 7]
     end
@@ -38,7 +43,7 @@ RSpec.describe AdditionEquationConcern do
 
   describe "calculate_addend_range" do
     let(:calculated_addend_range) do
-      equation.calculate_addend_range(augend, addend_range, sum_range)
+      dummy_class.calculate_addend_range(augend, addend_range, sum_range)
     end
 
     context "sum_range is nil" do

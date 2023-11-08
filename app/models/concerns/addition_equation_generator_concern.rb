@@ -1,9 +1,11 @@
-module AdditionEquationConcern
+module AdditionEquationGeneratorConcern
   extend ActiveSupport::Concern
 
-  included do
+  class_methods do
     # augend + addend = sum
-    def generate_addition_numbers(augend_range, addend_range, sum_range)
+    def generate_addition_numbers(augend_range:, addend_range: nil, sum_range: nil, random:)
+      addend_range ||= augend_range
+
       augend = random.rand(augend_range)
 
       calculated_addend_range =
