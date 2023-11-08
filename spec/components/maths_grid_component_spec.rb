@@ -4,10 +4,12 @@ require "rails_helper"
 
 RSpec.describe MathsGridComponent, type: :component do
   let(:seed) { 31_337 }
+  let(:reward) { nil }
   let(:maths_grid) do
     create(
       :maths_grid,
       seed:,
+      reward:,
       data: {
         # NB: The structure here doesn't quite match the rows and columns of
         # this maths grid, but it works (for now)
@@ -53,5 +55,14 @@ RSpec.describe MathsGridComponent, type: :component do
       expect(cells[2]).to have_text "x"
       expect(cells[3]).to have_text "÷"
     end
+  end
+
+  describe "the reward" do
+    subject { page }
+    let!(:rendered) { render_inline(component) }
+    let(:reward) { "TV Time 🎉" }
+
+    # check that the reward is rendered
+    it { should have_css(".kids-puzzles--reward", text: "Reward: #{reward}") }
   end
 end
