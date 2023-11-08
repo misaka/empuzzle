@@ -1,11 +1,13 @@
-<div>
-  <ol class="list-reset flex">
-    <% @crumbs.each_with_index do |crumb, idx| %>
-      <li class="after:content-['>'] after:px-2 last:after:content-['']">
-      <%= link_to crumb[:path], class: "underline" do %>
-        <%= crumb[:text] %>
+<nav class="container mx-auto mt-28 px-5" aria-label="Breadcrumb">
+  <div>
+    <ol class="list-reset flex">
+      <% @crumbs.each_with_index do |crumb, idx| %>
+        <li class="after:content-['>'] after:px-2 last:after:content-['']">
+          <%= link_to crumb[:path], class: "underline" do %>
+            <%= crumb[:text] %>
+          <% end %>
+        </li>
       <% end %>
-      </li>
-    <% end %>
-  </ol>
-</div>
+    </ol>
+  </div>
+</nav>
