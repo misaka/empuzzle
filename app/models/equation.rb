@@ -21,11 +21,7 @@ class Equation
   end
 
   def result
-    # if type.to_s == "division"
-    #   numbers.map(&:to_f).inject(operator)
-    # else
-      numbers.reduce(operator)
-    # end
+    numbers.reduce(operator)
   end
 
   def operator
@@ -41,7 +37,7 @@ class Equation
 
   class << self
     def from_h(hash)
-      new(**hash.slice("numbers", "result", "type"))
+      new(**hash.symbolize_keys.slice(:numbers, :result, :type))
     end
 
     def generate(type:, **config)

@@ -2,7 +2,7 @@ require "rails_helper"
 
 RSpec.describe SubtractionCellComponent, type: :component do
   let(:equation) do
-    Puzzles::MathsGrid::Equation.from_h(
+    Equation.from_h(
       "numbers" => [12, 7],
       "result" => 5,
       "type" => "subtraction"

@@ -2,11 +2,7 @@ require "rails_helper"
 
 RSpec.describe DivisionCellComponent, type: :component do
   let(:equation) do
-    Puzzles::MathsGrid::Equation.from_h(
-      "numbers" => [15, 3],
-      "result" => 5,
-      "type" => "division"
-    )
+    Equation.from_h("numbers" => [15, 3], "result" => 5, "type" => "division")
   end
 
   before do

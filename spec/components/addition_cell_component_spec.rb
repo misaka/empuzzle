@@ -2,11 +2,7 @@ require "rails_helper"
 
 RSpec.describe AdditionCellComponent, type: :component do
   let(:equation) do
-    Puzzles::MathsGrid::Equation.from_h(
-      "numbers" => [8, 7],
-      "result" => 15,
-      "type" => "addition"
-    )
+    Equation.from_h("numbers" => [8, 7], "result" => 15, "type" => "addition")
   end
 
   before do

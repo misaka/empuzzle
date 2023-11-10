@@ -7,19 +7,11 @@ RSpec.describe Equation do
   let(:ranges) { 1..9 }
   let(:type) { "addition" }
 
-  let(:equation) do
-    described_class.new(
-      **{
-        random:,
-        ranges:,
-        result_decimal_places:,
-        result_range:,
-        type:
-      }.compact # Remove keys with nil values
-    )
-  end
+  let(:equation) { described_class.generate(**config.merge(random:)) }
 
   context "addition" do
+    let(:config) { { type: :addition, augend_range: 1..9, addend_range: 1..9 } }
+
     describe "numbers" do
       subject(:numbers) { equation.numbers }
 
@@ -34,8 +26,14 @@ RSpec.describe Equation do
   end
 
   context "subtraction" do
-    let(:type) { "subtraction" }
-    let(:result_range) { 1..9 }
+    let(:config) do
+      {
+        type: :subtraction,
+        minuend_range: 1..9,
+        subtrahend_range: 1..9,
+        difference_range: 1..9
+      }
+    end
 
     describe "numbers" do
       subject(:numbers) { equation.numbers }
@@ -51,7 +49,7 @@ RSpec.describe Equation do
   end
 
   context "multiplication" do
-    let(:type) { "multiplication" }
+    let(:config) { { type: :multiplication, multiplier_range: 1..9 } }
 
     describe "numbers" do
       subject(:numbers) { equation.numbers }
@@ -67,16 +65,19 @@ RSpec.describe Equation do
   end
 
   context "division" do
-    let(:type) { "division" }
-    let(:result_decimal_places) { 0 }
-    let(:ranges) { [2..20, 2..5] }
-    let(:result_range) { 2..10 }
-    let(:random) { Random.new(31_331) }
+    let(:config) do
+      {
+        type: :division,
+        dividend_range: 2..20,
+        divisor_range: 2..5,
+        quotient_range: 2..10
+      }
+    end
 
     describe "numbers" do
       subject(:numbers) { equation.numbers }
 
-      it { should eq([12, 3]) }
+      it { should eq([20, 5]) }
     end
 
     describe "result" do
@@ -87,7 +88,7 @@ RSpec.describe Equation do
   end
 
   context "unknown equation type" do
-    let(:type) { "nuthin" }
+    let(:config) { { type: :nuthin } }
 
     it "raises an error" do
       expect { equation }.to raise_error(
@@ -98,16 +99,16 @@ RSpec.describe Equation do
   end
 
   describe "#to_h" do
+    let(:config) { { type: :addition, augend_range: 1..9, addend_range: 1..9 } }
+
     subject(:hash) { equation.to_h }
 
-    it { should eq({ numbers: [8, 7], result: 15, type: "addition" }) }
+    it { should eq({ numbers: [8, 7], result: 15, type: :addition }) }
   end
 
   describe ".from_h" do
     subject(:equation) do
-      described_class.from_h(
-        { "numbers" => [8, 7], "result" => 15, "type" => :addition }
-      )
+      described_class.from_h({ numbers: [8, 7], result: 15, type: :addition })
     end
 
     it { should be_a(described_class) }

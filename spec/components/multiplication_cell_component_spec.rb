@@ -2,7 +2,7 @@ require "rails_helper"
 
 RSpec.describe MultiplicationCellComponent, type: :component do
   let(:equation) do
-    Puzzles::MathsGrid::Equation.from_h(
+    Equation.from_h(
       "numbers" => [2, 7],
       "result" => 14,
       "type" => "multiplication"
