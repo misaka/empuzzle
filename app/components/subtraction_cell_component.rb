@@ -9,14 +9,4 @@ class SubtractionCellComponent < ViewComponent::Base
     @equation = equation
     @maths_grid = maths_grid
   end
-
-  def results_max_length
-    maths_grid
-      .cells
-      .grep(Puzzles::MathsGrid::Equation)
-      .map(&:result)
-      .max
-      .to_s
-      .length
-  end
 end
