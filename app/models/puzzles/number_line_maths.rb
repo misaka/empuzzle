@@ -1,33 +1,48 @@
 # frozen_string_literal: true
 
 module Puzzles
-  class NumberLineMaths
-    include ActiveModel::API
-    include ActiveModel::Attributes
+  class NumberLineMaths < ::Puzzle
+    after_initialize :set_defaults
+    after_initialize :generate_puzzle
 
-    attribute :rows, :integer, default: 6
-    attribute :reward, :string
-    attribute :line_range_from, :integer, default: 0
-    attribute :line_range_to, :integer, default: 20
-    attribute :addition_numbers_count_min, :integer, default: 2
-    attribute :addition_numbers_count_max, :integer, default: 2
-    attribute :addition_numbers_from, :integer, default: 1
-    attribute :addition_numbers_to, :integer, default: 10
+    jsonb_accessor :config, rows: [:integer]
 
-    def initialize(attributes = {})
-      super
+    enum :level,
+         %w[ages_6_to_7 ages_7_to_8],
+         default: "ages_6_to_7",
+         prefix: "level"
 
-      @random = Random.new
-    end
-
-    def equations
-      @equations ||=
-        rows.times.map do |_row|
-          case random_equation_type
-          when :addition
-            Equations::Addition.new(**addition_equation_params)
-          end
-        end
+    def levels_configs
+      @levels_configs ||= {
+        "ages_6_to_7" => {
+          rows: 6,
+          equations: {
+            addition: {
+              augend_range: 1..9,
+              sum_range: 2..10
+            }
+            # subtraction: {
+            #   minuend_range: 2..10,
+            #   subtrahend_range: 1..5,
+            #   difference_range: 1..9
+            # },
+          }
+        },
+        "ages_7_to_8" => {
+          rows: 6,
+          equations: {
+            addition: {
+              augend_range: 1..9,
+              sum_range: 2..10
+            }
+            # subtraction: {
+            #   minuend_range: 2..10,
+            #   subtrahend_range: 1..5,
+            #   difference_range: 1..9
+            # },
+          }
+        }
+      }
     end
 
     def line_range
@@ -36,20 +51,51 @@ module Puzzles
 
     private
 
-    def random_equation_type
+    def level_config
+      levels_configs[level]
+    end
+
+    def set_defaults
+      self.rows ||= level_config[:rows]
+
+      self.seed ||= rand(2**32)
+    end
+
+    def random
+      @random ||= Random.new(seed)
+    end
+
+    def generate_puzzle
+      self.data ||= {
+        cells: generate_cells(level_config[:equations]).map(&:to_h)
+      }
+    rescue StandardError => e
+      Rails.logger.error("Error generating data for (seed=#{seed}) #{self}")
+      raise e
+    end
+
+    def random_cell_type
       %i[addition].sample(random: @random)
     end
 
-    def addition_equation_params
-      {
-        count_min: addition_numbers_count_min,
-        count_max: addition_numbers_count_max,
-        from: addition_numbers_from,
-        to: addition_numbers_to,
-        result_min: line_range_from,
-        result_max: line_range_to,
-        random: @random
-      }
+    def generate_cells(equations_config)
+      equations = Set.new
+
+      rows.times.map do |_row|
+        eq = nil
+        loop do
+          equation_type = random_cell_type
+          eq = generate_equation(equation_type, equations_config[equation_type])
+          break unless equations.include?(eq.to_h)
+        ensure
+          equations.add(eq.to_h)
+        end
+        eq
+      end
+    end
+
+    def generate_equation(type, equation_config)
+      ::Equation.generate(type:, random:, **equation_config)
     end
   end
 end
