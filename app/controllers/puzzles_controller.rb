@@ -26,7 +26,7 @@ class PuzzlesController < ApplicationController
   def show
     if params[:id]
       @puzzle = Puzzle.find(params[:id])
-      @puzzle_type = @puzzle.type.split("::").last.underscore
+      @puzzle_type = @puzzle.puzzle_type
     elsif params[:puzzle_type] && params[:seed]
       @puzzle_type = params[:puzzle_type].underscore
       @puzzle =

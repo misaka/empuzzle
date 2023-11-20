@@ -13,4 +13,11 @@
 #  updated_at :datetime         not null
 #
 class Puzzle < ApplicationRecord
+  def puzzle_type
+    type.split("::").last.underscore
+  end
+
+  def type_name
+    I18n.t("puzzles.#{puzzle_type}.type_name")
+  end
 end

@@ -83,10 +83,6 @@ module Puzzles
         data["cells"].map { |row| row.map { |cell| ::Equation.from_h(cell) } }
     end
 
-    def type_name
-      I18n.t("puzzles.maths_grid.type_name")
-    end
-
     def to_s
       I18n.t(
         "puzzles.maths_grid.to_s",

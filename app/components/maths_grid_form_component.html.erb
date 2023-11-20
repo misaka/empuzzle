@@ -1,21 +1,23 @@
 <%= form_for @puzzle, url: puzzles_path, method: "POST" do |form| %>
-  <%= hidden_field_tag :puzzle_type, "maths_grid" %>
+  <%= hidden_field_tag :puzzle_type, 'maths_grid' %>
 
   <div class="flex-col w-fit">
     <div class="flex flex-nowrap mt-2 justify-between">
       <%= form.label :level, class: "flex-none w-10 self-center" %>
     </div>
     <div class="flex flex-nowrap">
-        <%= form.select :level, Puzzles::MathsGrid.levels.keys, class: "flex-auto w-16" %>
+      <%= form.select :level,
+                      @puzzle.class.levels.keys.map { |l| [@puzzle.class.human_attribute_name(l), l] },
+                      class: "flex-auto w-16" %>
     </div>
 
-    <div class="flex flex-nowrap mt-2">
-      <%= label_tag "reward" %>
-    </div>
+      <div class="flex flex-nowrap mt-2">
+        <%= form.label :reward %>
+      </div>
 
-    <div class="flex flex-nowrap">
-      <%= text_field_tag :reward, @reward, class: "flex-auto w-40" %>
-    </div>
+      <div class="flex flex-nowrap">
+        <%= form.text_field :reward, class: "flex-auto w-80" %>
+      </div>
 
     <div class="flex mt-2 justify-center">
       <%= submit_tag t("puzzles.generate_new_sheet") %>
