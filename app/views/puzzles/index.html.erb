@@ -4,6 +4,10 @@
                                 class: "py-2 px-4 bg-gray-200 cursor-pointer",
                                 method: :get %>
 
+  <%= button_to t("puzzles.number_line_maths.new_puzzle"),
+                new_puzzle_path(puzzle_type: :number_line_maths),
+                class: "py-2 px-4 bg-gray-200 cursor-pointer",
+                method: :get %>
 
   <% @puzzles.each do |puzzle| %>
     <%= link_to puzzle, class: "flex hover:bg-gray-200" do %>

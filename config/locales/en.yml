@@ -43,5 +43,8 @@ en:
       setup_heading: "Puzzle Setup"
       to_s: "Maths Grid Puzzle for %{level} (%{size})"
       type_name: "Maths Grid"
+    number_line_maths:
+      new_puzzle: "New Number Line Maths"
+      type_name: "Number Line Maths"
   puzzle_setup: "Setup"
   puzzle_sheet: "Sheet"
