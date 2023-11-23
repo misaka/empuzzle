@@ -51,10 +51,10 @@ class PuzzlesController < ApplicationController
         form_component: MathsGridFormComponent,
         puzzle_component: MathsGridComponent
       },
-      number_line_maths: {
-        puzzle_class: Puzzles::NumberLineMaths,
-        form_component: NumberLineMathsFormComponent,
-      #   puzzle_component: NumberLineMathsComponent,
+      number_line: {
+        puzzle_class: Puzzles::NumberLine,
+        form_component: NumberLineFormComponent,
+        puzzle_component: NumberLinePuzzleComponent,
       },
     }.with_indifferent_access
   end

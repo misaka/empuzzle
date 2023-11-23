@@ -1,0 +1,18 @@
+<div class="kids-puzzles-content">
+  <div class="kids-puzzles-puzzle kids-puzzles-number-line-maths">
+    <% puzzle.cells.each do |equation| %>
+      <div class="kids-puzzles-number-line-maths-line">
+        <span class="kids-puzzles-number-line-maths-equation">
+          <%= render AdditionCellComponent.new(equation:) %>
+        </span>
+        <span class="kids-puzzles-number-line-maths-actual-number-line">
+          <%= render NumberLineComponent.new(puzzle:) %>
+        </span>
+      </div>
+    <% end %>
+  </div>
+
+  <% if puzzle.reward.present? %>
+    Reward: <%= puzzle.reward %>
+  <% end %>
+</div>

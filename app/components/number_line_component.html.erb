@@ -1,7 +1,7 @@
 <svg height="40" width="auto" viewbox="-10 0 550 50">
     <line x1="0" y1="30" x2="530" y2="30" style="stroke:rgb(0,0,0);stroke-width:2px;" />
-    <% (0..(puzzle.line_range)).each do |n| %>
-        <% x = 530.0 / puzzle.line_range * n %>
+    <% (0..puzzle.line_length).each do |n| %>
+        <% x = 530.0 / puzzle.line_length * n %>
         <line x1="<%= x %>" y1="24" x2="<%= x %>" y2="36" style="stroke:black; stroke-width: 2px;" />
 
         <text x="<%= x %>" y="50" text-anchor="middle"><%= n %></text>

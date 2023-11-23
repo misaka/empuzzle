@@ -15,4 +15,8 @@ Rails.application.routes.draw do
   resolve("Puzzles::MathsGrid") do |puzzle|
     route_for(:puzzle, action: :show, id: puzzle.id)
   end
+
+  resolve("Puzzles::NumberLine") do |puzzle|
+    route_for(:puzzle, action: :show, id: puzzle.id)
+  end
 end

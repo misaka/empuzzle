@@ -1,11 +1,11 @@
 # frozen_string_literal: true
 
 module Puzzles
-  class NumberLineMaths < ::Puzzle
+  class NumberLine < ::Puzzle
     after_initialize :set_defaults
     after_initialize :generate_puzzle
 
-    jsonb_accessor :config, rows: [:integer]
+    jsonb_accessor :config, rows: [:integer], line_range_from: [:integer], line_range_to: [:integer]
 
     enum :level,
          %w[ages_6_to_7 ages_7_to_8],
@@ -16,6 +16,7 @@ module Puzzles
       @levels_configs ||= {
         "ages_6_to_7" => {
           rows: 6,
+          line_range: 0..10,
           equations: {
             addition: {
               augend_range: 1..9,
@@ -30,6 +31,7 @@ module Puzzles
         },
         "ages_7_to_8" => {
           rows: 6,
+          line_range: 0..10,
           equations: {
             addition: {
               augend_range: 1..9,
@@ -46,7 +48,23 @@ module Puzzles
     end
 
     def line_range
-      line_range_to - line_range_from
+      @line_range ||= line_range_from..line_range_to
+    end
+
+    def line_length
+      @line_length ||= line_range.size - 1
+    end
+
+    def cells
+      @cells ||=
+        data["cells"].map { |cell| ::Equation.from_h(cell) }
+    end
+
+    def to_s
+      I18n.t(
+        "puzzles.number_line.to_s",
+        level: self.class.human_attribute_name(level)
+      )
     end
 
     private
@@ -57,6 +75,8 @@ module Puzzles
 
     def set_defaults
       self.rows ||= level_config[:rows]
+      self.line_range_from ||= level_config[:line_range].begin
+      self.line_range_to ||= level_config[:line_range].end
 
       self.seed ||= rand(2**32)
     end

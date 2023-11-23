@@ -9,7 +9,6 @@ RSpec.describe AdditionCellComponent, type: :component do
     render_inline(
       described_class.new(
         equation:,
-        maths_grid: build(:maths_grid, seed: 31_337)
       )
     )
   end
