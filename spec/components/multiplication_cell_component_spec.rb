@@ -9,14 +9,7 @@ RSpec.describe MultiplicationCellComponent, type: :component do
     )
   end
 
-  before do
-    render_inline(
-      described_class.new(
-        equation:,
-        maths_grid: build(:maths_grid, seed: 31_337)
-      )
-    )
-  end
+  before { render_inline(described_class.new(equation:)) }
 
   it "renders the component" do
     expect(page).to have_text(/2 x 7\s+=\s+14/)

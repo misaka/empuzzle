@@ -5,13 +5,7 @@ RSpec.describe AdditionCellComponent, type: :component do
     Equation.from_h("numbers" => [8, 7], "result" => 15, "type" => "addition")
   end
 
-  before do
-    render_inline(
-      described_class.new(
-        equation:,
-      )
-    )
-  end
+  before { render_inline(described_class.new(equation:)) }
 
   it "renders the component" do
     expect(page).to have_text(/8 \+ 7\s+=\s+15/)

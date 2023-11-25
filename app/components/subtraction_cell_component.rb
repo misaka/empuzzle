@@ -1,12 +1,17 @@
 # frozen_string_literal: true
 
 class SubtractionCellComponent < ViewComponent::Base
-  attr_reader :equation, :maths_grid
+  erb_template <<~ERB
+    <%= equation.numbers.map { |n| "<span class='kids-puzzles-number'>\#{n}</span>" }.join(" - ").html_safe %>
+    =
+    <span class="print:hidden"><%= equation.result %></span>
+  ERB
 
-  def initialize(equation:, maths_grid:)
+  attr_reader :equation
+
+  def initialize(equation:)
     super
 
     @equation = equation
-    @maths_grid = maths_grid
   end
 end

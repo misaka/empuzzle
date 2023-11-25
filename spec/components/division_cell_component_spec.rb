@@ -5,14 +5,7 @@ RSpec.describe DivisionCellComponent, type: :component do
     Equation.from_h("numbers" => [15, 3], "result" => 5, "type" => "division")
   end
 
-  before do
-    render_inline(
-      described_class.new(
-        equation:,
-        maths_grid: build(:maths_grid, seed: 31_337)
-      )
-    )
-  end
+  before { render_inline(described_class.new(equation:)) }
 
   it "renders the component" do
     expect(page).to have_text(/15 ÷ 3\s+=\s+5/)
