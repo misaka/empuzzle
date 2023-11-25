@@ -54,13 +54,15 @@ class PuzzlesController < ApplicationController
       number_line: {
         puzzle_class: Puzzles::NumberLine,
         form_component: NumberLineFormComponent,
-        puzzle_component: NumberLinePuzzleComponent,
-      },
+        puzzle_component: NumberLinePuzzleComponent
+      }
     }.with_indifferent_access
   end
 
   def puzzle_params
-    params.fetch(:puzzles_maths_grid, {}).permit(%i[rows columns level reward])
+    params.fetch("puzzles_#{@puzzle_type}", {}).permit(
+      %i[rows columns level reward]
+    )
   end
 
   def set_puzzle_type

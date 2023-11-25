@@ -26,7 +26,7 @@ RSpec.feature "number line journey" do
   end
 
   def then_i_see_the_new_number_line_page
-    expect(page).to have_css("h1", text: "Numter Line")
+    expect(page).to have_css("h1", text: "Number Line")
   end
 
   def and_the_level_is_set_to_6_to_7
@@ -46,7 +46,7 @@ RSpec.feature "number line journey" do
   end
 
   def then_the_puzzle_updates_to_10_rows
-    expect(page).to have_css(".kids-puzzles-number-line-cell", count: 12)
+    expect(page).to have_css(".kids-puzzles-number-line-maths-line", count: 6)
   end
 
   def and_i_see_the_reward

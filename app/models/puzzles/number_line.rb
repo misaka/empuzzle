@@ -5,7 +5,10 @@ module Puzzles
     after_initialize :set_defaults
     after_initialize :generate_puzzle
 
-    jsonb_accessor :config, rows: [:integer], line_range_from: [:integer], line_range_to: [:integer]
+    jsonb_accessor :config,
+                   rows: [:integer],
+                   line_range_from: [:integer],
+                   line_range_to: [:integer]
 
     enum :level,
          %w[ages_6_to_7 ages_7_to_8],
@@ -56,8 +59,7 @@ module Puzzles
     end
 
     def cells
-      @cells ||=
-        data["cells"].map { |cell| ::Equation.from_h(cell) }
+      @cells ||= data["cells"].map { |cell| ::Equation.from_h(cell) }
     end
 
     def to_s
