@@ -53,21 +53,20 @@ module Puzzles
           columns: 2,
           equations: {
             addition: {
-              augend_range: 1..9,
-              sum_range: 2..10
+              augend_range: 1..99,
+              sum_range: 10..100
             },
             subtraction: {
-              minuend_range: 2..10,
-              subtrahend_range: 1..5,
-              difference_range: 1..9
+              minuend_range: 10..100,
+              subtrahend_range: 1..20
             },
             multiplication: {
-              multiplier_range: 1..9
+              multiplier_range: 1..15,
+              product_range: 10..100
             },
             division: {
-              dividend_range: 2..20,
-              divisor_range: 2..5,
-              quotient_range: 1..9
+              divisor_range: 2..10,
+              quotient_range: 2..9
             }
           }
         }

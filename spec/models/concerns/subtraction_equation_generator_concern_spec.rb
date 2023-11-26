@@ -29,14 +29,12 @@ RSpec.describe SubtractionEquationGeneratorConcern do
 
   describe "calculate_subtrahend_range" do
     let(:minuend) { 8 }
-    let(:minuend_range) { 2..10 }
     let(:subtrahend_range) { 1..6 }
     let(:difference_range) { 1..5 }
 
     let(:calculate_subtrahend_range) do
       dummy_class.calculate_subtrahend_range(
         minuend,
-        minuend_range,
         subtrahend_range,
         difference_range
       )

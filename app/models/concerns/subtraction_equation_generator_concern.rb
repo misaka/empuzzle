@@ -6,30 +6,20 @@ module SubtractionEquationGeneratorConcern
     def generate_subtraction_numbers(
       minuend_range:,
       subtrahend_range:,
-      difference_range:,
-      random:
+      random:,
+      difference_range: nil
     )
       minuend = random.rand(minuend_range)
 
       subtrahend_range ||= minuend_range
       calculate_subtrahend_range =
-        calculate_subtrahend_range(
-          minuend,
-          minuend_range,
-          subtrahend_range,
-          difference_range
-        )
+        calculate_subtrahend_range(minuend, subtrahend_range, difference_range)
       subtrahend = random.rand(calculate_subtrahend_range)
 
       [minuend, subtrahend]
     end
 
-    def calculate_subtrahend_range(
-      minuend,
-      _minuend_range,
-      subtrahend_range,
-      difference_range
-    )
+    def calculate_subtrahend_range(minuend, subtrahend_range, difference_range)
       return subtrahend_range if difference_range.blank?
 
       min = minuend - difference_range.max
