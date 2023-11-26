@@ -9,27 +9,39 @@ module SubtractionEquationGeneratorConcern
       difference_range:,
       random:
     )
-      subtrahend_range ||= minuend_range
-
       minuend = random.rand(minuend_range)
 
-      calculated_multiplicand_range =
-        calculate_difference_range(minuend, subtrahend_range, difference_range)
+      subtrahend_range ||= minuend_range
+      calculate_subtrahend_range =
+        calculate_subtrahend_range(
+          minuend,
+          minuend_range,
+          subtrahend_range,
+          difference_range
+        )
+      subtrahend = random.rand(calculate_subtrahend_range)
 
-      difference = random.rand(calculated_multiplicand_range)
-
-      subtrahend = minuend - difference
       [minuend, subtrahend]
     end
 
-    def calculate_difference_range(minuend, subtrahend_range, difference_range)
-      min = minuend - subtrahend_range.max
-      min = difference_range.min if min < difference_range.min
+    def calculate_subtrahend_range(
+      minuend,
+      _minuend_range,
+      subtrahend_range,
+      difference_range
+    )
+      return subtrahend_range if difference_range.blank?
 
-      max = minuend - subtrahend_range.min
-      max = difference_range.max if max > difference_range.max
+      min = minuend - difference_range.max
+      min = subtrahend_range.min if min < subtrahend_range.min
 
-      raise RangeError, "Difference range is invalid" if min > max
+      max = minuend - difference_range.min
+      max = subtrahend_range.max if max > subtrahend_range.max
+
+      if min > max
+        raise RangeError,
+              "Subtrahend range is invalid, #{min} cannot be more than #{max}"
+      end
 
       min..max
     end

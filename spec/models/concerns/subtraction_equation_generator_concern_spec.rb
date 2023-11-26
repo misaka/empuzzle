@@ -11,7 +11,7 @@ RSpec.describe SubtractionEquationGeneratorConcern do
 
   describe "generate_subtraction_numbers" do
     let(:minuend_range) { 2..10 }
-    let(:subtrahend_range) { 1..6 }
+    let(:subtrahend_range) { 1..9 }
     let(:difference_range) { 1..5 }
     let(:calculated_difference_range) { 3..5 }
 
@@ -23,60 +23,75 @@ RSpec.describe SubtractionEquationGeneratorConcern do
           difference_range:,
           random:
         )
-      ).to eq [9, 4]
+      ).to eq [9, 5]
     end
   end
 
-  describe "calculate_difference_range" do
-    let(:calculate_difference_range) do
-      dummy_class.calculate_difference_range(
+  describe "calculate_subtrahend_range" do
+    let(:minuend) { 8 }
+    let(:minuend_range) { 2..10 }
+    let(:subtrahend_range) { 1..6 }
+    let(:difference_range) { 1..5 }
+
+    let(:calculate_subtrahend_range) do
+      dummy_class.calculate_subtrahend_range(
         minuend,
+        minuend_range,
         subtrahend_range,
         difference_range
       )
     end
 
-    context "calculated difference min is lower than the supplied difference min" do
+    context "no difference range supplied" do
       let(:minuend) { 8 }
-      let(:subtrahend_range) { 5..9 }
-      let(:difference_range) { 1..5 }
+      let(:difference_range) { nil }
 
-      it "uses the supplied difference min" do
-        expect(calculate_difference_range.min).to eq difference_range.min
+      it "uses the supplied subtrahend range" do
+        expect(calculate_subtrahend_range).to eq subtrahend_range
       end
     end
 
-    context "calculated difference min is higher than the supplied difference min" do
+    context "calculated subtrahend min is lower than the supplied subtrahend min" do
+      let(:minuend) { 8 }
+      let(:subtrahend_range) { 5..9 }
+      let(:difference_range) { 1..6 }
+
+      it "uses the supplied subtrahend min" do
+        expect(calculate_subtrahend_range.min).to eq subtrahend_range.min
+      end
+    end
+
+    context "calculated subtrahend min is higher than the supplied subtrahend min" do
       let(:minuend) { 8 }
       let(:subtrahend_range) { 1..5 }
       let(:difference_range) { 1..5 }
 
-      it "uses the calculated difference min" do
-        expect(calculate_difference_range.min).to eq 3
+      it "uses the calculated subtrahend min" do
+        expect(calculate_subtrahend_range.min).to eq 3
       end
     end
 
-    context "calculated difference max is higher than the supplied difference min" do
+    context "calculated subtrahend max is higher than the supplied subtrahend min" do
       let(:minuend) { 8 }
       let(:subtrahend_range) { 1..5 }
       let(:difference_range) { 1..5 }
 
-      it "uses the supplied difference max" do
-        expect(calculate_difference_range.max).to eq difference_range.max
+      it "uses the supplied subtrahend max" do
+        expect(calculate_subtrahend_range.max).to eq subtrahend_range.max
       end
     end
 
-    context "calculated difference max is lower than the supplied difference min" do
+    context "calculated subtrahend max is lower than the supplied subtrahend min" do
       let(:minuend) { 8 }
       let(:subtrahend_range) { 5..9 }
       let(:difference_range) { 1..5 }
 
-      it "uses the calculated difference max" do
-        expect(calculate_difference_range.max).to eq 3
+      it "uses the calculated subtrahend max" do
+        expect(calculate_subtrahend_range.max).to eq 7
       end
     end
 
-    context "difference range cannot be satisfied" do
+    context "subtrahend range cannot be satisfied" do
       let(:minuend) { 9 }
       let(:subtrahend_range) { 1..2 }
       let(:difference_range) { 1..5 }
@@ -84,8 +99,11 @@ RSpec.describe SubtractionEquationGeneratorConcern do
       # calculated max is 8, becomes 5
 
       it "raises a range error" do
-        expect { calculate_difference_range }.to(
-          raise_error(RangeError, "Difference range is invalid")
+        expect { calculate_subtrahend_range }.to(
+          raise_error(
+            RangeError,
+            "Subtrahend range is invalid, 4 cannot be more than 2"
+          )
         )
       end
     end

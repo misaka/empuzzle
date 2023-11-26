@@ -38,13 +38,13 @@ RSpec.describe Equation do
     describe "numbers" do
       subject(:numbers) { equation.numbers }
 
-      it { should eq([8, 1]) }
+      it { should eq([8, 7]) }
     end
 
     describe "result" do
       subject(:result) { equation.result }
 
-      it { should eq(7) }
+      it { should eq(1) }
     end
   end
 
