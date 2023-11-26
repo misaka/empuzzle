@@ -49,7 +49,7 @@ module Puzzles
           }
         },
         "ages_7_to_8" => {
-          rows: 6,
+          rows: 10,
           columns: 2,
           equations: {
             addition: {

@@ -41,7 +41,7 @@ RSpec.feature "maths grid journey" do
   end
 
   def then_the_puzzle_updates_to_10_rows
-    expect(page).to have_css(".kids-puzzles-maths-grid-cell", count: 12)
+    expect(page).to have_css(".kids-puzzles-maths-grid-cell", count: 20)
   end
 
   def and_i_see_the_reward
