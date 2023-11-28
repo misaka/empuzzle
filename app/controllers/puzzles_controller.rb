@@ -46,13 +46,13 @@ class PuzzlesController < ApplicationController
       #   form_component: MathsGridzillaFormComponent,
       #   puzzle_component: MathsGridzillaComponent,
       # },
-      maths_grid: {
-        puzzle_class: Puzzles::MathsGrid,
+      "maths/arithmetic_grid": {
+        puzzle_class: Puzzles::Maths::ArithmeticGrid,
         form_component: MathsGridFormComponent,
         puzzle_component: MathsGridComponent
       },
-      number_line: {
-        puzzle_class: Puzzles::NumberLine,
+      "maths/number_line_arithmetic": {
+        puzzle_class: Puzzles::Maths::NumberLineArithmetic,
         form_component: NumberLineFormComponent,
         puzzle_component: NumberLinePuzzleComponent
       }
@@ -60,7 +60,7 @@ class PuzzlesController < ApplicationController
   end
 
   def puzzle_params
-    params.fetch("puzzles_#{@puzzle_type}", {}).permit(
+    params.fetch(@puzzle_class.name.underscore.tr("/", "_"), {}).permit(
       %i[rows columns level reward]
     )
   end

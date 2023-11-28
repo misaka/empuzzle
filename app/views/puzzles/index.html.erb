@@ -1,11 +1,11 @@
 <% content_for :content do %>
-  <%= button_to t("puzzles.maths_grid.new_puzzle"),
-                new_puzzle_path(puzzle_type: :maths_grid),
+  <%= button_to t("puzzles.maths.arithmetic_grid.new_puzzle"),
+                new_puzzle_path(puzzle_type: "maths/arithmetic_grid"),
                                 class: "py-2 px-4 bg-gray-200 cursor-pointer",
                                 method: :get %>
 
-  <%= button_to t("puzzles.number_line.new_puzzle"),
-                new_puzzle_path(puzzle_type: :number_line),
+  <%= button_to t("puzzles.maths.number_line_arithmetic.new_puzzle"),
+                new_puzzle_path(puzzle_type: "maths/number_line_arithmetic"),
                 class: "py-2 px-4 bg-gray-200 cursor-pointer",
                 method: :get %>
 

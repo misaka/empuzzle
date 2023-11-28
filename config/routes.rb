@@ -12,11 +12,11 @@ Rails.application.routes.draw do
   # breaking it.
   get "puzzles/:puzzle_type/:seed", to: "puzzles#show", as: :puzzle_generator
 
-  resolve("Puzzles::MathsGrid") do |puzzle|
+  resolve("Puzzles::Maths::ArithmeticGrid") do |puzzle|
     route_for(:puzzle, action: :show, id: puzzle.id)
   end
 
-  resolve("Puzzles::NumberLine") do |puzzle|
+  resolve("Puzzles::Maths::NumberLineArithmetic") do |puzzle|
     route_for(:puzzle, action: :show, id: puzzle.id)
   end
 end

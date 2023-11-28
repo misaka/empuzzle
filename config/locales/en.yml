@@ -37,15 +37,16 @@ en:
         ages_7_to_8: ages 7 to 8 (KS2)
   puzzles:
     generate_new_sheet: "Generate sheet"
-    maths_grid:
-      new_description: "Generate a new sheet of arithmetic equations."
-      new_puzzle: "New Maths Grid"
-      setup_heading: "Puzzle Setup"
-      to_s: "Maths Grid Puzzle for %{level} (%{size})"
-      type_name: "Maths Grid"
-    number_line:
-      new_puzzle: "New Number Line"
-      type_name: "Number Line"
-      to_s: "Number Line Puzzle for %{level}"
+    maths:
+      arithmetic_grid:
+        new_description: "Generate a new sheet of arithmetic equations."
+        new_puzzle: "New Maths Grid"
+        setup_heading: "Puzzle Setup"
+        to_s: "Maths Grid Puzzle for %{level} (%{size})"
+        type_name: "Maths Grid"
+      number_line_arithmetic:
+        new_puzzle: "New Number Line"
+        type_name: "Number Line"
+        to_s: "Number Line Puzzle for %{level}"
   puzzle_setup: "Setup"
   puzzle_sheet: "Sheet"

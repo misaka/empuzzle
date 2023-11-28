@@ -1,6 +1,6 @@
 require "rails_helper"
 
-RSpec.describe Puzzles::MathsGrid do
+RSpec.describe Puzzles::Maths::ArithmeticGrid do
   it "does not fail to generate puzzles even with a low entropy puzzle" do
     # This is a pretty brute-force test, but it's pretty quick. The point is we
     # should be able to generate a bunck of puzzles withou triggering errors

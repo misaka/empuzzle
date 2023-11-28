@@ -1,10 +1,10 @@
 require "rails_helper"
 
-RSpec.describe Puzzles::NumberLine do
+RSpec.describe Puzzles::Maths::NumberLineArithmetic do
   subject(:puzzle) { described_class.new }
 
   it "generates a puzzle" do
-    expect(subject).to be_a Puzzles::NumberLine
+    expect(subject).to be_a Puzzles::Maths::NumberLineArithmetic
   end
 
   it "generates equations" do

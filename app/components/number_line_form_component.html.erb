@@ -1,5 +1,5 @@
 <%= form_for puzzle, url: puzzles_path, method: "POST" do |form| %>
-  <%= hidden_field_tag :puzzle_type, "number_line" %>
+  <%= hidden_field_tag :puzzle_type, @puzzle.puzzle_type %>
 
   <div class="flex-col w-fit">
     <div class="flex flex-nowrap mt-2 justify-between">

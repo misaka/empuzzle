@@ -7,7 +7,7 @@ RSpec.describe MathsGridComponent, type: :component do
   let(:reward) { nil }
   let(:maths_grid) do
     create(
-      :maths_grid,
+      :arithmetic_grid,
       seed:,
       reward:,
       data: {

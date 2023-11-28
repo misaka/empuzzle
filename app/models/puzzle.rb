@@ -14,10 +14,10 @@
 #
 class Puzzle < ApplicationRecord
   def puzzle_type
-    type.split("::").last.underscore
+    type.underscore.sub("puzzles/", "")
   end
 
   def type_name
-    I18n.t("puzzles.#{puzzle_type}.type_name")
+    I18n.t("puzzles.#{puzzle_type.gsub("/", ".")}.type_name")
   end
 end
