@@ -1,4 +1,8 @@
+<% content_for :title, "Puzzles" %>
+
 <% content_for :content do %>
+  <h2>Generate a new puzzle</h2>
+
   <%= button_to t("puzzles.maths.arithmetic_grid.new_puzzle"),
                 new_puzzle_path(puzzle_type: "maths/arithmetic_grid"),
                                 class: "py-2 px-4 bg-gray-200 cursor-pointer",
@@ -8,6 +12,8 @@
                 new_puzzle_path(puzzle_type: "maths/number_line_arithmetic"),
                 class: "py-2 px-4 bg-gray-200 cursor-pointer",
                 method: :get %>
+
+  <h2>Previously generated puzzles</h2>
 
   <% @puzzles.each do |puzzle| %>
     <%= link_to puzzle, class: "flex hover:bg-gray-200" do %>
