@@ -12,7 +12,6 @@
   </head>
 
   <body>
-    <%= content_for :before_main %>
     <header class="w-full bg-cyan-700 h-20">
       <div class="mx-auto max-w-screen-lg h-full">
         <div class="py-4 px-8">
@@ -20,6 +19,9 @@
         </div>
       </div>
     </header>
+    <nav class="mx-auto max-w-screen-lg">
+      <%= content_for :nav %>
+    </nav>
     <main class="container mx-auto max-w-screen-lg mt-12 px-5">
       <h1><%= content_for :title %></h1>
 
