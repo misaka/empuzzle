@@ -27,6 +27,18 @@ RSpec.describe MathsGridComponent, type: :component do
 
   let(:component) { described_class.new(puzzle: maths_grid) }
 
+  it "defaults show_answers to false" do
+    expect(component.show_answers).to eq false
+  end
+
+  context "setting show_answers to true" do
+    let(:component) { described_class.new(puzzle: maths_grid, show_answers: true) }
+
+    it "sets show_answers to true" do
+      expect(component.show_answers).to eq true
+    end
+  end
+
   describe "rendering the component" do
     subject { page }
     let!(:rendered) { render_inline(component) }

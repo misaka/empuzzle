@@ -6,10 +6,17 @@
 
 <% content_for :title do %>
   <div class="print:hidden">
-    <%= @puzzle.type_name %>
+    <%= @puzzle.type_name %> Sheet
   </div>
 <% end %>
 
 <% content_for :content do %>
-  <%= render @puzzle_component.new(puzzle: @puzzle) %>
+  <p class="pb-2">
+    <% if @show_answers %>
+      <%= link_to "Hide answers", show_answers: "no" %>
+    <% else %>
+      <%= link_to "Show answers", show_answers: "yes" %>
+    <% end %>
+  </p>
+  <%= render @puzzle_component.new(puzzle: @puzzle, show_answers: @show_answers) %>
 <% end %>

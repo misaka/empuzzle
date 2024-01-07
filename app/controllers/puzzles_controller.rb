@@ -33,6 +33,9 @@ class PuzzlesController < ApplicationController
         puzzle_classes[@puzzle_type][:puzzle_class].new(seed: params[:seed])
       @puzzle.generate_data
     end
+
+    @show_answers = (params["show_answers"] == "yes")
+
     @form_component = puzzle_classes[@puzzle_type][:form_component]
     @puzzle_component = puzzle_classes[@puzzle_type][:puzzle_component]
   end

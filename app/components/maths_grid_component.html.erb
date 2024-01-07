@@ -7,7 +7,7 @@
           <td class="kids-puzzles-maths-grid-cell">
             <p>
               <%= render cell_component_class(type: cell.type)
-                    .new(equation: cell) %>
+                    .new(equation: cell, show_answers:) %>
             </p>
           </td>
         <% end %>
