@@ -122,7 +122,8 @@ module Puzzles
           eq = nil
           loop do
             equation_type = random_cell_type
-            eq = generate_equation(equation_type, equations_config[equation_type])
+            eq =
+              generate_equation(equation_type, equations_config[equation_type])
             break unless equations.include?(eq.to_h)
           ensure
             equations.add(eq.to_h)
