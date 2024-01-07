@@ -13,9 +13,9 @@
 <% content_for :content do %>
   <p class="pb-2">
     <% if @show_answers %>
-      <%= link_to "Hide answers", show_answers: "no" %>
+      <%= link_to "Hide answers (answers won't print)", show_answers: "no" %>
     <% else %>
-      <%= link_to "Show answers", show_answers: "yes" %>
+      <%= link_to "Show answers (answers won't print)", show_answers: "yes" %>
     <% end %>
   </p>
   <%= render @puzzle_component.new(puzzle: @puzzle, show_answers: @show_answers) %>
