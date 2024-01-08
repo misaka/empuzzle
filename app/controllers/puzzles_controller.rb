@@ -4,7 +4,7 @@ class PuzzlesController < ApplicationController
   before_action :set_puzzle_type, only: %i[create new]
 
   def create
-    @puzzle = @puzzle_class.new(puzzle_params)
+    @puzzle = @puzzle_class.new(puzzle_params.merge(session_id: @session_id))
     @puzzle.validate
     if @puzzle.valid?
       @puzzle.save!
