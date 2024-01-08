@@ -18,7 +18,7 @@ RSpec.describe DivisionCellComponent, type: :component do
   end
 
   it "hides the answer" do
-    expect(page).to have_css('span.invisible', text: "5")
+    expect(page).to have_css("span.invisible", text: "5")
   end
 
   context "when show_answers is true" do
@@ -27,7 +27,7 @@ RSpec.describe DivisionCellComponent, type: :component do
     end
 
     it "shows the answer" do
-      expect(page).not_to have_css('span.invisible', text: "5")
+      expect(page).not_to have_css("span.invisible", text: "5")
     end
   end
 end

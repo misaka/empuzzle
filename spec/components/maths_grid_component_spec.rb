@@ -32,7 +32,9 @@ RSpec.describe MathsGridComponent, type: :component do
   end
 
   context "setting show_answers to true" do
-    let(:component) { described_class.new(puzzle: maths_grid, show_answers: true) }
+    let(:component) do
+      described_class.new(puzzle: maths_grid, show_answers: true)
+    end
 
     it "sets show_answers to true" do
       expect(component.show_answers).to eq true
