@@ -15,7 +15,7 @@ class PuzzlesController < ApplicationController
   end
 
   def index
-    @puzzles = Puzzle.all.order(created_at: :desc)
+    @puzzles = Puzzle.where(session_id: @session_id).order(created_at: :desc)
   end
 
   def new
@@ -25,7 +25,9 @@ class PuzzlesController < ApplicationController
 
   def show
     if params[:id]
-      @puzzle = Puzzle.find(params[:id])
+      @puzzle = Puzzle.where(session_id: @session_id).find(params[:id])
+      raise ActiveRecord::RecordNotFound unless @puzzle
+
       @puzzle_type = @puzzle.puzzle_type
     elsif params[:puzzle_type] && params[:seed]
       @puzzle_type = params[:puzzle_type].underscore
