@@ -17,6 +17,8 @@ RSpec.feature "maths grid journey" do
 
     when_i_click_the_home_link
     then_i_see_the_maths_grid_puzzle_that_was_generated
+    when_i_click_the_maths_grid_that_was_generated
+    then_i_see_the_maths_grid_puzzle_that_was_generated_earlier
   end
 
   def given_i_am_on_the_site_main_page
@@ -39,6 +41,19 @@ RSpec.feature "maths grid journey" do
     fill_in("Reward", with: "So much TV time!")
   end
 
+  def and_i_click_the_generate_sheet_button
+    click_button("Generate sheet")
+  end
+
+  def then_the_puzzle_updates_to_10_rows
+    expect(page).to have_css(".kids-puzzles-maths-grid-cell", count: 20)
+    @generated_page_text = page.text
+  end
+
+  def and_i_see_the_reward
+    expect(page).to have_text("Reward: So much TV time!")
+  end
+
   def and_the_answers_are_hidden
     expect(page).to have_css("span.invisible", count: 20)
   end
@@ -51,23 +66,19 @@ RSpec.feature "maths grid journey" do
     expect(page).not_to have_css("span.invisible", count: 20)
   end
 
-  def and_i_click_the_generate_sheet_button
-    click_button("Generate sheet")
-  end
-
-  def then_the_puzzle_updates_to_10_rows
-    expect(page).to have_css(".kids-puzzles-maths-grid-cell", count: 20)
-  end
-
-  def and_i_see_the_reward
-    expect(page).to have_text("Reward: So much TV time!")
-  end
-
   def when_i_click_the_home_link
     click_link("Home")
   end
 
   def then_i_see_the_maths_grid_puzzle_that_was_generated
     expect(page).to have_text("Maths Grid")
+  end
+
+  def when_i_click_the_maths_grid_that_was_generated
+    first("a", text: /Maths Grid Puzzle/).click
+  end
+
+  def then_i_see_the_maths_grid_puzzle_that_was_generated_earlier
+    expect(page.text).to eq @generated_page_text
   end
 end
