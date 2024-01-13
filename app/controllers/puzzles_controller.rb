@@ -9,7 +9,7 @@ class PuzzlesController < ApplicationController
     @puzzle.validate
     if @puzzle.valid?
       @puzzle.save!
-      redirect_to puzzle_path(@puzzle)
+      redirect_to puzzle_path(@puzzle, new_puzzle: "true")
     else
       render :new
     end
@@ -26,6 +26,7 @@ class PuzzlesController < ApplicationController
 
   def show
     @show_answers = (params["show_answers"] == "yes")
+    @new_puzzle = (params["new_puzzle"] == "true")
 
     @form_component = puzzle_classes[@puzzle_type][:form_component]
     @puzzle_component = puzzle_classes[@puzzle_type][:puzzle_component]

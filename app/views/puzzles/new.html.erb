@@ -1,6 +1,7 @@
 <% content_for :nav do %>
   <%= render BreadcrumbsComponent.new([
     { text: "Home", path: puzzles_path },
+    { text: "New #{@puzzle.type_name} puzzle" }
   ]) %>
 <% end %>
 

@@ -1,15 +1,22 @@
 <% content_for :nav do %>
-  <%= render BackButtonComponent.new(
-    text: "Back",
-    path: new_puzzle_path(
-      puzzle_type: "maths/arithmetic_grid",
-      puzzles_maths_arithmetic_grid: {
-        level: @puzzle.level,
-        reward: @puzzle.reward,
-        size: @puzzle.size,
-      }
-    )
-  ) %>
+  <% if @new_puzzle %>
+    <%= render BackButtonComponent.new(
+      text: "Back",
+      path: new_puzzle_path(
+        puzzle_type: "maths/arithmetic_grid",
+        puzzles_maths_arithmetic_grid: {
+          level: @puzzle.level,
+          reward: @puzzle.reward,
+          size: @puzzle.size,
+        }
+      )
+    ) %>
+  <% else %>
+    <%= render BreadcrumbsComponent.new([
+      { text: "Home", path: puzzles_path },
+      { text: @puzzle.to_s }
+    ]) %>
+  <% end %>
 <% end %>
 
 <% content_for :title do %>
@@ -21,9 +28,17 @@
 <% content_for :content do %>
   <p class="pb-2 print:hidden">
     <% if @show_answers %>
-      <%= link_to "Hide answers (answers won't print)", show_answers: "no" %>
+      <%= link_to(
+        "Hide answers (answers won't print)",
+        show_answers: "no",
+        new_puzzle: @new_puzzle
+      ) %>
     <% else %>
-      <%= link_to "Show answers (answers won't print)", show_answers: "yes" %>
+      <%= link_to(
+        "Show answers (answers won't print)",
+        show_answers: "yes",
+        new_puzzle: @new_puzzle
+      )%>
     <% end %>
   </p>
   <%= render @puzzle_component.new(puzzle: @puzzle, show_answers: @show_answers) %>
