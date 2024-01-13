@@ -1,7 +1,15 @@
 <% content_for :nav do %>
-  <%= render BreadcrumbsComponent.new([
-    { text: "Home", path: puzzles_path },
-  ]) %>
+  <%= render BackButtonComponent.new(
+    text: "Back",
+    path: new_puzzle_path(
+      puzzle_type: "maths/arithmetic_grid",
+      puzzles_maths_arithmetic_grid: {
+        level: @puzzle.level,
+        reward: @puzzle.reward,
+        size: @puzzle.size,
+      }
+    )
+  ) %>
 <% end %>
 
 <% content_for :title do %>
@@ -11,7 +19,7 @@
 <% end %>
 
 <% content_for :content do %>
-  <p class="pb-2">
+  <p class="pb-2 print:hidden">
     <% if @show_answers %>
       <%= link_to "Hide answers (answers won't print)", show_answers: "no" %>
     <% else %>

@@ -21,7 +21,7 @@ class PuzzlesController < ApplicationController
 
   def new
     @form_component = puzzle_classes[@puzzle_type][:form_component]
-    @puzzle = puzzle_classes[@puzzle_type][:puzzle_class].new
+    @puzzle = puzzle_classes[@puzzle_type][:puzzle_class].new(puzzle_params)
   end
 
   def show
