@@ -3,7 +3,7 @@
     <% puzzle.cells.each do |equation| %>
       <div class="kids-puzzles-number-line-maths-line">
         <span class="kids-puzzles-number-line-maths-equation">
-          <%= render AdditionCellComponent.new(equation:) %>
+          <%= render AdditionCellComponent.new(equation:, show_answers:) %>
         </span>
         <span class="kids-puzzles-number-line-maths-actual-number-line">
           <%= render NumberLineComponent.new(puzzle:) %>
