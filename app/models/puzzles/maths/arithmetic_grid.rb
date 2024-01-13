@@ -26,11 +26,32 @@ module Puzzles
 
       enum :level, %w[ages_6_to_7 ages_7_to_8], prefix: "level"
 
+      def sizes
+        HashWithIndifferentAccess.new(
+          {
+            small: {
+              rows: 6,
+              columns: 2
+            },
+            medium: {
+              rows: 8,
+              columns: 2
+            },
+            large: {
+              rows: 8,
+              columns: 3
+            }
+          }
+        )
+      end
+
+      def default_size
+        :medium
+      end
+
       def levels_configs
         @levels_configs ||= {
           "ages_6_to_7" => {
-            rows: 6,
-            columns: 2,
             equations: {
               addition: {
                 augend_range: 1..9,
@@ -52,8 +73,6 @@ module Puzzles
             }
           },
           "ages_7_to_8" => {
-            rows: 10,
-            columns: 2,
             equations: {
               addition: {
                 augend_range: 1..99,
@@ -94,11 +113,11 @@ module Puzzles
       end
 
       def columns
-        level_config[:columns]
+        sizes[size][:columns]
       end
 
       def rows
-        level_config[:rows]
+        sizes[size][:rows]
       end
 
       def generate_data

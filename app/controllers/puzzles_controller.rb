@@ -55,7 +55,7 @@ class PuzzlesController < ApplicationController
 
   def puzzle_params
     params.fetch(@puzzle_class.name.underscore.tr("/", "_"), {}).permit(
-      %i[rows columns level reward]
+      %i[size level reward]
     )
   end
 

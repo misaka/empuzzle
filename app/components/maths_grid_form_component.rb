@@ -8,4 +8,16 @@ class MathsGridFormComponent < ViewComponent::Base
 
     @puzzle = puzzle
   end
+
+  private
+
+  def level_config
+    @puzzle.level_config
+  end
+
+  def sizes_for_select
+    @puzzle.sizes.map do |name, setting|
+      ["#{name.capitalize} (#{setting[:columns]} x #{setting[:rows]})", name]
+    end
+  end
 end
