@@ -22,7 +22,7 @@ RSpec.feature "number line journey" do
   end
 
   def when_i_click_the_new_number_line_button
-    click_button "New Number Line"
+    click_link "New Number Line"
   end
 
   def then_i_see_the_new_number_line_page

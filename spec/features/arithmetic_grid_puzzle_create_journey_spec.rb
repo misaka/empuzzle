@@ -31,7 +31,7 @@ RSpec.feature "arithmetic grid journey" do
   end
 
   def when_i_click_the_new_arithmetic_grid_button
-    click_button "New Arithmetic Grid"
+    click_link "New Arithmetic Grid"
   end
 
   def then_i_see_the_new_arithmetic_grid_page

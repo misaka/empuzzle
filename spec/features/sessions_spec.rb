@@ -35,7 +35,7 @@ RSpec.feature "sessions" do
   end
 
   def when_i_create_a_new_puzzle
-    click_button "New Arithmetic Grid"
+    click_link "New Arithmetic Grid"
     click_button "Generate sheet"
     @last_puzzle_path = @puzzle_path
     @puzzle_path = page.current_path

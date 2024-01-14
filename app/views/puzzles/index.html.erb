@@ -3,15 +3,16 @@
 <% content_for :content do %>
   <h2>Generate a new puzzle</h2>
 
-  <%= button_to t("puzzles.maths.arithmetic_grid.new_puzzle"),
-                new_puzzle_path(puzzle_type: "maths/arithmetic_grid"),
-                                class: "py-2 px-4 bg-gray-200 cursor-pointer",
-                                method: :get %>
-
-  <%= button_to t("puzzles.maths.number_line_arithmetic.new_puzzle"),
-                new_puzzle_path(puzzle_type: "maths/number_line_arithmetic"),
-                class: "py-2 px-4 bg-gray-200 cursor-pointer",
-                method: :get %>
+  <ul>
+    <li>
+      <%= link_to t("puzzles.maths.arithmetic_grid.new_puzzle"),
+                  new_puzzle_path(puzzle_type: "maths/arithmetic_grid") %>
+    </li>
+    <li>
+      <%= link_to t("puzzles.maths.number_line_arithmetic.new_puzzle"),
+                    new_puzzle_path(puzzle_type: "maths/number_line_arithmetic") %>
+    </li>
+  </ul>
 
   <h2>Previously generated puzzles</h2>
 
