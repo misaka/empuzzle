@@ -26,6 +26,9 @@ module Puzzles
 
       enum :level, %w[ages_6_to_7 ages_7_to_8], prefix: "level"
 
+      validates :level, presence: true
+      validates :size, presence: true
+
       def sizes
         HashWithIndifferentAccess.new(
           {

@@ -15,6 +15,13 @@ Dir[Rails.root.join("spec/support/**/*.rb")].sort.each { |f| require f }
 
 Capybara.asset_host = "http://localhost:3000"
 
+Shoulda::Matchers.configure do |config|
+  config.integrate do |with|
+    with.test_framework :rspec
+    with.library :rails
+  end
+end
+
 RSpec.configure do |config|
   # If you enable ActiveRecord support you should unncomment these lines,
   # note if you'd prefer not to run each example within a transaction, you

@@ -19,7 +19,7 @@
 module Puzzles
   module Maths
     class NumberLineArithmetic < ::Puzzle
-      before_create :generate_puzzle
+      before_create :generate_data
       after_initialize :set_defaults
 
       jsonb_accessor :config,
@@ -31,6 +31,9 @@ module Puzzles
            %w[ages_6_to_7 ages_7_to_8],
            default: "ages_6_to_7",
            prefix: "level"
+
+      validates :level, presence: true
+      validates :size, presence: true
 
       def sizes
         HashWithIndifferentAccess.new(
@@ -104,7 +107,7 @@ module Puzzles
         @random ||= Random.new(seed)
       end
 
-      def generate_puzzle
+      def generate_data
         self.data ||= {
           cells: generate_cells(level_config[:equations]).map(&:to_h)
         }

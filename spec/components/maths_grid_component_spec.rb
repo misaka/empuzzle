@@ -10,6 +10,7 @@ RSpec.describe MathsGridComponent, type: :component do
       :arithmetic_grid,
       seed:,
       reward:,
+      size: "medium",
       data: {
         # NB: The structure here doesn't quite match the rows and columns of
         # this maths grid, but it works (for now)

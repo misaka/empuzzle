@@ -45,6 +45,7 @@ group :test do
   gem "factory_bot_rails"
   gem "rspec-rails"
   gem "selenium-webdriver"
+  gem "shoulda-matchers"
 end
 
 gem "dockerfile-rails", ">= 1.0.0", group: :development
