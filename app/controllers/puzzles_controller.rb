@@ -25,7 +25,7 @@ class PuzzlesController < ApplicationController
   end
 
   def show
-    @show_answers = (params["show_answers"] == "yes")
+    @show_answers = (params["show_answers"] == "true")
     @new_puzzle = (params["new_puzzle"] == "true")
 
     @form_component = puzzle_classes[@puzzle_type][:form_component]
