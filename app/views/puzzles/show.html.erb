@@ -3,7 +3,7 @@
     <%= render BackButtonComponent.new(
       text: "Back",
       path: new_puzzle_path(
-        puzzle_type: "maths/arithmetic_grid",
+        puzzle_type: @puzzle.puzzle_type,
         puzzles_maths_arithmetic_grid: {
           level: @puzzle.level,
           reward: @puzzle.reward,

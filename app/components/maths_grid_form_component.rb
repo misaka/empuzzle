@@ -17,7 +17,13 @@ class MathsGridFormComponent < ViewComponent::Base
 
   def sizes_for_select
     @puzzle.sizes.map do |name, setting|
-      ["#{name.capitalize} (#{setting[:columns]} x #{setting[:rows]})", name]
+      dimensions =
+        I18n.t(
+          "puzzles.maths.arithmetic_grid.dimensions",
+          cols: setting[:columns],
+          rows: setting[:rows]
+        )
+      ["#{name.capitalize} (#{dimensions})", name]
     end
   end
 end

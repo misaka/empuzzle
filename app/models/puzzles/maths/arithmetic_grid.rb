@@ -100,11 +100,11 @@ module Puzzles
           data["cells"].map { |row| row.map { |cell| ::Equation.from_h(cell) } }
       end
 
-      def to_s
+      def dimensions_text
         I18n.t(
-          "puzzles.maths.arithmetic_grid.to_s",
-          level: self.class.human_attribute_name(level),
-          size: "#{columns}x#{rows}"
+          "puzzles.maths.arithmetic_grid.dimensions",
+          cols: sizes[size][:columns],
+          rows: sizes[size][:rows]
         )
       end
 

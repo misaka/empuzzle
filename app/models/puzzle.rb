@@ -25,7 +25,20 @@ class Puzzle < ApplicationRecord
     type.underscore.sub("puzzles/", "")
   end
 
+  def puzzle_dotpath
+    puzzle_type.gsub("/", ".")
+  end
+
+  def to_s
+    I18n.t(
+      "puzzles.#{puzzle_dotpath}.to_s",
+      level: self.class.human_attribute_name(level),
+      size: self.class.human_attribute_name(size),
+      dimensions: dimensions_text
+    )
+  end
+
   def type_name
-    I18n.t("puzzles.#{puzzle_type.gsub("/", ".")}.type_name")
+    I18n.t("puzzles.#{puzzle_dotpath}.type_name")
   end
 end

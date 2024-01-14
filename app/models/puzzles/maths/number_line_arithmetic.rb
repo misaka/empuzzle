@@ -83,14 +83,14 @@ module Puzzles
         @cells ||= data["cells"].map { |cell| ::Equation.from_h(cell) }
       end
 
-      def to_s
+      private
+
+      def dimensions_text
         I18n.t(
-          "puzzles.maths.number_line_arithmetic.to_s",
-          level: self.class.human_attribute_name(level)
+          "puzzles.maths.number_line_arithmetic.dimensions",
+          rows: sizes[size][:rows]
         )
       end
-
-      private
 
       def level_config
         levels_configs[level]
