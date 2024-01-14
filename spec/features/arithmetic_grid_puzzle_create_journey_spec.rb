@@ -1,10 +1,10 @@
 require "rails_helper"
 
-RSpec.feature "maths grid journey" do
+RSpec.feature "arithmetic grid journey" do
   scenario "happy path journey" do
     given_i_am_on_the_site_main_page
-    when_i_click_the_new_maths_grid_button
-    then_i_see_the_new_maths_grid_page
+    when_i_click_the_new_arithmetic_grid_button
+    then_i_see_the_new_arithmetic_grid_page
 
     when_i_set_a_reward
     and_i_click_the_generate_sheet_button
@@ -21,21 +21,21 @@ RSpec.feature "maths grid journey" do
     then_the_puzzle_displays_a_2_by_6_grid
 
     when_i_go_back_to_the_root_page
-    then_i_see_the_maths_grid_puzzle_that_was_generated
-    when_i_click_the_maths_grid_that_was_generated
-    then_i_see_the_maths_grid_puzzle_that_was_generated_earlier
+    then_i_see_the_arithmetic_grid_puzzle_that_was_generated
+    when_i_click_the_arithmetic_grid_that_was_generated
+    then_i_see_the_arithmetic_grid_puzzle_that_was_generated_earlier
   end
 
   def given_i_am_on_the_site_main_page
     visit "/puzzles"
   end
 
-  def when_i_click_the_new_maths_grid_button
-    click_button "New Maths Grid"
+  def when_i_click_the_new_arithmetic_grid_button
+    click_button "New Arithmetic Grid"
   end
 
-  def then_i_see_the_new_maths_grid_page
-    expect(page).to have_css("h1", text: "Maths Grid")
+  def then_i_see_the_new_arithmetic_grid_page
+    expect(page).to have_css("h1", text: "Arithmetic Grid")
   end
 
   def when_i_set_a_reward
@@ -92,20 +92,20 @@ RSpec.feature "maths grid journey" do
     click_link("empuzzle")
   end
 
-  def then_i_see_the_maths_grid_puzzle_that_was_generated
+  def then_i_see_the_arithmetic_grid_puzzle_that_was_generated
     expect(
       page.find(
         "a",
-        text: "Maths Grid Puzzle for ages 7 to 8 (KS2) (Small, 2x6)"
+        text: "Arithmetic Grid Puzzle for ages 7 to 8 (KS2) (Small, 2x6)"
       )
     ).to be_visible
   end
 
-  def when_i_click_the_maths_grid_that_was_generated
-    first("a", text: /Maths Grid Puzzle/).click
+  def when_i_click_the_arithmetic_grid_that_was_generated
+    first("a", text: /Arithmetic Grid Puzzle/).click
   end
 
-  def then_i_see_the_maths_grid_puzzle_that_was_generated_earlier
+  def then_i_see_the_arithmetic_grid_puzzle_that_was_generated_earlier
     expect(page.find(".kids-puzzles-puzzle").text).to eq @generated_page_text
   end
 end

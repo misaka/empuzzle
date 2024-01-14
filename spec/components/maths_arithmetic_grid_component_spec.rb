@@ -2,7 +2,7 @@
 
 require "rails_helper"
 
-RSpec.describe MathsGridComponent, type: :component do
+RSpec.describe MathsArithmeticGridComponent, type: :component do
   let(:seed) { 31_337 }
   let(:reward) { nil }
   let(:maths_grid) do

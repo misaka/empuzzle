@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class MathsGridComponent < ViewComponent::Base
+class MathsArithmeticGridComponent < ViewComponent::Base
   attr_reader :maths_grid, :show_answers
 
   def initialize(puzzle:, show_answers: false)

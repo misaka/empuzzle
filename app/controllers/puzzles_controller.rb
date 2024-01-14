@@ -38,7 +38,7 @@ class PuzzlesController < ApplicationController
     {
       "maths/arithmetic_grid": {
         puzzle_class: Puzzles::Maths::ArithmeticGrid,
-        puzzle_component: MathsGridComponent
+        puzzle_component: MathsArithmeticGridComponent
       },
       "maths/number_line_arithmetic": {
         puzzle_class: Puzzles::Maths::NumberLineArithmetic,

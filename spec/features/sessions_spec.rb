@@ -31,11 +31,11 @@ RSpec.feature "sessions" do
   end
 
   def then_i_see_no_puzzles
-    expect(page).not_to have_css("a", text: /Maths Grid Puzzle/)
+    expect(page).not_to have_css("a", text: /Arithmetic Grid Puzzle/)
   end
 
   def when_i_create_a_new_puzzle
-    click_button "New Maths Grid"
+    click_button "New Arithmetic Grid"
     click_button "Generate sheet"
     @last_puzzle_path = @puzzle_path
     @puzzle_path = page.current_path
@@ -46,8 +46,8 @@ RSpec.feature "sessions" do
   end
 
   def then_i_see_my_one_puzzle
-    expect(page.all("a", text: /Maths Grid Puzzle/).count).to eq 1
-    expect(page.first("a", text: /Maths Grid Puzzle/).native["href"]).to eq(
+    expect(page.all("a", text: /Arithmetic Grid Puzzle/).count).to eq 1
+    expect(page.first("a", text: /Arithmetic Grid Puzzle/).native["href"]).to eq(
       @puzzle_path
     )
   end
