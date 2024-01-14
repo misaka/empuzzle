@@ -6,16 +6,21 @@ RSpec.feature "maths grid journey" do
     when_i_click_the_new_maths_grid_button
     then_i_see_the_new_maths_grid_page
 
-    when_i_change_the_level_to_7_to_8
-    and_i_set_a_reward
+    when_i_set_a_reward
     and_i_click_the_generate_sheet_button
-    then_the_puzzle_updates_to_10_rows
+    then_the_puzzle_displays_a_2_by_8_grid
     and_i_see_the_reward
     and_the_answers_are_hidden
     when_i_click_the_show_answers_button
     then_the_answers_are_visible
 
-    when_i_click_the_home_link
+    when_i_click_the_back_button
+    and_i_change_the_level_to_7_to_8
+    and_i_change_the_size_to_small
+    and_i_click_the_generate_sheet_button
+    then_the_puzzle_displays_a_2_by_6_grid
+
+    when_i_go_back_to_the_root_page
     then_i_see_the_maths_grid_puzzle_that_was_generated
     when_i_click_the_maths_grid_that_was_generated
     then_i_see_the_maths_grid_puzzle_that_was_generated_earlier
@@ -33,20 +38,19 @@ RSpec.feature "maths grid journey" do
     expect(page).to have_css("h1", text: "Maths Grid")
   end
 
-  def when_i_change_the_level_to_7_to_8
-    select("ages 7 to 8 (KS2)", from: "Level")
-  end
-
-  def and_i_set_a_reward
+  def when_i_set_a_reward
     fill_in("Reward", with: "So much TV time!")
   end
 
-  def and_i_click_the_generate_sheet_button
+  def when_i_click_the_generate_sheet_button
     click_button("Generate sheet")
   end
+  alias_method :and_i_click_the_generate_sheet_button,
+               :when_i_click_the_generate_sheet_button
 
-  def then_the_puzzle_updates_to_10_rows
-    expect(page).to have_css(".kids-puzzles-maths-grid-cell", count: 20)
+  def then_the_puzzle_displays_a_2_by_8_grid
+    expect(page).to have_css(".kids-puzzles-maths-grid-row", count: 8)
+    expect(page).to have_css(".kids-puzzles-maths-grid-cell", count: 16)
     @generated_page_text = page.text
   end
 
@@ -55,7 +59,7 @@ RSpec.feature "maths grid journey" do
   end
 
   def and_the_answers_are_hidden
-    expect(page).to have_css("span.invisible", count: 20)
+    expect(page.find(".kids-puzzles-puzzle")).to have_css("span.invisible")
   end
 
   def when_i_click_the_show_answers_button
@@ -63,15 +67,38 @@ RSpec.feature "maths grid journey" do
   end
 
   def then_the_answers_are_visible
-    expect(page).not_to have_css("span.invisible", count: 20)
+    expect(page).not_to have_css("span.invisible")
   end
 
-  def when_i_click_the_home_link
-    click_link("Home")
+  def when_i_click_the_back_button
+    click_link("Back")
+  end
+
+  def and_i_change_the_level_to_7_to_8
+    select("ages 7 to 8 (KS2)", from: "Level")
+  end
+
+  def and_i_change_the_size_to_small
+    select("Small", from: "Size")
+  end
+
+  def then_the_puzzle_displays_a_2_by_6_grid
+    expect(page).to have_css(".kids-puzzles-maths-grid-row", count: 6)
+    expect(page).to have_css(".kids-puzzles-maths-grid-cell", count: 12)
+    @generated_page_text = page.find(".kids-puzzles-puzzle").text
+  end
+
+  def when_i_go_back_to_the_root_page
+    click_link("empuzzle")
   end
 
   def then_i_see_the_maths_grid_puzzle_that_was_generated
-    expect(page).to have_text("Maths Grid")
+    expect(
+      page.find(
+        "a",
+        text: "Maths Grid Puzzle for ages 7 to 8 (KS2) (Small, 2x6)"
+      )
+    ).to be_visible
   end
 
   def when_i_click_the_maths_grid_that_was_generated
@@ -79,6 +106,6 @@ RSpec.feature "maths grid journey" do
   end
 
   def then_i_see_the_maths_grid_puzzle_that_was_generated_earlier
-    expect(page.text).to eq @generated_page_text
+    expect(page.find(".kids-puzzles-puzzle").text).to eq @generated_page_text
   end
 end
