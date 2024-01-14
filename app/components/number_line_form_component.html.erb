@@ -6,21 +6,36 @@
       <%= form.label :level, class: "flex-none w-10 self-center" %>
     </div>
     <div class="flex flex-nowrap">
-      <%= form.select :level,
-                      puzzle.class.levels.keys.map { |l| [puzzle.class.human_attribute_name(l), l] },
-                      class: "flex-auto w-16" %>
+      <%= form.select(
+        :level,
+        puzzle.class.levels.keys.map { |l| [puzzle.class.human_attribute_name(l), l] },
+        class: "flex-auto w-16"
+      ) %>
     </div>
 
-      <div class="flex flex-nowrap mt-2">
-        <%= form.label :reward %>
-      </div>
+    <div class="flex flex-nowrap mt-2 justify-between">
+      <%= form.label :size, class: "flex-none w-10 self-center" %>
+    </div>
 
-      <div class="flex flex-nowrap">
-        <%= form.text_field :reward, class: "flex-auto w-80" %>
-      </div>
+    <div class="flex flex-nowrap">
+      <%= form.select(
+        :size,
+        sizes_for_select,
+        class: "flex-auto w-16",
+        selected: @puzzle.size || @puzzle.default_size
+      ) %>
+    </div>
 
-      <div class="flex mt-2 justify-center">
-        <%= submit_tag t("puzzles.generate_new_sheet") %>
-      </div>
+    <div class="flex flex-nowrap mt-2">
+      <%= form.label :reward %>
+    </div>
+
+    <div class="flex flex-nowrap">
+      <%= form.text_field :reward, class: "flex-auto w-80" %>
+    </div>
+
+    <div class="flex mt-2 justify-center">
+      <%= submit_tag t("puzzles.generate_new_sheet") %>
+    </div>
   </div>
 <% end %>

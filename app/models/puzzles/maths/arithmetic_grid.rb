@@ -45,10 +45,6 @@ module Puzzles
         )
       end
 
-      def default_size
-        :medium
-      end
-
       def levels_configs
         @levels_configs ||= {
           "ages_6_to_7" => {
@@ -112,14 +108,6 @@ module Puzzles
         )
       end
 
-      def columns
-        sizes[size][:columns]
-      end
-
-      def rows
-        sizes[size][:rows]
-      end
-
       def generate_data
         self.data ||= { cells: generate_cells.map { |row| row.map(&:to_h) } }
       rescue StandardError => e
@@ -146,8 +134,8 @@ module Puzzles
       def generate_cells
         equations = Set.new
 
-        rows.times.map do |_row|
-          columns.times.map do |_col|
+        sizes[size][:rows].times.map do |_row|
+          sizes[size][:columns].times.map do |_col|
             eq = nil
             loop do
               eq = generate_equation(random_cell_type)

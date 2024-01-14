@@ -32,10 +32,15 @@ module Puzzles
            default: "ages_6_to_7",
            prefix: "level"
 
+      def sizes
+        HashWithIndifferentAccess.new(
+          { small: { rows: 6 }, medium: { rows: 8 }, large: { rows: 8 } }
+        )
+      end
+
       def levels_configs
         @levels_configs ||= {
           "ages_6_to_7" => {
-            rows: 6,
             line_range: 0..10,
             equations: {
               addition: {
@@ -50,7 +55,6 @@ module Puzzles
             }
           },
           "ages_7_to_8" => {
-            rows: 6,
             line_range: 0..10,
             equations: {
               addition: {
@@ -120,7 +124,7 @@ module Puzzles
       def generate_cells(equations_config)
         equations = Set.new
 
-        rows.times.map do |_row|
+        sizes[size][:rows].times.map do |_row|
           eq = nil
           loop do
             equation_type = random_cell_type

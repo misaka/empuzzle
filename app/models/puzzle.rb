@@ -17,6 +17,10 @@
 class Puzzle < ApplicationRecord
   enum :size, %i[small medium large]
 
+  def default_size
+    :medium
+  end
+
   def puzzle_type
     type.underscore.sub("puzzles/", "")
   end
