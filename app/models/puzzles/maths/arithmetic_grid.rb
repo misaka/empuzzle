@@ -127,7 +127,6 @@ module Puzzles
       end
 
       def set_defaults
-        self.level ||= "ages_6_to_7"
         self.seed ||= rand(2**32)
       end
 

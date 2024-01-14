@@ -19,8 +19,8 @@
 module Puzzles
   module Maths
     class NumberLineArithmetic < ::Puzzle
+      before_create :generate_puzzle
       after_initialize :set_defaults
-      after_initialize :generate_puzzle
 
       jsonb_accessor :config,
                      rows: [:integer],
@@ -72,7 +72,7 @@ module Puzzles
       end
 
       def line_range
-        @line_range ||= line_range_from..line_range_to
+        @line_range ||= level_config[:line_range]
       end
 
       def line_length
@@ -97,10 +97,6 @@ module Puzzles
       end
 
       def set_defaults
-        self.rows ||= level_config[:rows]
-        self.line_range_from ||= level_config[:line_range].begin
-        self.line_range_to ||= level_config[:line_range].end
-
         self.seed ||= rand(2**32)
       end
 
