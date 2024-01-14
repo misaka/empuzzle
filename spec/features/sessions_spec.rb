@@ -7,7 +7,7 @@ RSpec.feature "sessions" do
     then_i_see_no_puzzles
 
     when_i_create_a_new_puzzle
-    and_go_back_to_the_home_page
+    and_go_back_to_the_root_page
     then_i_see_my_one_puzzle
 
     given_i_have_a_new_session
@@ -15,7 +15,7 @@ RSpec.feature "sessions" do
     then_i_see_no_puzzles
 
     when_i_create_a_new_puzzle
-    and_go_back_to_the_home_page
+    and_go_back_to_the_root_page
     then_i_see_my_one_puzzle
 
     when_i_try_to_access_the_first_puzzle
@@ -41,8 +41,8 @@ RSpec.feature "sessions" do
     @puzzle_path = page.current_path
   end
 
-  def and_go_back_to_the_home_page
-    click_link "Home"
+  def and_go_back_to_the_root_page
+    click_link "empuzzle"
   end
 
   def then_i_see_my_one_puzzle

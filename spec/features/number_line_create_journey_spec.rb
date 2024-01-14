@@ -10,10 +10,10 @@ RSpec.feature "number line journey" do
     when_i_change_the_level_to_7_to_8
     and_i_set_a_reward
     and_i_click_the_generate_sheet_button
-    then_the_puzzle_updates_to_10_rows
+    then_the_puzzle_updates_to_8_rows
     and_i_see_the_reward
 
-    when_i_click_the_home_link
+    when_i_go_back_to_the_home_page
     then_i_see_the_number_line_puzzle_that_was_generated
   end
 
@@ -45,16 +45,16 @@ RSpec.feature "number line journey" do
     click_button("Generate sheet")
   end
 
-  def then_the_puzzle_updates_to_10_rows
-    expect(page).to have_css(".kids-puzzles-number-line-maths-line", count: 6)
+  def then_the_puzzle_updates_to_8_rows
+    expect(page).to have_css(".kids-puzzles-number-line-maths-line", count: 8)
   end
 
   def and_i_see_the_reward
     expect(page).to have_text("Reward: So much TV time!")
   end
 
-  def when_i_click_the_home_link
-    click_link("Home")
+  def when_i_go_back_to_the_home_page
+    click_link("empuzzle")
   end
 
   def then_i_see_the_number_line_puzzle_that_was_generated
