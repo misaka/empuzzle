@@ -47,9 +47,9 @@ RSpec.feature "sessions" do
 
   def then_i_see_my_one_puzzle
     expect(page.all("a", text: /Arithmetic Grid Puzzle/).count).to eq 1
-    expect(page.first("a", text: /Arithmetic Grid Puzzle/).native["href"]).to eq(
-      @puzzle_path
-    )
+    expect(
+      page.first("a", text: /Arithmetic Grid Puzzle/).native["href"]
+    ).to eq(@puzzle_path)
   end
 
   def when_i_try_to_access_the_first_puzzle
