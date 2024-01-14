@@ -49,8 +49,8 @@ RSpec.feature "arithmetic grid journey" do
                :when_i_click_the_generate_sheet_button
 
   def then_the_puzzle_displays_a_2_by_8_grid
-    expect(page).to have_css(".kids-puzzles-maths-grid-row", count: 8)
-    expect(page).to have_css(".kids-puzzles-maths-grid-cell", count: 16)
+    expect(page).to have_css(".empuzzle-arithmetic-grid-row", count: 8)
+    expect(page).to have_css(".empuzzle-arithmetic-grid-cell", count: 16)
     @generated_page_text = page.text
   end
 
@@ -59,7 +59,7 @@ RSpec.feature "arithmetic grid journey" do
   end
 
   def and_the_answers_are_hidden
-    expect(page.find(".kids-puzzles-puzzle")).to have_css("span.invisible")
+    expect(page.find(".empuzzle-puzzle")).to have_css("span.invisible")
   end
 
   def when_i_click_the_show_answers_button
@@ -83,9 +83,9 @@ RSpec.feature "arithmetic grid journey" do
   end
 
   def then_the_puzzle_displays_a_2_by_6_grid
-    expect(page).to have_css(".kids-puzzles-maths-grid-row", count: 6)
-    expect(page).to have_css(".kids-puzzles-maths-grid-cell", count: 12)
-    @generated_page_text = page.find(".kids-puzzles-puzzle").text
+    expect(page).to have_css(".empuzzle-arithmetic-grid-row", count: 6)
+    expect(page).to have_css(".empuzzle-arithmetic-grid-cell", count: 12)
+    @generated_page_text = page.find(".empuzzle-puzzle").text
   end
 
   def when_i_go_back_to_the_root_page
@@ -106,6 +106,6 @@ RSpec.feature "arithmetic grid journey" do
   end
 
   def then_i_see_the_arithmetic_grid_puzzle_that_was_generated_earlier
-    expect(page.find(".kids-puzzles-puzzle").text).to eq @generated_page_text
+    expect(page.find(".empuzzle-puzzle").text).to eq @generated_page_text
   end
 end

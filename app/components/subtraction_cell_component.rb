@@ -2,7 +2,7 @@
 
 class SubtractionCellComponent < ViewComponent::Base
   erb_template <<~ERB
-    <%= equation.numbers.map { |n| "<span class='kids-puzzles-number'>\#{n}</span>" }.join(" - ").html_safe %>
+    <%= equation.numbers.map { |n| "<span class='empuzzle-number'>\#{n}</span>" }.join(" - ").html_safe %>
     =
     <span class="<%= @show_answers || "invisible " %>print:hidden">
       <%= equation.result %>

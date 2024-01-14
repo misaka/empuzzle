@@ -1,10 +1,10 @@
-<div class="kids-puzzles-content">
-  <table class="kids-puzzles-puzzle kids-puzzles-maths-grid" style="width: 100%">
+<div class="empuzzle-content">
+  <table class="empuzzle-puzzle empuzzle-arithmetic-grid" style="width: 100%">
     <% @maths_grid.cells.each do |row| %>
-      <tr class="kids-puzzles-maths-grid-row">
+      <tr class="empuzzle-arithmetic-grid-row">
         <% row.each do |cell| %>
           <% @cell = cell %>
-          <td class="kids-puzzles-maths-grid-cell">
+          <td class="empuzzle-arithmetic-grid-cell">
             <p>
               <%= render cell_component_class(type: cell.type)
                     .new(equation: cell, show_answers:) %>
@@ -16,7 +16,7 @@
   </table>
 
   <% if @maths_grid.reward.present? %>
-    <div class="kids-puzzles--reward">
+    <div class="empuzzle--reward">
       Reward: <%= @maths_grid.reward %>
     </div>
   <% end %>

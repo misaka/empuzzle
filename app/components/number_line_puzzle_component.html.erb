@@ -1,11 +1,11 @@
-<div class="kids-puzzles-content">
-  <div class="kids-puzzles-puzzle kids-puzzles-number-line-maths">
+<div class="empuzzle-content">
+  <div class="empuzzle-puzzle empuzzle-number-line-maths">
     <% puzzle.cells.each do |equation| %>
-      <div class="kids-puzzles-number-line-maths-line">
-        <span class="kids-puzzles-number-line-maths-equation">
+      <div class="empuzzle-number-line-maths-line">
+        <span class="empuzzle-number-line-maths-equation">
           <%= render AdditionCellComponent.new(equation:, show_answers:) %>
         </span>
-        <span class="kids-puzzles-number-line-maths-actual-number-line">
+        <span class="empuzzle-number-line-maths-actual-number-line">
           <%= render NumberLineComponent.new(puzzle:) %>
         </span>
       </div>

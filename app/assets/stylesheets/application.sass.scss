@@ -14,13 +14,13 @@
  *= require_self
  */
 
-.kids-puzzles-maths-grid,
-.kids-puzzles-maths-grid-cell {
+.empuzzle-arithmetic-grid,
+.empuzzle-arithmetic-grid-cell {
   border: 2px solid black;
   border-collapse: collapse;
 }
 
-.kids-puzzles-maths-grid-cell {
+.empuzzle-arithmetic-grid-cell {
   /* padding-top: 2em; */
   /* padding-bottom: 0.5em; */
   padding-left: 2ex;
@@ -30,53 +30,53 @@
   vertical-align: middle;
 }
 
-.kids-puzzles-setup dl {
+.empuzzle-setup dl {
   display: table;
 }
 
-div.kids-puzzles-setup-field {
+div.empuzzle-setup-field {
   display: table-row;
 }
 
-.kids-puzzles-setup-field dt,
-.kids-puzzles-setup-field dd {
+.empuzzle-setup-field dt,
+.empuzzle-setup-field dd {
   display: table-cell;
   padding: 0.5em;
 }
 
-.kids-puzzles-setup-field input {
+.empuzzle-setup-field input {
   width: 8ex;
 }
 
-.kids-puzzles-number-line-maths {
+.empuzzle-number-line-maths {
   border: 2px solid black;
   border-collapse: collapse;
   display: table;
 }
-.kids-puzzles-number-line-maths-line {
+.empuzzle-number-line-maths-line {
   border: 2px solid black;
   display: table-row;
 }
 
-.kids-puzzles-number-line-maths-equation {
+.empuzzle-number-line-maths-equation {
   width: 8em;
   padding: 1em;
   border: 2px solid black;
   display: table-cell;
 }
 
-.kids-puzzles-number-line-maths-actual-number-line {
+.empuzzle-number-line-maths-actual-number-line {
   padding: 1em;
   padding-top: 4em;
   border: 2px solid black;
   display: table-cell;
 }
 
-.kids-puzzles-reward {
+.empuzzle-reward {
   text-align: center;
 }
 
-.kids-puzzles-visually-hidden {
+.empuzzle-visually-hidden {
   display: none;
 }
 
@@ -87,7 +87,7 @@ div.kids-puzzles-setup-field {
     display: none;
   }
 
-  .kids-puzzles-puzzle {
+  .empuzzle-puzzle {
     margin-left: auto;
     margin-right: auto;
   }

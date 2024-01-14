@@ -46,15 +46,15 @@ RSpec.describe MathsArithmeticGridComponent, type: :component do
     subject { page }
     let!(:rendered) { render_inline(component) }
 
-    it { should have_css(".kids-puzzles-maths-grid") }
+    it { should have_css(".empuzzle-arithmetic-grid") }
   end
 
   describe "the rendered cells" do
     subject { page }
     let!(:rendered) { render_inline(component) }
     let(:cells) do
-      page.find(".kids-puzzles-maths-grid").find_all(
-        ".kids-puzzles-maths-grid-cell"
+      page.find(".empuzzle-arithmetic-grid").find_all(
+        ".empuzzle-arithmetic-grid-cell"
       )
     end
 
@@ -78,6 +78,6 @@ RSpec.describe MathsArithmeticGridComponent, type: :component do
     let(:reward) { "TV Time 🎉" }
 
     # check that the reward is rendered
-    it { should have_css(".kids-puzzles--reward", text: "Reward: #{reward}") }
+    it { should have_css(".empuzzle--reward", text: "Reward: #{reward}") }
   end
 end

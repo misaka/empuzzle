@@ -46,7 +46,7 @@ RSpec.feature "number line journey" do
   end
 
   def then_the_puzzle_updates_to_8_rows
-    expect(page).to have_css(".kids-puzzles-number-line-maths-line", count: 8)
+    expect(page).to have_css(".empuzzle-number-line-maths-line", count: 8)
   end
 
   def and_i_see_the_reward
