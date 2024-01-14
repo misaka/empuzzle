@@ -36,19 +36,12 @@ class PuzzlesController < ApplicationController
 
   def puzzle_classes
     {
-      # maths_gridzilla: {
-      #   puzzle_class: Puzzles::MathsGridzilla,
-      #   form_component: MathsGridzillaFormComponent,
-      #   puzzle_component: MathsGridzillaComponent,
-      # },
       "maths/arithmetic_grid": {
         puzzle_class: Puzzles::Maths::ArithmeticGrid,
-        form_component: MathsGridFormComponent,
         puzzle_component: MathsGridComponent
       },
       "maths/number_line_arithmetic": {
         puzzle_class: Puzzles::Maths::NumberLineArithmetic,
-        form_component: NumberLineFormComponent,
         puzzle_component: NumberLinePuzzleComponent
       }
     }.with_indifferent_access

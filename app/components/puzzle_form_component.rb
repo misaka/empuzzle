@@ -1,6 +1,4 @@
-# frozen_string_literal: true
-
-class NumberLineFormComponent < ViewComponent::Base
+class PuzzleFormComponent < ViewComponent::Base
   attr_reader :puzzle
 
   def initialize(puzzle:)
@@ -9,10 +7,10 @@ class NumberLineFormComponent < ViewComponent::Base
     @puzzle = puzzle
   end
 
-  def cell_component_class(type:)
-    { addition: AdditionCellComponent, division: DivisionCellComponent }[
-      type.to_sym
-    ]
+  private
+
+  def level_config
+    @puzzle.level_config
   end
 
   def sizes_for_select

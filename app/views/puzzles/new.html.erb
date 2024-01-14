@@ -12,5 +12,5 @@
 <h2 class="ml-0"><%= t "puzzle_setup" %></h2>
 
 <% content_for :content do %>
-  <%= render @form_component.new(puzzle: @puzzle) %>
+  <%= render PuzzleFormComponent.new(puzzle: @puzzle) %>
 <% end %>
