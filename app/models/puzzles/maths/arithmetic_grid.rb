@@ -22,12 +22,19 @@ module Puzzles
       before_create :generate_data
       after_initialize :set_defaults
 
-      jsonb_accessor :config, rows: [:integer], columns: [:integer]
+      jsonb_accessor :config,
+                     rows: :integer,
+                     columns: :integer,
+                     times_table: :integer
 
       enum :level, %w[ages_6_to_7 ages_7_to_8], prefix: "level"
 
       validates :level, presence: true
       validates :size, presence: true
+
+      def self.configurable_params
+        [:times_table]
+      end
 
       def sizes
         HashWithIndifferentAccess.new(
@@ -132,7 +139,11 @@ module Puzzles
       def set_defaults
         self.seed ||= rand(2**32)
         self.rows = sizes[size][:rows]
-        self.columns = sizes[size][:columns]
+        if times_table.present?
+          self.columns = 1
+        else
+          self.columns = sizes[size][:columns]
+        end
       end
 
       def generate_cells
@@ -142,8 +153,13 @@ module Puzzles
           columns.times.map do |_col|
             eq = nil
             loop do
-              eq = generate_equation(random_cell_type)
-              break unless equations.include?(eq.to_h)
+              if times_table.present?
+                eq = generate_time_table_equation(times_table, row + 1)
+                break
+              else
+                eq = generate_equation(random_cell_type)
+                break unless equations.include?(eq.to_h)
+              end
             ensure
               equations.add(eq.to_h)
             end
@@ -155,6 +171,14 @@ module Puzzles
       def generate_equation(cell_type)
         config = level_config[:equations][cell_type].merge(random:)
         ::Equation.generate(type: cell_type, **config)
+      end
+
+      def generate_time_table_equation(times_table, n)
+        ::Equation.new(
+          type: :multiplication,
+          numbers: [n, times_table],
+          result: [n * times_table]
+        )
       end
     end
   end
