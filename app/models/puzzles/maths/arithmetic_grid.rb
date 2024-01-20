@@ -106,8 +106,8 @@ module Puzzles
       def dimensions_text
         I18n.t(
           "puzzles.maths.arithmetic_grid.dimensions",
-          cols: sizes[size][:columns],
-          rows: sizes[size][:rows]
+          cols: columns,
+          rows: rows
         )
       end
 
@@ -131,13 +131,15 @@ module Puzzles
 
       def set_defaults
         self.seed ||= rand(2**32)
+        self.rows = sizes[size][:rows]
+        self.columns = sizes[size][:columns]
       end
 
       def generate_cells
         equations = Set.new
 
-        sizes[size][:rows].times.map do |_row|
-          sizes[size][:columns].times.map do |_col|
+        rows.times.map do |row|
+          columns.times.map do |_col|
             eq = nil
             loop do
               eq = generate_equation(random_cell_type)
