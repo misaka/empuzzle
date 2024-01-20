@@ -8,17 +8,21 @@
 #  level      :integer
 #  reward     :text
 #  seed       :bigint
-#  size       :integer          not null
+#  size       :integer
 #  type       :string           not null
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #  session_id :uuid
 #
 class Puzzle < ApplicationRecord
-  enum :size, %i[small medium large]
+  def self.default_size
+    :medium
+  end
+
+  enum :size, %i[small medium large], default: default_size
 
   def default_size
-    :medium
+    selc.class.default_size
   end
 
   def puzzle_type
