@@ -22,7 +22,7 @@ class Puzzle < ApplicationRecord
   enum :size, %i[small medium large], default: default_size
 
   def default_size
-    selc.class.default_size
+    self.class.default_size
   end
 
   def puzzle_type

@@ -14,13 +14,6 @@ class PuzzleFormComponent < ViewComponent::Base
   end
 
   def sizes_for_select
-    @puzzle.sizes.map do |name, setting|
-      dimensions =
-        I18n.t(
-          "puzzles.maths.number_line_arithmetic.dimensions",
-          rows: setting[:rows]
-        )
-      ["#{name.capitalize} (#{dimensions})", name]
-    end
+    Puzzle.sizes.map { |(size, _idx)| ["#{size.capitalize}", size] }
   end
 end

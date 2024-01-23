@@ -40,6 +40,10 @@ class PuzzlesController < ApplicationController
         puzzle_class: Puzzles::Maths::ArithmeticGrid,
         puzzle_component: MathsArithmeticGridComponent
       },
+      "maths/arithmetic_grid/times_table": {
+        puzzle_class: Puzzles::Maths::ArithmeticGrid::TimesTable,
+        puzzle_component: MathsArithmeticGridComponent
+      },
       "maths/number_line_arithmetic": {
         puzzle_class: Puzzles::Maths::NumberLineArithmetic,
         puzzle_component: NumberLinePuzzleComponent

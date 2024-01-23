@@ -7,7 +7,15 @@
     <li>
       <%= link_to t("puzzles.maths.arithmetic_grid.new_puzzle"),
                   new_puzzle_path(puzzle_type: "maths/arithmetic_grid") %>
-    </li>
+      <ul>
+        <li>
+          <%= link_to(
+            t("puzzles.maths.arithmetic_grid.times_table.new_puzzle"),
+            new_puzzle_path(puzzle_type: "maths/arithmetic_grid/times_table")
+          ) %>
+        </li>
+      </ul>
+
     <li>
       <%= link_to t("puzzles.maths.number_line_arithmetic.new_puzzle"),
                     new_puzzle_path(puzzle_type: "maths/number_line_arithmetic") %>

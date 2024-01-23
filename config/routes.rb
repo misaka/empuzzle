@@ -16,6 +16,10 @@ Rails.application.routes.draw do
     route_for(:puzzle, action: :show, id: puzzle.id)
   end
 
+  resolve("Puzzles::Maths::ArithmeticGrid::TimesTable") do |puzzle|
+    route_for(:puzzle, action: :show, id: puzzle.id)
+  end
+
   resolve("Puzzles::Maths::NumberLineArithmetic") do |puzzle|
     route_for(:puzzle, action: :show, id: puzzle.id)
   end

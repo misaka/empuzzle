@@ -19,43 +19,17 @@
 module Puzzles
   module Maths
     class ArithmeticGrid < ::Puzzle
-      before_create :generate_data
+      before_create :generate_puzzle
       after_initialize :set_defaults
 
-      jsonb_accessor :config,
-                     rows: :integer,
-                     columns: :integer,
-                     times_table: :integer
+      jsonb_accessor :config, rows: :integer, columns: :integer
 
       enum :level, %w[ages_6_to_7 ages_7_to_8], prefix: "level"
 
       validates :level, presence: true
       validates :size, presence: true
 
-      def self.configurable_params
-        [:times_table]
-      end
-
-      def sizes
-        HashWithIndifferentAccess.new(
-          {
-            small: {
-              rows: 6,
-              columns: 2
-            },
-            medium: {
-              rows: 8,
-              columns: 2
-            },
-            large: {
-              rows: 8,
-              columns: 3
-            }
-          }
-        )
-      end
-
-      def levels_configs
+      def self.levels_configs
         @levels_configs ||= {
           "ages_6_to_7" => {
             equations: {
@@ -101,8 +75,31 @@ module Puzzles
         }
       end
 
+      def self.sizes_configs
+        HashWithIndifferentAccess.new(
+          {
+            small: {
+              rows: 6,
+              columns: 2
+            },
+            medium: {
+              rows: 8,
+              columns: 2
+            },
+            large: {
+              rows: 8,
+              columns: 3
+            }
+          }
+        )
+      end
+
       def level_config
-        levels_configs[level]
+        self.class.levels_configs[level]
+      end
+
+      def size_config
+        self.class.sizes_configs[size]
       end
 
       def cells
@@ -116,6 +113,13 @@ module Puzzles
           cols: columns,
           rows: rows
         )
+      end
+
+      def generate_puzzle
+        self.rows = self.size_config[:rows]
+        self.columns = self.size_config[:columns]
+
+        generate_data
       end
 
       def generate_data
@@ -138,12 +142,6 @@ module Puzzles
 
       def set_defaults
         self.seed ||= rand(2**32)
-        self.rows = sizes[size][:rows]
-        if times_table.present?
-          self.columns = 1
-        else
-          self.columns = sizes[size][:columns]
-        end
       end
 
       def generate_cells
@@ -153,13 +151,8 @@ module Puzzles
           columns.times.map do |_col|
             eq = nil
             loop do
-              if times_table.present?
-                eq = generate_time_table_equation(times_table, row + 1)
-                break
-              else
-                eq = generate_equation(random_cell_type)
-                break unless equations.include?(eq.to_h)
-              end
+              eq = generate_equation(random_cell_type)
+              break unless equations.include?(eq.to_h)
             ensure
               equations.add(eq.to_h)
             end
@@ -171,14 +164,6 @@ module Puzzles
       def generate_equation(cell_type)
         config = level_config[:equations][cell_type].merge(random:)
         ::Equation.generate(type: cell_type, **config)
-      end
-
-      def generate_time_table_equation(times_table, n)
-        ::Equation.new(
-          type: :multiplication,
-          numbers: [n, times_table],
-          result: [n * times_table]
-        )
       end
     end
   end

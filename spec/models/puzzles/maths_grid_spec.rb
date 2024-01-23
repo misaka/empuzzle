@@ -1,10 +1,12 @@
 require "rails_helper"
 
 RSpec.describe Puzzles::Maths::ArithmeticGrid do
-  let(:level) { Puzzles::Maths::ArithmeticGrid.levels.first.first }
+  let(:level) { described_class.levels.first.first }
   let(:size) { "small" }
 
   describe "validations" do
+    subject { described_class.new(level:, size:) }
+
     it { should validate_presence_of :level }
     it { should validate_presence_of :size }
   end
@@ -26,47 +28,16 @@ RSpec.describe Puzzles::Maths::ArithmeticGrid do
       # this seed to start passing the test suddenly, which is why we use the
       # brute force method here.
       expect {
-        100.times { |_n| described_class.new(level:, size:).generate_data }
+        100.times { |_n| described_class.new(level:, size:).generate_puzzle }
       }.not_to raise_error
     end
 
     it "does not repeat equations in the same puzzle" do
       10.times do
         puzzle = described_class.new(level:, size:)
-        cells = puzzle.generate_data[:cells].flatten
+        cells = puzzle.generate_puzzle[:cells].flatten
         expect(cells.uniq).to eq cells
       end
-    end
-  end
-
-  context "with a times table" do
-    let(:times_table) { 2 }
-    let(:level) { Puzzles::Maths::ArithmeticGrid.levels.first.first }
-
-    it "generates a puzzle with 1 column" do
-      puzzle = described_class.new(level:, size:, times_table: times_table)
-      expect(puzzle.generate_data[:cells].first.size).to eq 1
-    end
-
-    it "generates a puzzle with the correct number of rows" do
-      puzzle = described_class.new(level:, size:, times_table: times_table)
-      expect(puzzle.generate_data[:cells].size).to eq 6
-    end
-
-    it "generates a puzzle with the correct equations" do
-      puzzle = described_class.new(level:, size:, times_table: times_table)
-      expect(puzzle.generate_data[:cells].flatten).to(
-        eq(
-          [
-            { numbers: [1, 2], result: 2, type: :multiplication },
-            { numbers: [2, 2], result: 4, type: :multiplication },
-            { numbers: [3, 2], result: 6, type: :multiplication },
-            { numbers: [4, 2], result: 8, type: :multiplication },
-            { numbers: [5, 2], result: 10, type: :multiplication },
-            { numbers: [6, 2], result: 12, type: :multiplication }
-          ]
-        )
-      )
     end
   end
 end
