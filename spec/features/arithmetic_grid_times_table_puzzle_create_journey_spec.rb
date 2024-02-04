@@ -8,7 +8,7 @@ RSpec.feature "arithmetic grid times table journey" do
 
     when_i_set_a_reward
     and_i_click_the_generate_sheet_button
-    then_the_puzzle_displays_a_1_by_8_grid
+    then_the_puzzle_displays_a_2_by_8_grid
     and_i_see_the_reward
     and_the_answers_are_hidden
     when_i_click_the_show_answers_button
@@ -18,7 +18,7 @@ RSpec.feature "arithmetic grid times table journey" do
     and_i_change_the_level_to_7_to_8
     and_i_change_the_size_to_small
     and_i_click_the_generate_sheet_button
-    then_the_puzzle_displays_a_2_by_6_grid
+    then_the_puzzle_displays_a_1_by_8_grid
 
     when_i_go_back_to_the_root_page
     then_i_see_the_arithmetic_grid_puzzle_that_was_generated
@@ -48,9 +48,9 @@ RSpec.feature "arithmetic grid times table journey" do
   alias_method :and_i_click_the_generate_sheet_button,
                :when_i_click_the_generate_sheet_button
 
-  def then_the_puzzle_displays_a_1_by_8_grid
+  def then_the_puzzle_displays_a_2_by_8_grid
     expect(page).to have_css(".empuzzle-arithmetic-grid-row", count: 8)
-    expect(page).to have_css(".empuzzle-arithmetic-grid-cell", count: 8)
+    expect(page).to have_css(".empuzzle-arithmetic-grid-cell", count: 16)
     @generated_page_text = page.text
   end
 
@@ -82,7 +82,7 @@ RSpec.feature "arithmetic grid times table journey" do
     select("Small", from: "Size")
   end
 
-  def then_the_puzzle_displays_a_2_by_6_grid
+  def then_the_puzzle_displays_a_1_by_8_grid
     expect(page).to have_css(".empuzzle-arithmetic-grid-row", count: 8)
     expect(page).to have_css(".empuzzle-arithmetic-grid-cell", count: 8)
     @generated_page_text = page.find(".empuzzle-puzzle").text
