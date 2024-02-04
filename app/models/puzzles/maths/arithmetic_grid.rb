@@ -108,16 +108,12 @@ module Puzzles
       end
 
       def dimensions_text
-        I18n.t(
-          "puzzles.maths.arithmetic_grid.dimensions",
-          cols: columns,
-          rows: rows
-        )
+        I18n.t("puzzles.maths.arithmetic_grid.dimensions", cols: columns, rows:)
       end
 
       def generate_puzzle
-        self.rows = self.size_config[:rows]
-        self.columns = self.size_config[:columns]
+        self.rows = size_config[:rows]
+        self.columns = size_config[:columns]
 
         generate_data
       end
@@ -147,7 +143,7 @@ module Puzzles
       def generate_cells
         equations = Set.new
 
-        rows.times.map do |row|
+        rows.times.map do |_row|
           columns.times.map do |_col|
             eq = nil
             loop do

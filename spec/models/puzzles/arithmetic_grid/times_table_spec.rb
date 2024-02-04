@@ -1,7 +1,7 @@
 require "rails_helper"
 
 RSpec.describe Puzzles::Maths::ArithmeticGrid::TimesTable do
-  let(:seed) { 31337 }
+  let(:seed) { 31_337 }
   let(:level) { described_class.levels.first.first }
   let(:size) { "small" }
 
