@@ -1,0 +1,40 @@
+{
+  "ignored_warnings": [
+    {
+      "warning_type": "Dynamic Render Path",
+      "warning_code": 15,
+      "fingerprint": "21a225a589f064f5307feff79ee005012b56bb8a2ea74f1d70eecb7cc2f6a949",
+      "check_name": "Render",
+      "message": "Render path contains parameter value",
+      "file": "app/views/puzzles/show.html.erb",
+      "line": 37,
+      "link": "https://brakemanscanner.org/docs/warning_types/dynamic_render_path/",
+      "code": "render(action => puzzle_classes[(Puzzle.where(:session_id => session.id.to_s).find(params[:id]).puzzle_type or params[:puzzle_type].underscore)][:puzzle_component].new(:puzzle => ((Puzzle.where(:session_id => session.id.to_s).find(params[:id]) or puzzle_classes[params[:puzzle_type].underscore][:puzzle_class].new(:seed => params[:seed]))), :show_answers => (params[\"show_answers\"] == \"true\")), {})",
+      "render_path": [
+        {
+          "type": "controller",
+          "class": "PuzzlesController",
+          "method": "show",
+          "line": 33,
+          "file": "app/controllers/puzzles_controller.rb",
+          "rendered": {
+            "name": "puzzles/show",
+            "file": "app/views/puzzles/show.html.erb"
+          }
+        }
+      ],
+      "location": {
+        "type": "template",
+        "template": "puzzles/show"
+      },
+      "user_input": "params[:seed]",
+      "confidence": "Weak",
+      "cwe_id": [
+        22
+      ],
+      "note": "Brakeman appears to be confused because the controller is setting the view component to a variable which is then used in the view with render"
+    }
+  ],
+  "updated": "2024-02-04 23:53:47 +0000",
+  "brakeman_version": "6.1.1"
+}
