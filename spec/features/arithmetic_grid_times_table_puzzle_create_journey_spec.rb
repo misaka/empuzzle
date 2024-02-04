@@ -96,13 +96,13 @@ RSpec.feature "arithmetic grid times table journey" do
     expect(
       page.find(
         "a",
-        text: /\d Times Table Puzzle for ages 7 to 8 \(KS2\) \(Small, 8 rows\)/
+        text: /\d Times Table Grid for ages 7 to 8 \(KS2\) \(Small, 1x8\)/
       )
     ).to be_visible
   end
 
   def when_i_click_the_arithmetic_grid_that_was_generated
-    first("a", text: /Times Table Puzzle/).click
+    first("a", text: /Times Table Grid/).click
   end
 
   def then_i_see_the_arithmetic_grid_puzzle_that_was_generated_earlier

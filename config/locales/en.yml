@@ -45,7 +45,7 @@ en:
         dimensions: "%{cols}x%{rows}"
         times_table:
           new_puzzle: "New Times Table"
-          to_s: "%{number} Times Table Puzzle for %{level} (%{size}, %{rows} rows)"
+          to_s: "%{numbers} Times Table Grid for %{level} (%{size}, %{dimensions})"
           type_name: "Times Table"
         to_s: "Arithmetic Grid Puzzle for %{level} (%{size}, %{dimensions})"
         type_name: "Arithmetic Grid"
