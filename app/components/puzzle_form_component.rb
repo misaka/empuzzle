@@ -14,6 +14,6 @@ class PuzzleFormComponent < ViewComponent::Base
   end
 
   def sizes_for_select
-    Puzzle.sizes.map { |(size, _idx)| ["#{size.capitalize}", size] }
+    Puzzle.sizes.map { |(size, _idx)| [size.capitalize.to_s, size] }
   end
 end

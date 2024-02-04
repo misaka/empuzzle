@@ -1,0 +1,50 @@
+name: Test
+
+on:
+  push:
+    branches: ["**"]
+
+jobs:
+  rails:
+    name: Rails
+    runs-on: ubuntu-latest
+
+    services:
+      postgres:
+        image: postgres:13.5
+        env:
+          POSTGRES_PASSWORD: postgres
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+        ports:
+          - 5432:5432
+
+    env:
+      DATABASE_URL: postgres://postgres:postgres@localhost:5432/empuzzle_test
+      RAILS_ENV: test
+
+    steps:
+      - uses: actions/checkout@v4
+      - uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: .tool-versions
+          bundler-cache: true
+      - name: Get Node.js version
+        id: asdf
+        run: echo "::set-output name=VERSION::$(grep nodejs .tool-versions | awk '{print $2}')"
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${{ steps.asdf.outputs.VERSION }}
+          cache: "yarn"
+
+      - name: Setup database
+        run: bin/rails db:test:prepare
+
+      - name: Precompile assets
+        run: bin/rails assets:precompile
+
+      - name: Run rspec
+        run: bundle exec rspec spec

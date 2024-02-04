@@ -2,3 +2,4 @@
 
 bin/bundle exec rubocop --autocorrect-all
 yarn prettier --write --list-different --ignore-unknown '**/*'
+bin/bundle exec brakeman --quiet --no-summary --no-pager
