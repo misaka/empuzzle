@@ -3,7 +3,7 @@
   "private": "true",
   "devDependencies": {
     "@prettier/plugin-ruby": "^4.0.2",
-    "prettier": "^3.0.1"
+    "prettier": "^3.2.5"
   },
   "dependencies": {
     "sass": "^1.66.1"
