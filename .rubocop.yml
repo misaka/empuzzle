@@ -15,3 +15,12 @@ inherit_gem:
 inherit_mode:
   merge:
     - Exclude
+
+# This appears to be a disagreement with prettier. Not quite sure if this isn't
+# addressable somehow so just ignoring for now.
+Style/BlockDelimiters:
+  Exclude:
+    - app/models/puzzles/maths/arithmetic_grid/times_table.rb
+Style/MethodCalledOnDoEndBlock:
+  Exclude:
+    - app/models/puzzles/maths/arithmetic_grid/times_table.rb
