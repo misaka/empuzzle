@@ -2,7 +2,7 @@
   "name": "app",
   "private": "true",
   "devDependencies": {
-    "@prettier/plugin-ruby": "^4.0.2",
+    "@prettier/plugin-ruby": "^4.0.4",
     "prettier": "^3.2.5"
   },
   "dependencies": {
