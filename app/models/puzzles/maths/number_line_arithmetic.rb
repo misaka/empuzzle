@@ -19,7 +19,6 @@
 module Puzzles
   module Maths
     class NumberLineArithmetic < ::Puzzle
-      before_create :generate_data
       after_initialize :set_defaults
 
       jsonb_accessor :config,
@@ -107,7 +106,7 @@ module Puzzles
         @random ||= Random.new(seed)
       end
 
-      def generate_data
+      def generate_puzzle
         self.data ||= {
           cells: generate_cells(level_config[:equations]).map(&:to_h)
         }

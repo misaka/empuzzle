@@ -70,11 +70,6 @@ class PuzzlesController < ApplicationController
       raise ActiveRecord::RecordNotFound unless @puzzle
 
       @puzzle_type = @puzzle.puzzle_type
-    elsif params[:puzzle_type] && params[:seed]
-      @puzzle_type = params[:puzzle_type].underscore
-      @puzzle =
-        puzzle_classes[@puzzle_type][:puzzle_class].new(seed: params[:seed])
-      @puzzle.generate_data
     end
   end
 end
