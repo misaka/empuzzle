@@ -15,6 +15,13 @@
 #  session_id :uuid
 #
 class Puzzle < ApplicationRecord
+  before_create :generate_puzzle
+
+  def generate_puzzle
+    raise NotImplementedError,
+          "Please implement #generate_puzzle. This should populate the data field with the puzzle data."
+  end
+
   def self.default_size
     :medium
   end

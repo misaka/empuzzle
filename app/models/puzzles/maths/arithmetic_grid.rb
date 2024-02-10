@@ -19,7 +19,6 @@
 module Puzzles
   module Maths
     class ArithmeticGrid < ::Puzzle
-      before_create :generate_puzzle
       after_initialize :set_defaults
 
       jsonb_accessor :config, rows: :integer, columns: :integer
